@@ -29,8 +29,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Talk to krishna",
-  description: "God Reincarcination",
+  title: "DivineSarathi - Talk to krishna",
+  description: "Your Spiritual Guide and Companion",
   icons: {
     icon: [
       { url: "/favicon.ico" },
