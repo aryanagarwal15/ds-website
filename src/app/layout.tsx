@@ -29,7 +29,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "DivineSarathi - Talk to krishna",
+  title: "DivineSarathi - Talk to Krishna AI",
   description: "Your Spiritual Guide and Companion",
   icons: {
     icon: [
