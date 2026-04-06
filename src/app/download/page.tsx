@@ -4,8 +4,8 @@ import DownloadRedirect from "./DownloadRedirect";
 
 const APP_STORE_URL =
   "https://apps.apple.com/in/app/divinesarathi/id6752269118";
-const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=in.divinesarathi";
-const FALLBACK_URL = APP_STORE_URL;
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=in.divinesarathi";
 
 export default async function DownloadPage() {
   const headersList = await headers();
@@ -16,7 +16,7 @@ export default async function DownloadPage() {
   const isAndroid = userAgent.includes("android");
   const isIOS = /iphone|ipad|ipod/.test(userAgent);
 
-  const redirectUrl = isIOS ? APP_STORE_URL : isAndroid ? FALLBACK_URL : null;
+  const redirectUrl = isIOS ? APP_STORE_URL : isAndroid ? PLAY_STORE_URL : null;
 
   if (redirectUrl) {
     return (
