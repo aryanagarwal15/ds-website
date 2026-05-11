@@ -72,7 +72,7 @@ export default function FloatingAudioButton() {
         transition-all duration-200"
       >
         <img
-          src="/images/logo_without_text.png"
+          src="/images/logo_without_text.webp"
           alt=""
           className="absolute inset-0 w-full h-full opacity-90"
         />

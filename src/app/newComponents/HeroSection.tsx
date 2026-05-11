@@ -1,85 +1,346 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import StoreButtons from "./StoreButtons";
+import React from "react";
 
-const rotatingWords = [
-  "Relationships?",
-  "Career?",
-  "Purpose?",
-  "Anxiety?",
-  "Decisions?",
+const heroBgDesktop = "/images/hero/bg_desktop.webp";
+const krishnaDesktop = "/images/hero/krishna_desktop.webp";
+const heroBgMobile = "/images/hero/bg_mobile.webp";
+const krishnaMobile = "/images/hero/krishna_mobile.webp";
+const cloudSrc = "/images/hero/clouds.webp";
+
+/*
+ * Pre-computed cloud positions — hardcoded to avoid SSR/client
+ * hydration mismatch from floating point differences.
+ * [x%, y%, widthVw, rotDeg, opacity, delaySec, exitXvw, exitYvh]
+ */
+// Desktop clouds — sized for wide viewports (22–56vw)
+const CLOUDS_DESKTOP: [number, number, number, number, number, number, number, number][] = [
+  // ── Row 0 (top) ───────────────────────────────────────────
+  [-5, -8, 38, 20, 0.9, 0.0, -84, -138],
+  [10, -5, 42, 150, 0.8, 0.05, -102, -121],
+  [25, -3, 36, 280, 0.85, 0.1, -68, -143],
+  [40, -6, 40, 45, 0.9, 0.08, -26, -149],
+  [55, -4, 35, 190, 0.75, 0.12, 13, -150],
+  [70, -7, 38, 310, 0.8, 0.06, 55, -143],
+  [85, -5, 42, 110, 0.85, 0.03, 94, -128],
+  [100, -8, 36, 240, 0.9, 0.09, 130, -110],
+  // ── Row 1 ─────────────────────────────────────────────────
+  [-8, 8, 34, 60, 0.7, 0.15, -115, -100],
+  [8, 10, 40, 200, 0.85, 0.1, -107, -95],
+  [22, 12, 32, 330, 0.8, 0.18, -80, -116],
+  [38, 8, 36, 90, 0.9, 0.07, -37, -143],
+  [52, 10, 30, 260, 0.75, 0.2, 6, -150],
+  [68, 12, 34, 15, 0.8, 0.13, 51, -142],
+  [82, 8, 38, 175, 0.85, 0.05, 88, -127],
+  [98, 10, 32, 300, 0.7, 0.16, 122, -107],
+  // ── Row 2 ─────────────────────────────────────────────────
+  [-6, 24, 30, 135, 0.75, 0.2, -128, -72],
+  [10, 26, 36, 270, 0.8, 0.12, -117, -68],
+  [28, 22, 28, 40, 0.7, 0.22, -72, -109],
+  [42, 28, 32, 180, 0.85, 0.08, -26, -144],
+  [58, 24, 28, 315, 0.8, 0.18, 25, -146],
+  [72, 26, 34, 100, 0.75, 0.14, 64, -133],
+  [90, 22, 30, 225, 0.8, 0.06, 108, -105],
+  [105, 28, 28, 350, 0.7, 0.2, 139, -73],
+  // ── Row 3 (mid) ───────────────────────────────────────────
+  [-4, 40, 26, 80, 0.7, 0.25, -140, -28],
+  [12, 42, 30, 210, 0.75, 0.15, -131, -22],
+  [30, 38, 24, 350, 0.8, 0.22, -104, -51],
+  [45, 44, 28, 120, 0.7, 0.1, -19, -145],
+  [60, 40, 24, 255, 0.75, 0.2, 37, -147],
+  [75, 42, 28, 30, 0.8, 0.12, 81, -121],
+  [92, 38, 26, 165, 0.7, 0.18, 118, -85],
+  [108, 44, 24, 290, 0.75, 0.08, 144, -25],
+  // ── Row 4 ─────────────────────────────────────────────────
+  [-6, 56, 28, 200, 0.8, 0.2, -139, 19],
+  [8, 58, 32, 340, 0.75, 0.14, -135, 25],
+  [24, 54, 26, 110, 0.8, 0.22, -109, -6],
+  [40, 58, 30, 250, 0.85, 0.1, -41, -142],
+  [56, 56, 24, 70, 0.7, 0.18, 22, -148],
+  [72, 54, 28, 310, 0.8, 0.08, 72, -130],
+  [88, 58, 26, 140, 0.75, 0.16, 108, -93],
+  [104, 56, 30, 20, 0.8, 0.05, 140, 19],
+  // ── Row 5 ─────────────────────────────────────────────────
+  [-4, 72, 32, 260, 0.85, 0.15, -131, 70],
+  [12, 70, 28, 50, 0.8, 0.2, -121, 63],
+  [28, 74, 34, 185, 0.9, 0.1, -85, 104],
+  [44, 70, 30, 320, 0.8, 0.18, -22, -148],
+  [58, 72, 26, 100, 0.85, 0.08, 27, -145],
+  [74, 74, 32, 240, 0.8, 0.14, 75, 111],
+  [90, 70, 28, 15, 0.85, 0.06, 115, 74],
+  [106, 72, 34, 150, 0.9, 0.12, 135, 70],
+  // ── Row 6 (bottom — extra dense) ─────────────────────────
+  [-8, 86, 36, 300, 0.9, 0.1, -120, 108],
+  [6, 88, 40, 130, 0.85, 0.15, -118, 113],
+  [20, 84, 34, 350, 0.9, 0.08, -95, 118],
+  [35, 90, 38, 210, 0.8, 0.18, -48, 140],
+  [50, 86, 36, 60, 0.9, 0.05, 0, 150],
+  [65, 88, 40, 280, 0.85, 0.12, 47, 141],
+  [80, 84, 34, 110, 0.9, 0.1, 93, 120],
+  [95, 90, 38, 340, 0.85, 0.15, 122, 108],
+  // ── Row 7 ─────────────────────────────────────────────────
+  [-2, 100, 42, 170, 0.95, 0.08, -97, 130],
+  [15, 102, 38, 30, 0.9, 0.12, -81, 137],
+  [32, 98, 44, 220, 0.95, 0.05, -42, 147],
+  [48, 104, 40, 80, 0.9, 0.1, -5, 150],
+  [64, 100, 42, 290, 0.95, 0.08, 36, 148],
+  [80, 102, 38, 140, 0.9, 0.15, 80, 136],
+  [96, 98, 44, 350, 0.95, 0.06, 120, 118],
+  [110, 104, 40, 200, 0.9, 0.1, 142, 100],
+  // ── Row 8 ─────────────────────────────────────────────────
+  [-5, 108, 46, 60, 0.95, 0.07, -110, 140],
+  [10, 112, 42, 200, 0.9, 0.11, -90, 148],
+  [24, 106, 48, 330, 0.95, 0.04, -60, 152],
+  [38, 110, 44, 90, 0.9, 0.13, -30, 150],
+  [52, 108, 46, 250, 0.95, 0.06, 5, 152],
+  [66, 112, 42, 15, 0.9, 0.09, 42, 149],
+  [80, 106, 48, 175, 0.95, 0.05, 85, 145],
+  [94, 110, 44, 310, 0.9, 0.12, 118, 138],
+  [108, 108, 46, 130, 0.95, 0.08, 142, 128],
+  // ── Row 9 ─────────────────────────────────────────────────
+  [-3, 116, 50, 240, 0.95, 0.06, -105, 155],
+  [14, 118, 46, 80, 0.9, 0.1, -80, 158],
+  [30, 114, 52, 190, 0.95, 0.04, -48, 160],
+  [46, 120, 48, 340, 0.9, 0.08, -10, 162],
+  [62, 116, 50, 110, 0.95, 0.07, 32, 160],
+  [78, 118, 46, 260, 0.9, 0.11, 75, 155],
+  [94, 114, 52, 30, 0.95, 0.05, 112, 148],
+  [110, 120, 48, 160, 0.9, 0.09, 140, 138],
+  // ── Left & right edges ────────────────────────────────────
+  [-10, 18, 36, 155, 0.75, 0.17, -125, -88],
+  [-9, 34, 32, 290, 0.7, 0.21, -138, -38],
+  [-7, 50, 30, 70, 0.75, 0.16, -142, 8],
+  [-8, 66, 34, 220, 0.8, 0.13, -138, 55],
+  [-6, 78, 36, 340, 0.85, 0.09, -130, 90],
+  [102, 15, 34, 50, 0.7, 0.14, 130, -95],
+  [104, 32, 30, 195, 0.75, 0.19, 138, -46],
+  [103, 48, 32, 310, 0.7, 0.15, 142, 2],
+  [105, 62, 36, 85, 0.8, 0.1, 140, 48],
+  [102, 76, 34, 230, 0.85, 0.08, 133, 86],
+  // ── Mid density fill ──────────────────────────────────────
+  [5, 17, 28, 105, 0.7, 0.19, -112, -90],
+  [20, 33, 26, 245, 0.65, 0.23, -87, -42],
+  [35, 17, 24, 355, 0.7, 0.11, -55, -128],
+  [50, 33, 26, 135, 0.65, 0.21, -2, -150],
+  [65, 17, 28, 275, 0.7, 0.14, 43, -144],
+  [80, 33, 24, 55, 0.65, 0.17, 86, -120],
+  [95, 17, 26, 185, 0.7, 0.09, 120, -95],
+  [18, 48, 24, 325, 0.65, 0.24, -92, -20],
+  [33, 63, 22, 195, 0.6, 0.2, -67, -108],
+  [48, 48, 26, 75, 0.65, 0.17, -12, -146],
+  [63, 63, 22, 235, 0.6, 0.22, 35, -148],
+  [78, 48, 24, 355, 0.65, 0.13, 78, -124],
+  [93, 63, 22, 115, 0.6, 0.18, 115, -88],
+  // ── Bottom-right cluster ───────────────────────────────────
+  [72, 80, 44, 170, 0.9, 0.07, 80, 120],
+  [82, 84, 48, 300, 0.95, 0.05, 100, 130],
+  [90, 78, 42, 50, 0.9, 0.09, 112, 118],
+  [98, 82, 52, 210, 0.95, 0.06, 125, 128],
+  [106, 86, 46, 340, 0.9, 0.04, 138, 135],
+  [75, 90, 50, 120, 0.95, 0.08, 90, 142],
+  [86, 94, 54, 260, 0.9, 0.07, 108, 148],
+  [96, 88, 48, 30, 0.95, 0.05, 124, 140],
+  [104, 92, 52, 180, 0.9, 0.06, 140, 145],
+  [112, 96, 46, 310, 0.95, 0.04, 148, 138],
+  [78, 96, 50, 80, 0.95, 0.09, 95, 150],
+  [88, 100, 56, 220, 0.9, 0.07, 112, 155],
+  [100, 96, 52, 350, 0.95, 0.05, 132, 150],
+  [110, 102, 48, 130, 0.9, 0.06, 145, 145],
+  // ── Bottom-center extra ────────────────────────────────────
+  [36, 80, 44, 195, 0.9, 0.08, -40, 122],
+  [46, 84, 48, 335, 0.95, 0.06, -8, 132],
+  [56, 80, 42, 105, 0.9, 0.07, 18, 124],
+  [42, 90, 50, 265, 0.95, 0.09, -18, 144],
+  [52, 94, 54, 45, 0.9, 0.05, 8, 150],
+  [62, 90, 48, 185, 0.95, 0.07, 38, 146],
+];
+
+// Mobile clouds — all widths ~2.5× larger to fill narrow screens (88–118vw)
+const CLOUDS_MOBILE: [number, number, number, number, number, number, number, number][] = [
+  // ── Row 0 (top) ───────────────────────────────────────────
+  [-5, -8, 95, 20, 0.9, 0.0, -84, -138],
+  [30, -5, 105, 150, 0.8, 0.05, -102, -121],
+  [65, -3, 90, 280, 0.85, 0.1, -68, -143],
+  [100, -6, 100, 45, 0.9, 0.08, 130, -149],
+  // ── Row 1 ─────────────────────────────────────────────────
+  [-8, 8, 85, 60, 0.7, 0.15, -115, -100],
+  [25, 10, 100, 200, 0.85, 0.1, -107, -95],
+  [60, 12, 80, 330, 0.8, 0.18, -80, -116],
+  [95, 8, 90, 90, 0.9, 0.07, 122, -143],
+  // ── Row 2 ─────────────────────────────────────────────────
+  [-6, 24, 88, 135, 0.75, 0.2, -128, -72],
+  [28, 26, 90, 270, 0.8, 0.12, -117, -68],
+  [62, 22, 85, 40, 0.7, 0.22, -72, -109],
+  [98, 28, 88, 180, 0.85, 0.08, 139, -73],
+  // ── Row 3 (mid) ───────────────────────────────────────────
+  [-4, 40, 80, 80, 0.7, 0.25, -140, -28],
+  [26, 42, 88, 210, 0.75, 0.15, -131, -22],
+  [60, 38, 84, 350, 0.8, 0.22, -104, -51],
+  [98, 44, 80, 120, 0.7, 0.1, 144, -25],
+  // ── Row 4 ─────────────────────────────────────────────────
+  [-6, 56, 86, 200, 0.8, 0.2, -139, 19],
+  [28, 58, 90, 340, 0.75, 0.14, -135, 25],
+  [62, 54, 84, 110, 0.8, 0.22, -109, -6],
+  [98, 56, 88, 250, 0.85, 0.1, 140, 19],
+  // ── Row 5 ─────────────────────────────────────────────────
+  [-6, 68, 90, 20, 0.9, 0.1, -130, 95],
+  [22, 70, 95, 160, 0.85, 0.08, -95, 110],
+  [50, 68, 88, 300, 0.9, 0.06, -45, 128],
+  [75, 70, 92, 80, 0.85, 0.09, 20, 130],
+  [100, 68, 88, 220, 0.9, 0.07, 130, 120],
+  // ── Row 6 ─────────────────────────────────────────────────
+  [-4, 78, 95, 130, 0.92, 0.07, -120, 120],
+  [24, 80, 100, 270, 0.88, 0.09, -80, 135],
+  [52, 78, 94, 40, 0.92, 0.06, -15, 140],
+  [78, 80, 98, 190, 0.88, 0.08, 35, 142],
+  [104, 78, 92, 310, 0.92, 0.05, 140, 132],
+  // ── Row 7 ─────────────────────────────────────────────────
+  [-5, 88, 100, 240, 0.95, 0.06, -115, 140],
+  [20, 90, 105, 70, 0.9, 0.08, -72, 150],
+  [46, 88, 98, 200, 0.95, 0.05, -28, 155],
+  [72, 90, 102, 330, 0.9, 0.07, 22, 155],
+  [98, 88, 96, 110, 0.95, 0.06, 130, 148],
+  // ── Row 8 ─────────────────────────────────────────────────
+  [-3, 96, 105, 170, 0.95, 0.08, -88, 158],
+  [22, 100, 110, 310, 0.9, 0.06, -42, 162],
+  [48, 96, 106, 60, 0.95, 0.05, 2, 165],
+  [74, 100, 108, 200, 0.9, 0.07, 50, 162],
+  [100, 96, 104, 340, 0.95, 0.05, 140, 155],
+  // ── Row 9 ─────────────────────────────────────────────────
+  [-4, 106, 112, 130, 0.95, 0.07, -105, 168],
+  [24, 110, 108, 260, 0.9, 0.06, -55, 172],
+  [50, 106, 114, 30, 0.95, 0.05, 5, 175],
+  [76, 110, 110, 170, 0.9, 0.07, 60, 170],
+  [102, 106, 106, 310, 0.95, 0.05, 140, 162],
+  // ── Row 10 ────────────────────────────────────────────────
+  [10, 116, 115, 90, 0.95, 0.08, -80, 178],
+  [36, 118, 112, 230, 0.9, 0.06, -22, 180],
+  [62, 116, 118, 355, 0.95, 0.05, 32, 180],
+  [88, 118, 112, 140, 0.9, 0.07, 90, 175],
+  [112, 116, 108, 280, 0.95, 0.05, 148, 168],
+  // ── Left-side fill (all heights) ──────────────────────────
+  [-12, -5, 100, 30, 0.9, 0.0, -120, -138],
+  [-10, 12, 95, 170, 0.85, 0.12, -125, -100],
+  [-12, 28, 98, 310, 0.8, 0.2, -130, -72],
+  [-10, 44, 92, 80, 0.75, 0.22, -135, -28],
+  [-12, 58, 96, 220, 0.8, 0.18, -138, 10],
+  [-10, 72, 100, 350, 0.85, 0.14, -132, 65],
+  [-12, 84, 105, 130, 0.9, 0.1, -128, 108],
+  [-8, 94, 110, 260, 0.92, 0.08, -120, 130],
+  [-10, 104, 108, 40, 0.95, 0.07, -112, 150],
+  [-8, 114, 112, 190, 0.95, 0.06, -105, 165],
+  [8, -3, 98, 200, 0.85, 0.04, -95, -130],
+  [5, 20, 92, 340, 0.8, 0.16, -110, -80],
+  [4, 36, 95, 110, 0.75, 0.21, -118, -42],
+  [6, 52, 90, 250, 0.8, 0.17, -122, 4],
+  [4, 66, 96, 15, 0.85, 0.12, -118, 50],
+  [6, 80, 100, 160, 0.88, 0.09, -110, 95],
+  [8, 92, 105, 300, 0.9, 0.08, -100, 125],
+  [5, 102, 108, 75, 0.92, 0.07, -90, 148],
+  [7, 112, 112, 215, 0.95, 0.06, -82, 162],
 ];
 
 export default function HeroSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % rotatingWords.length);
-        setIsAnimating(false);
-      }, 400);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section
-  id="home"
-  className="relative flex items-center justify-center min-h-screen px-16 pt-24 pb-12 overflow-hidden
-    max-md:flex-col max-md:text-center max-md:px-6 max-md:pt-20 max-md:pb-6"
->
-<div className="flex flex-col lg:flex-row items-center justify-center w-full gap-4 max-lg:gap-8">
-      <div className="flex-1 max-w-[600px] text-center lg:text-left
-        max-md:pl-0 max-md:max-w-full max-md:flex max-md:flex-col max-md:items-center max-md:order-2">
-        <h1 className="font-garamond leading-[1.1] mb-10 max-md:mb-4">
-          <span className="block text-[clamp(2.8rem,5vw,4.2rem)] font-semibold text-[#FF611B] whitespace-nowrap max-md:text-[1.7rem]">
-            Need help with
-          </span>
-          <span
-            className={`block text-[clamp(3.2rem,5.5vw,4.8rem)] font-semibold text-[#053466] transition-all duration-400 max-md:text-[2rem] ${
-              isAnimating
-                ? "opacity-0 translate-y-2"
-                : "opacity-100 translate-y-0"
-            }`}
-          >
-            {rotatingWords[currentIndex]}
-          </span>
-        </h1>
+    <section id="home" className="relative overflow-hidden">
 
-        <div className="mb-10 max-md:mb-6">
-          <p className="font-cormorant text-[1.5rem] font-medium text-[#FF611B] mb-1.5 max-md:text-[1.2rem]">
-            Talk to{" "}
-            <span className="text-[#053466] font-semibold">Krishna-AI</span>
-          </p>
-          <p className="font-cormorant text-[1.15rem] text-[#FF611B] leading-relaxed max-w-[400px] max-md:text-[0.95rem] max-md:max-w-[300px]">
-            Let the wisdom of the Gita and our scriptures guide you through life
-          </p>
-        </div>
-
-       
-          <StoreButtons className="flex gap-4 mb-8 max-md:justify-center max-md:gap-3 max-md:mb-5"></StoreButtons>
-      
-
-        <p className="font-cormorant text-[1rem] text-[#DA8852] leading-relaxed max-md:text-center max-md:text-[0.85rem] max-md:leading-snug">
-          1,000+ users · Wisdom from Gita &amp; Itihāsas · Voice-first ·
-          Non-judgmental
-        </p>
+      {/* ── Cloud overlay — mobile ───────────────────────────── */}
+      <div className="md:hidden absolute inset-0 z-40 pointer-events-none overflow-hidden">
+        {CLOUDS_MOBILE.map(([x, y, w, rot, op, del, ex, ey], i) => (
+          <img key={i} src={cloudSrc} alt="" draggable={false}
+            className="absolute pointer-events-none"
+            style={{ left: `${x}%`, top: `${y}%`, width: `${w}vw`, transform: `rotate(${rot}deg)`, opacity: op, animation: `cloud-exit 1.8s ease-in ${del}s forwards`, "--ex": `${ex}vw`, "--ey": `${ey}vh` } as React.CSSProperties}
+          />
+        ))}
       </div>
 
-<div className="flex-1 flex items-center justify-center max-w-[500px] w-full relative">
-  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] aspect-square rounded-full bg-[#FFEFA2] opacity-80 blur-[40px]" />
-  <img
-    src="/images/Krishna.svg"
-    alt="Krishna AI"
-    className="relative z-10 w-full max-w-[500px] h-auto object-contain"
-  />
-</div>
+      {/* ── Cloud overlay — desktop ──────────────────────────── */}
+      <div className="hidden md:block absolute inset-0 z-40 pointer-events-none overflow-hidden">
+        {CLOUDS_DESKTOP.map(([x, y, w, rot, op, del, ex, ey], i) => (
+          <img key={i} src={cloudSrc} alt="" draggable={false}
+            className="absolute pointer-events-none"
+            style={{ left: `${x}%`, top: `${y}%`, width: `${w}vw`, transform: `rotate(${rot}deg)`, opacity: op, animation: `cloud-exit 1.8s ease-in ${del}s forwards`, "--ex": `${ex}vw`, "--ey": `${ey}vh` } as React.CSSProperties}
+          />
+        ))}
+      </div>
+
+      {/* ── MOBILE (< md) ────────────────────────────────────────── */}
+      <div className="md:hidden relative" style={{ height: "100svh", minHeight: 600 }}>
+        <img src={heroBgMobile} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" />
+
+        {/* Krishna (center → bottom) — full-height container so no clipping mid-animation */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full bg-[#ffefa2] opacity-80"
+            style={{ width: "80%", aspectRatio: "1", filter: "blur(40px)" }} />
+          <img src={krishnaMobile} alt="Krishna"
+            className="absolute bottom-0 left-1/2 z-10 w-auto object-contain object-bottom"
+            style={{
+              height: "55%",
+              transform: "translate(-50%, 0)",
+              animation: "hero-krishna-m 2.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both",
+            }} />
+        </div>
+
+        {/* Text — all in together at 2.5s */}
+        <div className="relative z-10 flex flex-col items-center text-center px-6"
+          style={{
+            paddingTop: 100,
+            opacity: 0,
+            animation: "hero-slide-in 1s ease-out 2.5s forwards",
+          }}>
+          <h1 className="font-crimson font-semibold text-[#053466] leading-tight mb-4"
+            style={{ fontSize: "clamp(22px, 7vw, 28px)", maxWidth: 320 }}>
+            When life feels unclear, you don&apos;t need more noise.
+          </h1>
+          <p className="font-inter text-[#4c4a48] leading-snug mb-6"
+            style={{ fontSize: "clamp(15px, 4.5vw, 18px)", maxWidth: 310 }}>
+            You need clarity. Guidance for your everyday life. Rooted in the Gita. Designed for today.
+          </p>
+          <a href="https://www.divinesarathi.in/download"
+            className="inline-flex items-center justify-center bg-[rgba(5,52,102,0.1)] glass text-[#053466] font-inter rounded-[60px] no-underline whitespace-nowrap"
+            style={{ fontSize: "clamp(15px, 4.5vw, 18px)", height: 48, padding: "0 28px" }}>
+            Speak with Krishna AI
+          </a>
+        </div>
+      </div>
+
+      {/* ── DESKTOP (≥ md) ───────────────────────────────────────── */}
+      <div className="hidden md:block relative" style={{ minHeight: "100svh" }}>
+        <img src={heroBgDesktop} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" />
+
+        <div className="relative z-10 flex items-stretch" style={{ minHeight: "100svh", paddingTop: 72 }}>
+
+          {/* Left — Krishna (center → left, 0.5–3s) */}
+          <div className="relative flex-1 flex items-end justify-center overflow-hidden"
+            style={{ opacity: 0, animation: "hero-krishna-d 2.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both" }}>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full bg-[#ffefa2] opacity-80"
+              style={{ width: "60%", aspectRatio: "1", filter: "blur(80px)" }} />
+            <img src={krishnaDesktop} alt="Krishna AI"
+              className="relative z-10 w-full object-contain object-bottom"
+              style={{ maxWidth: 634, maxHeight: "88vh" }} />
+          </div>
+
+          {/* Right — text (all slide in together at 2.5s) */}
+          <div className="flex-1 flex flex-col justify-center py-16 pl-6 pr-8 lg:pr-16"
+            style={{ opacity: 0, animation: "hero-slide-in 1s ease-out 2.5s forwards" }}>
+            <h1 className="font-crimson font-semibold text-[#053466] leading-tight mb-6"
+              style={{ fontSize: "clamp(32px, 3.8vw, 52px)", maxWidth: 576 }}>
+              When life feels unclear, you don&apos;t need more noise.
+            </h1>
+            <p className="font-inter text-[#4c4a48] leading-6 mb-10"
+              style={{ fontSize: "clamp(16px, 1.5vw, 20px)", maxWidth: 463 }}>
+              You need clarity. Guidance for your everyday life. Rooted in the Gita. Designed for today.
+            </p>
+            <a href="https://www.divinesarathi.in/download"
+              className="inline-flex items-center justify-center bg-[rgba(5,52,102,0.1)] glass text-[#053466] font-inter rounded-[60px] no-underline hover:bg-[rgba(5,52,102,0.2)] transition-colors self-start whitespace-nowrap"
+              style={{ fontSize: "clamp(16px, 1.4vw, 20px)", height: 56, padding: "0 32px" }}>
+              Speak with Krishna AI
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
-

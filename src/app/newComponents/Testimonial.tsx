@@ -1,154 +1,159 @@
 "use client";
 
 import React from "react";
-import StoreButtons from "./StoreButtons";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
+const equalHeightStyle = `
+  .testimonial-swiper .swiper-wrapper { align-items: stretch; }
+  .testimonial-swiper .swiper-slide   { height: auto; }
+`;
 
 const testimonials = [
   {
+    video: "/videos/testimonials/women_1.mp4",
     parts: [
-      { text: "“After 3 minutes with Krishna-AI, I finally ", bold: false },
-      { text: "paused instead of reacting.", bold: true },
-      { text: " My 1:1 meeting at work went so much better.”", bold: false },
+      { t: "\u201cAfter 3 minutes with Krishna\u2011AI, I finally ", b: false },
+      { t: "paused instead of reacting.", b: true },
+      { t: " My 1:1 meeting at work went so much better.\u201d", b: false },
     ],
-    name: "Ananya",
-    age: 29,
+    name: "Ananya, 29",
   },
   {
+    video: "/videos/testimonials/man_1.mp4",
     parts: [
-      { text: "“Five minutes with a story and ", bold: false },
-      { text: "I’m calmer for the whole day.", bold: true },
-      { text: "”", bold: false },
+      { t: "\u201cFive minutes with a story and ", b: false },
+      { t: "I\u2019m calmer for the whole day.", b: true },
+      { t: "\u201d", b: false },
     ],
-    name: "Rahul",
-    age: 33,
+    name: "Rahul, 33",
   },
   {
+    video: "/videos/testimonials/women_3.mp4",
     parts: [
-      { text: "“My 10-year-old asked what karma meant. ", bold: false },
-      { text: "We listened together.", bold: true },
-      { text: "”", bold: false },
+      { t: "\u201cMy 10-year-old asked what karma meant. ", b: false },
+      { t: "We listened together.", b: true },
+      { t: "\u201d", b: false },
     ],
-    name: "Neha",
-    age: 37,
+    name: "Neha, 37",
+  },
+  {
+    video: "/videos/testimonials/man_3.mp4",
+    parts: [
+      { t: "\u201cThe Gita never felt this ", b: false },
+      { t: "relevant to my life before.", b: true },
+      { t: "\u201d", b: false },
+    ],
+    name: "Arjun, 41",
+  },
+  {
+    video: "/videos/testimonials/women_4.mp4",
+    parts: [
+      { t: "\u201cI open the app every morning. It\u2019s become ", b: false },
+      { t: "my moment of stillness.", b: true },
+      { t: "\u201d", b: false },
+    ],
+    name: "Priya, 31",
   },
 ];
 
+function Quote({ parts }: { parts: { t: string; b: boolean }[] }) {
+  return (
+    <>
+      {parts.map((p, i) =>
+        p.b
+          ? <span key={i} className="text-[#053466] font-semibold">{p.t}</span>
+          : <span key={i}>{p.t}</span>
+      )}
+    </>
+  );
+}
+
 export default function TestimonialsSection() {
   return (
-    <section
-      id="testimonials"
-      className="relative bg-[#f7efe6] overflow-observable"
-    >
-      {/* Tree Background (LEFT only) */}
-      <div className="absolute left-0 bottom-0 w-[55%] hidden md:block pointer-events-none">
-        <img
-          src="/images/testimonial_tree.svg"
-          alt=""
-          className="w-full h-auto object-contain"
-        />
-      </div>
+    <section className="bg-[#ffffff]">
+      <style>{equalHeightStyle}</style>
 
-      <div className="relative z-10 px-[6%] pt-12 pb-0 max-md:px-6 max-md:pt-14">
-        {/* Heading */}
-        <h2 className=" hidden md:block font-garamond text-[clamp(2.2rem,4vw,3.4rem)] text-[#D9712C] text-center mb-4 font-semibold">
-          Voices of Trust
+      {/* ── MOBILE ─────────────────────────────────────────────── */}
+      <div className="md:hidden pt-10 pb-6">
+        <h2 className="font-crimson font-semibold text-[#4c4a48] text-center mb-6 px-6"
+          style={{ fontSize: "clamp(22px, 7vw, 28px)" }}>
+          Voices of trust
         </h2>
 
-        {/* Desktop Cards */}
-        <div className="hidden md:flex justify-center gap-5 mx-auto max-w-[1200px]">
-          {testimonials.map((t, i) => (
-            <div
-            key={i}
-           className="flex-1
-            border border-[#C86A2B]/50
-            rounded-[28px] rounded-tl-[56px]
-            px-12 py-8
-            bg-[#EFE6D8]/20
-            backdrop-blur-md
-            text-center
-            flex flex-col justify-center
-            min-h-[360px]"
-            >
-            <p className="font-garamond text-[1.6rem] font-semibold text-[#5A2A0A] leading-relaxed italic mb-8">
-                {t.parts.map((part, j) =>
-                part.bold ? (
-                    <span key={j} className="text-[#0B3D6B] font-bold">
-                    {part.text}
-                    </span>
-                ) : (
-                    <span key={j}>{part.text}</span>
-                )
-                )}
-            </p>
-
-            <p className="font-garamond text-[1.6rem] font-semibold text-[#5A2A0A]">
-                — {t.name}, {t.age}
-            </p>
-            </div>
-
-          ))}
-        </div>
-
-        {/* Mobile - stacked with sacred geometry bg */}
-        <div className="md:hidden relative max-w-[380px] mx-auto mb-14">
-        <div className="relative 
-        bg-[#E6DCCB]/80
-        backdrop-blur-md
-        border border-[#C86A2B]/40
-        rounded-[28px]
-        px-6 py-10"
+        <Swiper
+          className="testimonial-swiper"
+          loop={true}
+          slidesPerView={1.15}
+          centeredSlides={true}
+          spaceBetween={40}
+          pagination={false}
         >
-         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <img
-            src="/images/logo_without_text.png"
-            alt=""
-            className="w-[95%] opacity-[0.15]"
-        />
-        </div>
-            <h3 className="relative z-10 font-garamond text-[1.6rem] text-[#D9712C] text-center font-semibold mb-8">
-            Voices of Trust
-            </h3>
-
-            <div className="relative z-10 flex flex-col gap-10">
-            {testimonials.map((t, i) => (
-                <div
-                key={i}
-                className={i === 1 ? "text-right" : "text-left"}
-                >
-                <p className="font-garamond text-[1.1rem] text-[#D9712C] font-semibold leading-[1.6] italic">
-                    {t.parts.map((part, j) =>
-                    part.bold ? (
-                        <span key={j} className="text-[#053466] font-bold">
-                        {part.text}
-                        </span>
-                    ) : (
-                        <span key={j}>{part.text}</span>
-                    )
-                    )}
-                </p>
-
-                <p className="font-garamond text-[1.1rem] text-[#D9712C] font-semibold mt-2">
-                    — {t.name}, {t.age}
-                </p>
+          {testimonials.map((t, i) => (
+            <SwiperSlide key={i}>
+              <div className="bg-[#FBF7EF] rounded-[20px] overflow-hidden flex flex-col h-full">
+                <div className="mx-3 mt-3 rounded-[14px] overflow-hidden" style={{ aspectRatio: "1/1" }}>
+                  <video
+                    src={t.video}
+                    autoPlay loop muted playsInline
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-            ))}
-            </div>
-        </div>
+                <div className="p-5">
+                  <p className="font-inter text-[#4c4a48] text-[16px] leading-relaxed mb-3">
+                    <Quote parts={t.parts} />
+                  </p>
+                  <p className="font-inter text-[#4c4a48] text-[14px]">&mdash; {t.name}</p>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* ── DESKTOP ─────────────────────────────────────────────── */}
+      <div className="hidden md:block py-16">
+        <div className="max-w-[1360px] mx-auto px-6">
+          <h2 className="font-crimson font-semibold text-[#4c4a48] text-center mb-10"
+            style={{ fontSize: "clamp(28px, 3.8vw, 52px)" }}>
+            Voices of trust
+          </h2>
         </div>
 
-
-        {/* CTA */}
-        <div className="flex flex-col items-center pt-24 pb-12 max-md:pt-2">
-          <h3 className="font-garamond text-[clamp(1.6rem,4vw,3rem)] text-[#D9712C] font-bold mb-10 text-center">
-            Begin your journey today
-          </h3>
-
-          <StoreButtons
-            className="justify-center"
-            badgeHeight="h-16"
-            mobileBadgeHeight="max-md:h-[46px]"
-          />
-        </div>
+        <Swiper
+          className="testimonial-swiper"
+          loop={true}
+          slidesPerView={1.4}
+          centeredSlides={true}
+          spaceBetween={48}
+          breakpoints={{
+            1024: { slidesPerView: 1.6, spaceBetween: 48 },
+            1280: { slidesPerView: 2.1, spaceBetween: 48 },
+          }}
+        >
+          {testimonials.map((t, i) => (
+            <SwiperSlide key={i}>
+              <div className="bg-[#FBF7EF] rounded-[20px] overflow-hidden flex gap-5 p-6 h-full"
+                style={{ border: "1px solid rgba(76,74,72,.12)", minHeight: 280 }}>
+                <div className="flex-shrink-0 rounded-[12px] overflow-hidden"
+                  style={{ width: 220, height: 220, alignSelf: "center" }}>
+                  <video
+                    src={t.video}
+                    autoPlay loop muted playsInline
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <p className="font-inter text-[#4c4a48] leading-normal mb-4"
+                    style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}>
+                    <Quote parts={t.parts} />
+                  </p>
+                  <p className="font-inter text-[#4c4a48] text-[15px]">&mdash; {t.name}</p>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </section>
   );
