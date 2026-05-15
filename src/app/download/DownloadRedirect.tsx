@@ -129,10 +129,10 @@ export default function DownloadRedirect({
                 referrer: document.referrer || serverReferrer || "Unknown",
                 ...(tracking ? { tracking } : {}),
             };
-
+            
             // Send analytics if API is configured
             try {
-                await fetch("/api/generic/download-analytics", {
+                await fetch("https://api.divinesarathi.in/generic/download-analytics", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(deviceInfo),

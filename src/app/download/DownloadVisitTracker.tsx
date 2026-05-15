@@ -30,7 +30,7 @@ export default function DownloadVisitTracker({
             tracking,
         };
 
-        fetch("/api/generic/download-analytics", {
+        fetch("https://api.divinesarathi.in/generic/download-analytics", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
