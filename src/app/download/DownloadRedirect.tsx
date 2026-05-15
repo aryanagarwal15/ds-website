@@ -2,13 +2,15 @@
 "use client";
 
 import { useEffect } from "react";
-
+import type { DownloadTracking } from "./tracking";
 
 interface Props {
     redirectUrl: string;
     platform: "ios" | "android";
     serverIp: string;
     serverUserAgent: string;
+    serverReferrer: string;
+    tracking: DownloadTracking | null;
 }
 
 function getDeviceName(ua: string): { deviceName: string; osVersion: string } {
@@ -60,7 +62,14 @@ async function getBatteryInfo() {
     return null;
 }
 
-export default function DownloadRedirect({ redirectUrl, platform, serverIp, serverUserAgent }: Props) {
+export default function DownloadRedirect({
+    redirectUrl,
+    platform,
+    serverIp,
+    serverUserAgent,
+    serverReferrer,
+    tracking,
+}: Props) {
     useEffect(() => {
         async function collectAndRedirect() {
             const ua = navigator.userAgent;
@@ -117,11 +126,13 @@ export default function DownloadRedirect({ redirectUrl, platform, serverIp, serv
 
                 // Server-side info
                 serverIp,
+                referrer: document.referrer || serverReferrer || "Unknown",
+                ...(tracking ? { tracking } : {}),
             };
 
             // Send analytics if API is configured
             try {
-                await fetch("/api/download-analytics", {
+                await fetch("/api/generic/download-analytics", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(deviceInfo),
@@ -135,7 +146,7 @@ export default function DownloadRedirect({ redirectUrl, platform, serverIp, serv
         }
 
         collectAndRedirect();
-    }, [redirectUrl, platform, serverIp, serverUserAgent]);
+    }, [redirectUrl, platform, serverIp, serverUserAgent, serverReferrer, tracking]);
 
     return (
         <div className="min-h-screen bg-[#fdf6ee] flex flex-col items-center justify-center">
