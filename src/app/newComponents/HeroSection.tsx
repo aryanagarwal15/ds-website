@@ -3,9 +3,10 @@
 import React from "react";
 
 const heroBgDesktop = "/images/hero/bg_desktop.webp";
-const krishnaDesktop = "/images/hero/krishna_desktop.webp";
+const krishnaDesktop = "/images/hero/krishna_desktop.png";
 const heroBgMobile = "/images/hero/bg_mobile.webp";
 const krishnaMobile = "/images/hero/krishna_mobile.webp";
+const krishnaPulseBg = "/images/hero/pulsating_krishna_bg.png";
 const cloudSrc = "/images/hero/clouds.webp";
 
 /*
@@ -14,7 +15,16 @@ const cloudSrc = "/images/hero/clouds.webp";
  * [x%, y%, widthVw, rotDeg, opacity, delaySec, exitXvw, exitYvh]
  */
 // Desktop clouds — sized for wide viewports (22–56vw)
-const CLOUDS_DESKTOP: [number, number, number, number, number, number, number, number][] = [
+const CLOUDS_DESKTOP: [
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+][] = [
   // ── Row 0 (top) ───────────────────────────────────────────
   [-5, -8, 38, 20, 0.9, 0.0, -84, -138],
   [10, -5, 42, 150, 0.8, 0.05, -102, -121],
@@ -156,7 +166,16 @@ const CLOUDS_DESKTOP: [number, number, number, number, number, number, number, n
 ];
 
 // Mobile clouds — all widths ~2.5× larger to fill narrow screens (88–118vw)
-const CLOUDS_MOBILE: [number, number, number, number, number, number, number, number][] = [
+const CLOUDS_MOBILE: [
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+][] = [
   // ── Row 0 (top) ───────────────────────────────────────────
   [-5, -8, 95, 20, 0.9, 0.0, -84, -138],
   [30, -5, 105, 150, 0.8, 0.05, -102, -121],
@@ -243,13 +262,27 @@ const CLOUDS_MOBILE: [number, number, number, number, number, number, number, nu
 export default function HeroSection() {
   return (
     <section id="home" className="relative overflow-hidden">
-
       {/* ── Cloud overlay — mobile ───────────────────────────── */}
       <div className="md:hidden absolute inset-0 z-40 pointer-events-none overflow-hidden">
         {CLOUDS_MOBILE.map(([x, y, w, rot, op, del, ex, ey], i) => (
-          <img key={i} src={cloudSrc} alt="" draggable={false}
+          <img
+            key={i}
+            src={cloudSrc}
+            alt=""
+            draggable={false}
             className="absolute pointer-events-none"
-            style={{ left: `${x}%`, top: `${y}%`, width: `${w}vw`, transform: `rotate(${rot}deg)`, opacity: op, animation: `cloud-exit 1.8s ease-in ${del}s forwards`, "--ex": `${ex}vw`, "--ey": `${ey}vh` } as React.CSSProperties}
+            style={
+              {
+                left: `${x}%`,
+                top: `${y}%`,
+                width: `${w}vw`,
+                transform: `rotate(${rot}deg)`,
+                opacity: op,
+                animation: `cloud-exit 1.8s ease-in ${del}s forwards`,
+                "--ex": `${ex}vw`,
+                "--ey": `${ey}vh`,
+              } as React.CSSProperties
+            }
           />
         ))}
       </div>
@@ -257,49 +290,95 @@ export default function HeroSection() {
       {/* ── Cloud overlay — desktop ──────────────────────────── */}
       <div className="hidden md:block absolute inset-0 z-40 pointer-events-none overflow-hidden">
         {CLOUDS_DESKTOP.map(([x, y, w, rot, op, del, ex, ey], i) => (
-          <img key={i} src={cloudSrc} alt="" draggable={false}
+          <img
+            key={i}
+            src={cloudSrc}
+            alt=""
+            draggable={false}
             className="absolute pointer-events-none"
-            style={{ left: `${x}%`, top: `${y}%`, width: `${w}vw`, transform: `rotate(${rot}deg)`, opacity: op, animation: `cloud-exit 1.8s ease-in ${del}s forwards`, "--ex": `${ex}vw`, "--ey": `${ey}vh` } as React.CSSProperties}
+            style={
+              {
+                left: `${x}%`,
+                top: `${y}%`,
+                width: `${w}vw`,
+                transform: `rotate(${rot}deg)`,
+                opacity: op,
+                animation: `cloud-exit 1.8s ease-in ${del}s forwards`,
+                "--ex": `${ex}vw`,
+                "--ey": `${ey}vh`,
+              } as React.CSSProperties
+            }
           />
         ))}
       </div>
 
       {/* ── MOBILE (< md) ────────────────────────────────────────── */}
-      <div className="md:hidden relative" style={{ height: "100svh", minHeight: 600 }}>
-        <img src={heroBgMobile} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
+      <div
+        className="md:hidden relative"
+        style={{ height: "100svh", minHeight: 600 }}
+      >
+        <img
+          src={heroBgMobile}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
         <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" />
 
         {/* Krishna (center → bottom) — full-height container so no clipping mid-animation */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full bg-[#ffefa2] opacity-80"
-            style={{ width: "80%", aspectRatio: "1", filter: "blur(40px)" }} />
-          <img src={krishnaMobile} alt="Krishna"
-            className="absolute bottom-0 left-1/2 z-10 w-auto object-contain object-bottom"
+          <div
+            className="absolute bottom-0 left-1/2 flex flex-col items-center justify-end"
             style={{
               height: "55%",
-              transform: "translate(-50%, 0)",
-              animation: "hero-krishna-m 2.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both",
-            }} />
+              animation:
+                "hero-krishna-m 2.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both",
+            }}
+          >
+            <img
+              src={krishnaPulseBg}
+              alt=""
+              aria-hidden
+              className="krishna-pulse-bg"
+            />
+            <img
+              src={krishnaMobile}
+              alt="Krishna"
+              className="relative z-10 h-full w-auto object-contain object-bottom"
+            />
+          </div>
         </div>
 
         {/* Text — all in together at 2.5s */}
-        <div className="relative z-10 flex flex-col items-center text-center px-6"
+        <div
+          className="relative z-10 flex flex-col items-center text-center px-6"
           style={{
             paddingTop: 100,
             opacity: 0,
             animation: "hero-slide-in 1s ease-out 2.5s forwards",
-          }}>
-          <h1 className="font-crimson font-semibold text-[#053466] leading-tight mb-4"
-            style={{ fontSize: "clamp(22px, 7vw, 28px)", maxWidth: 320 }}>
+          }}
+        >
+          <h1
+            className="font-crimson font-semibold text-[#053466] leading-tight mb-4"
+            style={{ fontSize: "clamp(22px, 7vw, 28px)", maxWidth: 320 }}
+          >
             When life feels unclear, you don&apos;t need more noise.
           </h1>
-          <p className="font-inter text-[#4c4a48] leading-snug mb-6"
-            style={{ fontSize: "clamp(15px, 4.5vw, 18px)", maxWidth: 310 }}>
-            You need clarity. Guidance for your everyday life. Rooted in the Gita. Designed for today.
+          <p
+            className="font-inter text-[#4c4a48] leading-snug mb-6"
+            style={{ fontSize: "clamp(15px, 4.5vw, 18px)", maxWidth: 310 }}
+          >
+            You need clarity. Guidance for your everyday life. Rooted in the
+            Gita. Designed for today.
           </p>
-          <a href="https://www.divinesarathi.in/download"
+          <a
+            href="https://www.divinesarathi.in/download"
             className="inline-flex items-center justify-center bg-[rgba(5,52,102,0.1)] glass text-[#053466] font-inter rounded-[60px] no-underline whitespace-nowrap"
-            style={{ fontSize: "clamp(15px, 4.5vw, 18px)", height: 48, padding: "0 28px" }}>
+            style={{
+              fontSize: "clamp(15px, 4.5vw, 18px)",
+              height: 48,
+              padding: "0 28px",
+            }}
+          >
             Speak with Krishna AI
           </a>
         </div>
@@ -307,35 +386,70 @@ export default function HeroSection() {
 
       {/* ── DESKTOP (≥ md) ───────────────────────────────────────── */}
       <div className="hidden md:block relative" style={{ minHeight: "100svh" }}>
-        <img src={heroBgDesktop} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <img
+          src={heroBgDesktop}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
         <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" />
 
-        <div className="relative z-10 flex items-stretch" style={{ minHeight: "100svh", paddingTop: 72 }}>
-
+        <div
+          className="relative z-10 flex items-stretch"
+          style={{ minHeight: "100svh", paddingTop: 72 }}
+        >
           {/* Left — Krishna (center → left, 0.5–3s) */}
-          <div className="relative flex-1 flex items-end justify-center overflow-hidden"
-            style={{ opacity: 0, animation: "hero-krishna-d 2.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both" }}>
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full bg-[#ffefa2] opacity-80"
-              style={{ width: "60%", aspectRatio: "1", filter: "blur(80px)" }} />
-            <img src={krishnaDesktop} alt="Krishna AI"
+          <div
+            className="relative flex-1 flex items-end justify-center overflow-hidden"
+            style={{
+              opacity: 0,
+              animation:
+                "hero-krishna-d 2.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both",
+            }}
+          >
+            <img
+              src={krishnaPulseBg}
+              alt=""
+              aria-hidden
+              className="krishna-pulse-bg krishna-pulse-bg--desktop"
+            />
+            <img
+              src={krishnaDesktop}
+              alt="Krishna AI"
               className="relative z-10 w-full object-contain object-bottom"
-              style={{ maxWidth: 634, maxHeight: "88vh" }} />
+              style={{ maxWidth: 634, maxHeight: "88vh" }}
+            />
           </div>
 
           {/* Right — text (all slide in together at 2.5s) */}
-          <div className="flex-1 flex flex-col justify-center py-16 pl-6 pr-8 lg:pr-16"
-            style={{ opacity: 0, animation: "hero-slide-in 1s ease-out 2.5s forwards" }}>
-            <h1 className="font-crimson font-semibold text-[#053466] leading-tight mb-6"
-              style={{ fontSize: "clamp(32px, 3.8vw, 52px)", maxWidth: 576 }}>
+          <div
+            className="flex-1 flex flex-col justify-center py-16 pl-6 pr-8 lg:pr-16"
+            style={{
+              opacity: 0,
+              animation: "hero-slide-in 1s ease-out 2.5s forwards",
+            }}
+          >
+            <h1
+              className="font-crimson font-semibold text-[#053466] leading-tight mb-6"
+              style={{ fontSize: "clamp(32px, 3.8vw, 52px)", maxWidth: 576 }}
+            >
               When life feels unclear, you don&apos;t need more noise.
             </h1>
-            <p className="font-inter text-[#4c4a48] leading-6 mb-10"
-              style={{ fontSize: "clamp(16px, 1.5vw, 20px)", maxWidth: 463 }}>
-              You need clarity. Guidance for your everyday life. Rooted in the Gita. Designed for today.
+            <p
+              className="font-inter text-[#4c4a48] leading-6 mb-10"
+              style={{ fontSize: "clamp(16px, 1.5vw, 20px)", maxWidth: 463 }}
+            >
+              You need clarity. Guidance for your everyday life. Rooted in the
+              Gita. Designed for today.
             </p>
-            <a href="https://www.divinesarathi.in/download"
+            <a
+              href="https://www.divinesarathi.in/download"
               className="inline-flex items-center justify-center bg-[rgba(5,52,102,0.1)] glass text-[#053466] font-inter rounded-[60px] no-underline hover:bg-[rgba(5,52,102,0.2)] transition-colors self-start whitespace-nowrap"
-              style={{ fontSize: "clamp(16px, 1.4vw, 20px)", height: 56, padding: "0 32px" }}>
+              style={{
+                fontSize: "clamp(16px, 1.4vw, 20px)",
+                height: 56,
+                padding: "0 32px",
+              }}
+            >
               Speak with Krishna AI
             </a>
           </div>

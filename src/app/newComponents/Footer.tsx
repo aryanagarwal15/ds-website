@@ -11,10 +11,10 @@ const usefulLinks = [
 ];
 
 const socials = [
-  { src: "/images/footer/social_ig.webp",  alt: "Instagram" },
-  { src: "/images/footer/social_x.webp",   alt: "X" },
-  { src: "/images/footer/social_fb.webp",  alt: "Facebook" },
-  { src: "/images/footer/social_yt.webp",  alt: "YouTube" },
+  { src: "/images/footer/social_ig.webp",  alt: "Instagram", href: "#" },
+  { src: "/images/footer/social_x.webp",   alt: "X",         href: "https://x.com/DivineSarathi" },
+  { src: "/images/footer/social_fb.webp",  alt: "Facebook",  href: "https://www.facebook.com/profile.php?id=61578551830799" },
+  { src: "/images/footer/social_yt.webp",  alt: "YouTube",   href: "https://www.youtube.com/@DivineSarathi" },
 ];
 
 export default function Footer() {
@@ -67,7 +67,8 @@ export default function Footer() {
           <h4 className="font-inter font-semibold text-white text-[18px]">Stay connected</h4>
           <div className="flex gap-3">
             {socials.map(s => (
-              <a key={s.alt} href="#" className="block rounded-[10px] overflow-hidden" style={{ width: 48, height: 48 }}>
+              <a key={s.alt} href={s.href} target="_blank" rel="noopener noreferrer"
+                 className="block rounded-[10px] overflow-hidden" style={{ width: 48, height: 48 }}>
                 <img src={s.src} alt={s.alt} className="w-full h-full object-cover" />
               </a>
             ))}
@@ -114,7 +115,8 @@ export default function Footer() {
             <h4 className="font-inter font-semibold text-white text-[20px]">Stay connected</h4>
             <div className="flex gap-3">
               {socials.map(s => (
-                <a key={s.alt} href="#" className="block rounded-[12px] overflow-hidden" style={{ width: 52, height: 52 }}>
+                <a key={s.alt} href={s.href} target="_blank" rel="noopener noreferrer"
+                   className="block rounded-[12px] overflow-hidden" style={{ width: 52, height: 52 }}>
                   <img src={s.src} alt={s.alt} className="w-full h-full object-cover" />
                 </a>
               ))}

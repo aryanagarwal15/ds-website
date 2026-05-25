@@ -22,7 +22,12 @@ export default function CTASection() {
         </a>
         <p className="font-inter text-[#4c4a48] text-[16px] mb-6">Scan to open the app on your phone</p>
         <div className="flex justify-center">
-          <img src="/images/qr/qr_mobile.webp" alt="QR Code" style={{ width: 180, height: 180, objectFit: "contain", filter: "invert(11%) sepia(94%) saturate(1534%) hue-rotate(207deg) brightness(96%) contrast(105%)" }} />
+          <img
+            src="/images/qr/qr_mobile.webp"
+            alt="QR Code"
+            className="rounded-[28px] border-[3px] border-black box-border"
+            style={{ width: 180, height: 180, objectFit: "contain"}}
+          />
         </div>
       </div>
 
@@ -43,7 +48,12 @@ export default function CTASection() {
           </a>
           <p className="font-inter text-[#4c4a48] text-[18px] mb-6">Scan to open the app on your phone</p>
           <div className="flex justify-center">
-            <img src="/images/qr/qr_desktop.webp" alt="QR Code" style={{ width: 200, height: 200, objectFit: "contain", filter: "invert(11%) sepia(94%) saturate(1534%) hue-rotate(207deg) brightness(96%) contrast(105%)" }} />
+            <img
+              src="/images/qr/qr_desktop.webp"
+              alt="QR Code"
+              className="rounded-[28px] border-[3px] border-black box-border"
+              style={{ width: 200, height: 200, objectFit: "contain" }}
+            />
           </div>
         </div>
       </section>
