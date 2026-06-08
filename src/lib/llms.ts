@@ -2,6 +2,7 @@ import { faqs } from "@/lib/faqs";
 import { faqsHi } from "@/lib/faqs-hi";
 import {
   APP_STORE_URL,
+  PLAY_STORE_URL,
   SITE_DESCRIPTION,
   SITE_DESCRIPTION_HI,
   SITE_NAME,
@@ -23,8 +24,9 @@ export function generateLlmsTxt(): string {
 ## Product
 
 - [Home](${SITE_URL}/): Voice-first Bhagavad Gita companion with Krishna AI, daily stories, and Gita for daily life.
-- [Download](${SITE_URL}/download): Download the free iOS app from the App Store.
+- [Download](${SITE_URL}/download): Download the free app on the App Store and Google Play.
 - [App Store](${APP_STORE_URL}): Direct link to the DivineSarathi iOS app listing.
+- [Google Play](${PLAY_STORE_URL}): Direct link to the DivineSarathi Android app listing.
 
 ## About
 
@@ -73,6 +75,7 @@ ${SITE_NAME} is a voice-first spiritual companion inspired by Lord Krishna and t
 
 - Website: ${SITE_URL}
 - App Store: ${APP_STORE_URL}
+- Google Play: ${PLAY_STORE_URL}
 - Languages: English (en-IN), Hindi (hi-IN)
 - Contact: founders@divinesarathi.in
 
@@ -107,6 +110,7 @@ ${SITE_DESCRIPTION_HI}
 ## Download
 
 Download DivineSarathi on iOS: ${APP_STORE_URL}
+Download DivineSarathi on Android: ${PLAY_STORE_URL}
 
 A free voice-first Bhagavad Gita devotional app with Krishna AI, daily stories, and Gita for daily life guidance.
 

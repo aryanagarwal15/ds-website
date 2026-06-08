@@ -17,6 +17,9 @@ export const DEFAULT_OG_IMAGE = "/images/og-image.png";
 export const APP_STORE_URL =
   "https://apps.apple.com/in/app/divinesarathi/id6752269118";
 
+export const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=in.divinesarathi";
+
 export const SOCIAL_PROFILES = [
   "https://www.instagram.com/divinesarathi",
   "https://x.com/DivineSarathi",
@@ -199,7 +202,7 @@ export const mobileAppJsonLd = {
   "@type": "MobileApplication",
   "@id": `${SITE_URL}/#mobileapp`,
   name: SITE_NAME,
-  operatingSystem: "iOS",
+  operatingSystem: "iOS, Android",
   applicationCategory: "LifestyleApplication",
   description: SITE_DESCRIPTION,
   offers: {
@@ -207,7 +210,7 @@ export const mobileAppJsonLd = {
     price: "0",
     priceCurrency: "INR",
   },
-  installUrl: APP_STORE_URL,
+  installUrl: [APP_STORE_URL, PLAY_STORE_URL],
   url: SITE_URL,
   publisher: { "@id": `${SITE_URL}/#organization` },
 };

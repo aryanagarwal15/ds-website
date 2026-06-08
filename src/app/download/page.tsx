@@ -1,26 +1,30 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbJsonLd, createPageMetadata, mobileAppJsonLd } from "@/lib/seo";
+import {
+  APP_STORE_URL,
+  PLAY_STORE_URL,
+  breadcrumbJsonLd,
+  createPageMetadata,
+  mobileAppJsonLd,
+} from "@/lib/seo";
 import DownloadRedirect from "./DownloadRedirect";
 import DownloadVisitTracker from "./DownloadVisitTracker";
 import { parseDownloadTracking } from "./tracking";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Download DivineSarathi — Bhagavad Gita App for iOS",
+  title: "Download DivineSarathi — Bhagavad Gita App for iOS & Android",
   description:
-    "Download DivineSarathi on the App Store. A free voice-first Bhagavad Gita devotional app with Krishna AI, daily stories, and Gita for daily life guidance.",
+    "Download DivineSarathi free on the App Store and Google Play. A voice-first Bhagavad Gita devotional app with Krishna AI, daily stories, and Gita for daily life guidance.",
   pageKey: "download",
   keywords: [
     "download DivineSarathi",
     "Bhagavad Gita app download",
     "Krishna app iOS",
+    "Krishna app Android",
+    "Bhagavad Gita app Google Play",
   ],
 });
-
-const APP_STORE_URL = "https://apps.apple.com/in/app/divinesarathi/id6752269118";
-const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=in.divinesarathi";
 
 type PageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;

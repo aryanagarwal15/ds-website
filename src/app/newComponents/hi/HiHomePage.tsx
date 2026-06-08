@@ -92,7 +92,7 @@ export default function HiHomePage() {
           आज ही शुरू करें
         </h2>
         <p className="mx-auto mb-8 max-w-xl font-inter text-white/80">
-          DivineSarathi मुफ़्त में App Store पर उपलब्ध है। Google Play जल्द आ रहा है।
+          DivineSarathi मुफ़्त में App Store और Google Play पर उपलब्ध है।
         </p>
         <a
           href="/download"
