@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 export const SITE_URL = "https://www.divinesarathi.in";
 
+export const GOOGLE_ANALYTICS_ID = "G-JWVTV86NH0";
+
 export const SITE_NAME = "DivineSarathi";
 
 export const SITE_DESCRIPTION =

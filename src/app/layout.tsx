@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Cormorant, Cormorant_Garamond, Roboto, DM_Sans, Inter, Crimson_Text } from "next/font/google";
+import Script from "next/script";
 import JsonLd from "@/components/JsonLd";
 import {
   DEFAULT_OG_IMAGE,
+  GOOGLE_ANALYTICS_ID,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_URL,
@@ -128,6 +130,18 @@ export default function RootLayout({
       className={`${cormorant.variable} ${roboto.className} ${cormorantGaramond.variable} ${dmSans.variable} ${inter.variable} ${crimsonText.variable}`}
     >
       <body className="antialiased">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ANALYTICS_ID}');
+          `}
+        </Script>
         <JsonLd data={[organizationJsonLd, websiteJsonLd]} />
         {children}
       </body>
