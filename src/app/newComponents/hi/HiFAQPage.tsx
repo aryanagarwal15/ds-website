@@ -2,10 +2,18 @@
 
 import React, { useState } from "react";
 import Footer from "@/app/newComponents/Footer";
-import { faqs } from "@/lib/faqs";
+import { faqsHi } from "@/lib/faqs-hi";
 
-function FAQItem({ q, a, isOpen, onToggle }: {
-  q: string; a: string; isOpen: boolean; onToggle: () => void;
+function FAQItem({
+  q,
+  a,
+  isOpen,
+  onToggle,
+}: {
+  q: string;
+  a: string;
+  isOpen: boolean;
+  onToggle: () => void;
 }) {
   return (
     <div
@@ -13,8 +21,10 @@ function FAQItem({ q, a, isOpen, onToggle }: {
       onClick={onToggle}
     >
       <div className="flex items-center justify-between gap-4 px-6 md:px-8 py-6 md:py-7">
-        <h2 className="font-inter font-medium text-[#4c4a48] leading-snug m-0"
-           style={{ fontSize: "clamp(16px, 1.4vw, 20px)" }}>
+        <h2
+          className="font-inter font-medium text-[#4c4a48] leading-snug m-0"
+          style={{ fontSize: "clamp(16px, 1.4vw, 20px)" }}
+        >
           {q}
         </h2>
         <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-[#4c4a48]">
@@ -39,8 +49,10 @@ function FAQItem({ q, a, isOpen, onToggle }: {
           overflow: "hidden",
         }}
       >
-        <p className="font-inter font-normal text-[#4c4a48] leading-relaxed px-6 md:px-8 pb-7"
-           style={{ fontSize: "clamp(14px, 1.2vw, 18px)" }}>
+        <p
+          className="font-inter font-normal text-[#4c4a48] leading-relaxed px-6 md:px-8 pb-7"
+          style={{ fontSize: "clamp(14px, 1.2vw, 18px)" }}
+        >
           {a}
         </p>
       </div>
@@ -48,29 +60,29 @@ function FAQItem({ q, a, isOpen, onToggle }: {
   );
 }
 
-export default function FAQPage() {
+export default function HiFAQPage() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
-
-  const toggle = (i: number) => setOpenIdx(prev => prev === i ? null : i);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <main className="flex-1 w-full">
         <div className="text-center px-6 pt-16 pb-12 md:pt-24 md:pb-16">
-          <h1 className="font-crimson font-semibold text-[#053466] leading-tight"
-              style={{ fontSize: "clamp(28px, 5.5vw, 80px)" }}>
-            Frequently asked questions
+          <h1
+            className="font-semibold text-[#053466] leading-tight"
+            style={{ fontSize: "clamp(28px, 5.5vw, 64px)" }}
+          >
+            अक्सर पूछे जाने वाले प्रश्न
           </h1>
         </div>
 
         <div className="max-w-[1000px] mx-auto px-4 md:px-6 pb-20 flex flex-col gap-4">
-          {faqs.map((faq, i) => (
+          {faqsHi.map((faq, i) => (
             <FAQItem
               key={i}
               q={faq.q}
               a={faq.a}
               isOpen={openIdx === i}
-              onToggle={() => toggle(i)}
+              onToggle={() => setOpenIdx((prev) => (prev === i ? null : i))}
             />
           ))}
         </div>

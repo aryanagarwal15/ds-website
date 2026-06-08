@@ -3,15 +3,22 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
-const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact Us", href: "/about#contact" },
-  { label: "FAQs", href: "/faqs" },
-];
+function getNavLinks(isHindi: boolean) {
+  const prefix = isHindi ? "/hi" : "";
+  return [
+    { label: isHindi ? "होम" : "Home", href: prefix || "/" },
+    { label: isHindi ? "हमारे बारे में" : "About Us", href: `${prefix}/about` },
+    {
+      label: isHindi ? "संपर्क" : "Contact Us",
+      href: `${prefix}/about#contact`,
+    },
+    { label: isHindi ? "प्रश्न" : "FAQs", href: `${prefix}/faqs` },
+  ];
+}
 
-const SECONDARY_LINKS = [{ label: "Privacy policy", href: "/privacy" }];
+const SECONDARY_LINKS = [{ label: "Privacy policy", href: "/privacy-policy" }];
 
 const logoEmblem = "/images/navbar/logo_emblem.png";
 
@@ -45,10 +52,16 @@ function LogoMark() {
   );
 }
 
-function BrandLogo({ lightText = false }: { lightText?: boolean }) {
+function BrandLogo({
+  lightText = false,
+  homeHref = "/",
+}: {
+  lightText?: boolean;
+  homeHref?: string;
+}) {
   return (
     <Link
-      href="/"
+      href={homeHref}
       className="group inline-flex h-10 items-center gap-2.5 no-underline"
     >
       <LogoMark />
@@ -69,6 +82,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const isHindi = pathname.startsWith("/hi");
+  const navLinks = getNavLinks(isHindi);
   const [contactVisible, setContactVisible] = useState(false);
 
   useEffect(() => {
@@ -79,7 +94,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (pathname !== "/about") {
+    if (pathname !== "/about" && pathname !== "/hi/about") {
       setContactVisible(false);
       return;
     }
@@ -96,14 +111,15 @@ export default function Navbar() {
   }, [pathname]);
 
   const isActive = (href: string) => {
-    if (href === "/about#contact")
-      return pathname === "/about" && contactVisible;
-    if (href === "/about") return pathname === "/about" && !contactVisible;
-    if (href === "/") return pathname === "/";
+    if (href.endsWith("/about#contact"))
+      return (pathname === "/about" || pathname === "/hi/about") && contactVisible;
+    if (href.endsWith("/about"))
+      return (pathname === "/about" || pathname === "/hi/about") && !contactVisible;
+    if (href === "/" || href === "/hi") return pathname === href;
     return pathname.startsWith(href);
   };
 
-  const isHome = pathname === "/";
+  const isHome = pathname === "/" || pathname === "/hi";
 
   return (
     <>
@@ -116,7 +132,7 @@ export default function Navbar() {
         }`}
         style={{ animation: "hero-nav-in 0.8s ease-out 1s both" }}
       >
-        <BrandLogo />
+        <BrandLogo homeHref={isHindi ? "/hi" : "/"} />
 
         <div
           className={`flex items-center gap-5 rounded-full px-6 py-2.5 xl:gap-8 xl:px-8 xl:py-3 transition-all duration-500 ${
@@ -125,7 +141,7 @@ export default function Navbar() {
               : "glassmorphism-25"
           }`}
         >
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
@@ -140,16 +156,19 @@ export default function Navbar() {
           ))}
         </div>
 
+        <div className="flex items-center gap-4">
+        <LanguageSwitcher light={isHome && !scrolled} />
         <Link
-          href="https://www.divinesarathi.in/download"
+          href="/download"
           className={`flex h-12 items-center justify-center rounded-full px-5 font-inter text-[17px] font-medium whitespace-nowrap text-white no-underline transition-all duration-300 xl:px-6 xl:text-[18px] ${
             scrolled
               ? "bg-ds-navy shadow-soft hover:bg-ds-navy-deep"
               : "bg-ds-accent/80 backdrop-blur-sm hover:bg-ds-accent"
           }`}
         >
-          Get DivineSarathi
+          {isHindi ? "ऐप डाउनलोड करें" : "Get DivineSarathi"}
         </Link>
+        </div>
       </nav>
 
       {/* ── MOBILE (< 1024px) ───────────────────────────────────── */}
@@ -161,14 +180,20 @@ export default function Navbar() {
         }`}
         style={{ animation: "hero-nav-in 0.8s ease-out 1s both" }}
       >
-        <BrandLogo lightText={isHome && !scrolled} />
-        <button
-          onClick={() => setOpen(true)}
-          className="cursor-pointer border-none bg-transparent p-1"
-          aria-label="Open menu"
-        >
-          <MenuIcon light={isHome && !scrolled} />
-        </button>
+        <BrandLogo
+          lightText={isHome && !scrolled}
+          homeHref={isHindi ? "/hi" : "/"}
+        />
+        <div className="flex items-center gap-3">
+          <LanguageSwitcher light={isHome && !scrolled} />
+          <button
+            onClick={() => setOpen(true)}
+            className="cursor-pointer border-none bg-transparent p-1"
+            aria-label="Open menu"
+          >
+            <MenuIcon light={isHome && !scrolled} />
+          </button>
+        </div>
       </nav>
 
       {/* Full-screen mobile menu overlay */}
@@ -179,7 +204,7 @@ export default function Navbar() {
         style={{ background: "#f5efe4" }}
       >
         <div className="flex items-center justify-between px-5 pt-5 pb-2">
-          <BrandLogo />
+          <BrandLogo homeHref={isHindi ? "/hi" : "/"} />
           <button
             onClick={() => setOpen(false)}
             className="cursor-pointer border-none bg-transparent p-1"
@@ -201,7 +226,7 @@ export default function Navbar() {
         </div>
 
         <ul className="m-0 mt-8 flex list-none flex-col px-6 p-0">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <li key={link.label} style={{ marginTop: 36 }}>
               <Link
                 href={link.href}
@@ -242,11 +267,11 @@ export default function Navbar() {
 
         <div className="mt-auto px-6 pb-10">
           <Link
-            href="https://www.divinesarathi.in/download"
+            href="/download"
             onClick={() => setOpen(false)}
             className="flex h-14 w-full items-center justify-center rounded-full bg-ds-navy font-inter text-lg font-medium text-white no-underline"
           >
-            Download Now
+            {isHindi ? "ऐप डाउनलोड करें" : "Download Now"}
           </Link>
         </div>
       </div>
