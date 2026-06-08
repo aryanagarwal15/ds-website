@@ -350,37 +350,58 @@ export default function HeroSection() {
 
         {/* Text — all in together at 2.5s */}
         <div
-          className="relative z-10 flex flex-col items-center text-center px-6"
+          className="relative z-10 flex flex-col items-center px-6 text-center"
           style={{
             paddingTop: 100,
             opacity: 0,
             animation: "hero-slide-in 1s ease-out 2.5s forwards",
           }}
         >
+          <p className="ds-eyebrow mb-4 text-ds-accent/90">DivineSarathi</p>
           <h1
-            className="font-crimson font-semibold text-[#053466] leading-tight mb-4"
-            style={{ fontSize: "clamp(22px, 7vw, 28px)", maxWidth: 320 }}
+            className="font-crimson mb-4 max-w-[320px] font-semibold leading-[1.12] tracking-tight text-ds-navy"
+            style={{ fontSize: "clamp(1.5rem, 7vw, 1.875rem)" }}
           >
             When life feels unclear, you don&apos;t need more noise.
           </h1>
           <p
-            className="font-inter text-[#4c4a48] leading-snug mb-6"
-            style={{ fontSize: "clamp(15px, 4.5vw, 18px)", maxWidth: 310 }}
+            className="font-inter mb-8 max-w-[310px] leading-relaxed text-ds-text"
+            style={{ fontSize: "clamp(0.9375rem, 4.5vw, 1.125rem)" }}
           >
             You need clarity. Guidance for your everyday life. Rooted in the
             Gita. Designed for today.
           </p>
           <a
             href="https://www.divinesarathi.in/download"
-            className="inline-flex items-center justify-center bg-[rgba(5,52,102,0.1)] glass text-[#053466] font-inter rounded-[60px] no-underline whitespace-nowrap"
+            className="ds-btn-secondary whitespace-nowrap"
             style={{
-              fontSize: "clamp(15px, 4.5vw, 18px)",
+              fontSize: "clamp(0.9375rem, 4.5vw, 1.125rem)",
               height: 48,
               padding: "0 28px",
             }}
           >
             Speak with Krishna AI
           </a>
+        </div>
+
+        <div
+          className="hero-scroll-hint absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 opacity-0"
+          style={{ animation: "hero-slide-in 1s ease-out 3s forwards" }}
+          aria-hidden
+        >
+          <span className="font-inter text-[11px] tracking-widest text-ds-navy/50 uppercase">
+            Scroll
+          </span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M10 4v12M5 11l5 5 5-5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-ds-navy/40"
+            />
+          </svg>
         </div>
       </div>
 
@@ -399,53 +420,58 @@ export default function HeroSection() {
         >
           {/* Left — Krishna (center → left, 0.5–3s) */}
           <div
-            className="relative flex-1 flex items-end justify-center overflow-hidden"
+            className="relative flex-1 flex items-end justify-center"
             style={{
               opacity: 0,
               animation:
                 "hero-krishna-d 2.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both",
             }}
           >
-            <img
-              src={krishnaPulseBg}
-              alt=""
-              aria-hidden
-              className="krishna-pulse-bg krishna-pulse-bg--desktop"
-            />
-            <img
-              src={krishnaDesktop}
-              alt="Krishna AI"
-              className="relative z-10 w-full object-contain object-bottom"
+            <div
+              className="relative w-full flex items-end justify-center"
               style={{ maxWidth: 634, maxHeight: "88vh" }}
-            />
+            >
+              <img
+                src={krishnaPulseBg}
+                alt=""
+                aria-hidden
+                className="krishna-pulse-bg krishna-pulse-bg--desktop"
+              />
+              <img
+                src={krishnaDesktop}
+                alt="Krishna AI"
+                className="relative z-10 w-full object-contain object-bottom"
+              />
+            </div>
           </div>
 
           {/* Right — text (all slide in together at 2.5s) */}
           <div
-            className="flex-1 flex flex-col justify-center py-16 pl-6 pr-8 lg:pr-16"
+            className="flex flex-1 flex-col justify-center py-16 pl-6 pr-8 lg:pr-16"
             style={{
               opacity: 0,
               animation: "hero-slide-in 1s ease-out 2.5s forwards",
             }}
           >
+            <p className="ds-eyebrow mb-5">DivineSarathi</p>
             <h1
-              className="font-crimson font-semibold text-[#053466] leading-tight mb-6"
-              style={{ fontSize: "clamp(32px, 3.8vw, 52px)", maxWidth: 576 }}
+              className="font-crimson mb-6 max-w-[36rem] font-semibold leading-[1.08] tracking-tight text-ds-navy"
+              style={{ fontSize: "clamp(2rem, 3.8vw, 3.25rem)" }}
             >
               When life feels unclear, you don&apos;t need more noise.
             </h1>
             <p
-              className="font-inter text-[#4c4a48] leading-6 mb-10"
-              style={{ fontSize: "clamp(16px, 1.5vw, 20px)", maxWidth: 463 }}
+              className="font-inter mb-10 max-w-md leading-relaxed text-ds-text"
+              style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)" }}
             >
               You need clarity. Guidance for your everyday life. Rooted in the
               Gita. Designed for today.
             </p>
             <a
               href="https://www.divinesarathi.in/download"
-              className="inline-flex items-center justify-center bg-[rgba(5,52,102,0.1)] glass text-[#053466] font-inter rounded-[60px] no-underline hover:bg-[rgba(5,52,102,0.2)] transition-colors self-start whitespace-nowrap"
+              className="ds-btn-secondary self-start whitespace-nowrap"
               style={{
-                fontSize: "clamp(16px, 1.4vw, 20px)",
+                fontSize: "clamp(1rem, 1.4vw, 1.25rem)",
                 height: 56,
                 padding: "0 32px",
               }}
@@ -453,6 +479,26 @@ export default function HeroSection() {
               Speak with Krishna AI
             </a>
           </div>
+        </div>
+
+        <div
+          className="hero-scroll-hint absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 opacity-0"
+          style={{ animation: "hero-slide-in 1s ease-out 3s forwards" }}
+          aria-hidden
+        >
+          <span className="font-inter text-[11px] tracking-widest text-ds-navy/50 uppercase">
+            Scroll
+          </span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M10 4v12M5 11l5 5 5-5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-ds-navy/40"
+            />
+          </svg>
         </div>
       </div>
     </section>

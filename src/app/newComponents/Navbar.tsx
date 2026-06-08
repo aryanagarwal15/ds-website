@@ -16,22 +16,58 @@ const SECONDARY_LINKS = [
   { label: "Privacy policy", href: "/privacy" },
 ];
 
-const logoIconWhite = "/images/navbar/logo_icon_white.webp";
-const logoTextWhite = "/images/navbar/logo_text_white.webp";
-const logoIconColor = "/images/navbar/logo_icon_color.webp";
-const logoTextColor = "/images/navbar/logo_text_color.webp";
+const logoEmblem = "/images/navbar/logo_emblem.png";
 const menuIcon = "/images/navbar/menu_icon.webp";
+
+function LogoMark() {
+  return (
+    <img
+      src={logoEmblem}
+      alt=""
+      aria-hidden
+      className="h-9 w-9 flex-shrink-0 object-contain"
+    />
+  );
+}
+
+function BrandLogo({ lightText = false }: { lightText?: boolean }) {
+  return (
+    <Link
+      href="/"
+      className="group inline-flex h-10 items-center gap-2.5 no-underline"
+    >
+      <LogoMark />
+      <span
+        className={`font-crimson text-[20px] font-semibold leading-none tracking-tight transition-opacity duration-300 group-hover:opacity-90 lg:text-[22px] ${
+          lightText
+            ? "text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]"
+            : "text-ds-navy drop-shadow-[0_1px_8px_rgba(255,255,255,0.7)]"
+        }`}
+      >
+        DivineSarathi
+      </span>
+    </Link>
+  );
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-
-  // Track whether the #contact section is visible on screen
   const [contactVisible, setContactVisible] = useState(false);
 
   useEffect(() => {
-    // Reset whenever we navigate away from /about
-    if (pathname !== "/about") { setContactVisible(false); return; }
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (pathname !== "/about") {
+      setContactVisible(false);
+      return;
+    }
 
     const el = document.getElementById("contact");
     if (!el) return;
@@ -45,90 +81,147 @@ export default function Navbar() {
   }, [pathname]);
 
   const isActive = (href: string) => {
-    if (href === "/about#contact") return pathname === "/about" && contactVisible;
+    if (href === "/about#contact")
+      return pathname === "/about" && contactVisible;
     if (href === "/about") return pathname === "/about" && !contactVisible;
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
 
+  const isHome = pathname === "/";
+
   return (
     <>
       {/* ── DESKTOP (≥ 1024px) ──────────────────────────────────── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 hidden lg:flex items-center justify-between px-8 py-3"
-        style={{ animation: "hero-nav-in 0.8s ease-out 1s both" }}>
-        <Link href="/" className="flex items-center gap-2 no-underline">
-          <img src={logoIconColor} alt="" className="h-10 w-10 object-contain" />
-          <img src={logoTextColor} alt="DivineSarathi" className="h-7 w-auto object-contain" />
-        </Link>
+      <nav
+        className={`fixed top-0 right-0 left-0 z-50 hidden items-center justify-between px-8 py-3 transition-all duration-500 lg:flex ${
+          scrolled
+            ? "bg-white/80 shadow-soft backdrop-blur-xl"
+            : "bg-transparent"
+        }`}
+        style={{ animation: "hero-nav-in 0.8s ease-out 1s both" }}
+      >
+        <BrandLogo />
 
-        {/* Nav pill */}
-        <div className="flex items-center glassmorphism-25 rounded-full px-6 xl:px-8 py-3 gap-5 xl:gap-8">
-          {NAV_LINKS.map(link => (
-            <Link key={link.label} href={link.href}
-              className={`font-inter text-[17px] xl:text-[18px] font-normal leading-6 no-underline transition-colors duration-200 whitespace-nowrap ${isActive(link.href) ? "text-[#053466]" : "text-[#c1560f] hover:text-[#053466]"
-                }`}>
+        <div
+          className={`flex items-center gap-5 rounded-full px-6 py-2.5 xl:gap-8 xl:px-8 xl:py-3 transition-all duration-500 ${
+            scrolled
+              ? "border border-ds-navy/[0.06] bg-ds-cream/60"
+              : "glassmorphism-25"
+          }`}
+        >
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className={`font-inter text-[17px] leading-6 font-normal whitespace-nowrap no-underline transition-colors duration-200 xl:text-[18px] ${
+                isActive(link.href)
+                  ? "font-medium text-ds-navy"
+                  : "text-ds-accent hover:text-ds-navy"
+              }`}
+            >
               {link.label}
             </Link>
           ))}
         </div>
 
-        <Link href="https://www.divinesarathi.in/download"
-          className="flex items-center justify-center bg-[rgba(193,86,15,0.4)] glass text-white font-inter text-[17px] xl:text-[18px] font-normal rounded-[28px] px-5 xl:px-6 h-12 no-underline hover:bg-[rgba(193,86,15,0.6)] transition-colors whitespace-nowrap">
+        <Link
+          href="https://www.divinesarathi.in/download"
+          className={`flex h-12 items-center justify-center rounded-full px-5 font-inter text-[17px] font-medium whitespace-nowrap text-white no-underline transition-all duration-300 xl:px-6 xl:text-[18px] ${
+            scrolled
+              ? "bg-ds-navy shadow-soft hover:bg-ds-navy-deep"
+              : "bg-ds-accent/80 backdrop-blur-sm hover:bg-ds-accent"
+          }`}
+        >
           Get DivineSarathi
         </Link>
       </nav>
 
       {/* ── MOBILE (< 1024px) ───────────────────────────────────── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex lg:hidden items-center justify-between px-5 py-3 bg-white/10 backdrop-blur-md"
-        style={{ animation: "hero-nav-in 0.8s ease-out 1s both" }}>
-        <Link href="/" className="flex items-center gap-2 no-underline">
-          <img src={logoIconWhite} alt="" className="h-10 w-10 object-contain" />
-          <img src={logoTextWhite} alt="DivineSarathi" className="h-7 w-auto object-contain" />
-        </Link>
-        <button onClick={() => setOpen(true)} className="bg-transparent border-none cursor-pointer p-1" aria-label="Open menu">
-          <img src={menuIcon} alt="menu" className="w-9 h-9 object-contain" />
+      <nav
+        className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-5 py-3 transition-all duration-500 lg:hidden ${
+          scrolled || !isHome
+            ? "border-b border-ds-navy/[0.06] bg-white/85 shadow-soft backdrop-blur-xl"
+            : "bg-white/10 backdrop-blur-md"
+        }`}
+        style={{ animation: "hero-nav-in 0.8s ease-out 1s both" }}
+      >
+        <BrandLogo lightText={isHome && !scrolled} />
+        <button
+          onClick={() => setOpen(true)}
+          className="cursor-pointer border-none bg-transparent p-1"
+          aria-label="Open menu"
+        >
+          <img src={menuIcon} alt="" className="h-9 w-9 object-contain" />
         </button>
       </nav>
 
       {/* Full-screen mobile menu overlay */}
-      <div className={`fixed inset-0 z-[110] lg:hidden flex flex-col transition-opacity duration-300 ease-in-out ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-        style={{ background: "#ede8dc" }}>
-
+      <div
+        className={`fixed inset-0 z-[110] flex flex-col transition-opacity duration-300 ease-in-out lg:hidden ${
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        style={{ background: "#f5efe4" }}
+      >
         <div className="flex items-center justify-between px-5 pt-5 pb-2">
-          <div className="flex items-center gap-2">
-            <img src={logoIconColor} alt="" className="h-10 w-10 object-contain" />
-            <img src={logoTextColor} alt="DivineSarathi" className="h-7 w-auto object-contain" />
-          </div>
-          <button onClick={() => setOpen(false)} className="bg-transparent border-none cursor-pointer p-1" aria-label="Close">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d2d2d" strokeWidth="2" strokeLinecap="round">
-              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+          <BrandLogo />
+          <button
+            onClick={() => setOpen(false)}
+            className="cursor-pointer border-none bg-transparent p-1"
+            aria-label="Close menu"
+          >
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#2d2d2d"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
         </div>
 
-        <ul className="list-none p-0 m-0 flex flex-col px-6 mt-8">
-          {NAV_LINKS.map(link => (
+        <ul className="m-0 mt-8 flex list-none flex-col px-6 p-0">
+          {NAV_LINKS.map((link) => (
             <li key={link.label} style={{ marginTop: 36 }}>
-              <Link href={link.href} onClick={() => setOpen(false)}
-                className="font-inter no-underline block transition-colors duration-200"
+              <Link
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="font-inter block no-underline transition-colors duration-200"
                 style={{
                   fontSize: 20,
                   fontWeight: isActive(link.href) ? 600 : 400,
                   color: isActive(link.href) ? "#053466" : "#4C4A48",
                   lineHeight: 1.3,
-                }}>
+                }}
+              >
                 {link.label}
               </Link>
             </li>
           ))}
         </ul>
 
-        <ul className="list-none p-0 m-0 flex flex-col px-6">
-          {SECONDARY_LINKS.map(link => (
-            <li key={link.label} style={{ marginTop: link.label === "Terms of use" ? 72 : 36 }}>
-              <Link href={link.href} onClick={() => setOpen(false)}
-                className="font-inter no-underline block"
-                style={{ fontSize: 20, fontWeight: 400, color: "#4C4A48", lineHeight: 1.3 }}>
+        <ul className="m-0 flex list-none flex-col px-6 p-0">
+          {SECONDARY_LINKS.map((link) => (
+            <li
+              key={link.label}
+              style={{ marginTop: link.label === "Terms of use" ? 72 : 36 }}
+            >
+              <Link
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="font-inter block no-underline"
+                style={{
+                  fontSize: 20,
+                  fontWeight: 400,
+                  color: "#4C4A48",
+                  lineHeight: 1.3,
+                }}
+              >
                 {link.label}
               </Link>
             </li>
@@ -136,17 +229,11 @@ export default function Navbar() {
         </ul>
 
         <div className="mt-auto px-6 pb-10">
-          <Link href="https://www.divinesarathi.in/download" onClick={() => setOpen(false)}
-            className="flex items-center justify-center no-underline"
-            style={{
-              background: "#0d2145",
-              color: "#ffffff",
-              fontSize: 18,
-              fontWeight: 500,
-              borderRadius: 32,
-              height: 56,
-              width: "100%",
-            }}>
+          <Link
+            href="https://www.divinesarathi.in/download"
+            onClick={() => setOpen(false)}
+            className="flex h-14 w-full items-center justify-center rounded-full bg-ds-navy font-inter text-lg font-medium text-white no-underline"
+          >
             Download Now
           </Link>
         </div>

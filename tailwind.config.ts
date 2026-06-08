@@ -18,6 +18,21 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "ds-navy": "#053466",
+        "ds-navy-deep": "#031f3d",
+        "ds-cream": "#fbf7ef",
+        "ds-cream-warm": "#f5efe4",
+        "ds-text": "#4c4a48",
+        "ds-text-muted": "#7a7876",
+        "ds-accent": "#c1560f",
+      },
+      boxShadow: {
+        soft: "0 4px 24px rgba(5, 52, 102, 0.06)",
+        elevated: "0 12px 40px rgba(5, 52, 102, 0.1)",
+        glow: "0 0 60px rgba(193, 86, 15, 0.15)",
+      },
+      borderRadius: {
+        "4xl": "2rem",
       },
     },
   },

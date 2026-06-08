@@ -3,6 +3,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import SectionHeader from "./SectionHeader";
 
 const equalHeightStyle = `
   .testimonial-swiper .swiper-wrapper { align-items: stretch; }
@@ -61,96 +62,129 @@ function Quote({ parts }: { parts: { t: string; b: boolean }[] }) {
   return (
     <>
       {parts.map((p, i) =>
-        p.b
-          ? <span key={i} className="text-[#053466] font-semibold">{p.t}</span>
-          : <span key={i}>{p.t}</span>
+        p.b ? (
+          <span key={i} className="font-medium text-ds-navy">
+            {p.t}
+          </span>
+        ) : (
+          <span key={i}>{p.t}</span>
+        )
       )}
     </>
   );
 }
 
+function TestimonialCard({
+  t,
+  layout,
+}: {
+  t: (typeof testimonials)[0];
+  layout: "mobile" | "desktop";
+}) {
+  if (layout === "mobile") {
+    return (
+      <div className="flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-ds-navy/[0.06] bg-ds-cream">
+        <div className="mx-3 mt-3 overflow-hidden rounded-2xl" style={{ aspectRatio: "1/1" }}>
+          <video
+            src={t.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div className="p-5">
+          <p className="font-inter mb-3 text-[16px] leading-relaxed text-ds-text">
+            <Quote parts={t.parts} />
+          </p>
+          <p className="font-inter text-[14px] text-ds-text-muted">&mdash; {t.name}</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="ds-card flex h-full gap-5 rounded-3xl p-6"
+      style={{ minHeight: 280 }}
+    >
+      <div
+        className="flex-shrink-0 self-center overflow-hidden rounded-2xl"
+        style={{ width: 220, height: 220 }}
+      >
+        <video
+          src={t.video}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="flex flex-col justify-center">
+        <p
+          className="font-inter mb-4 leading-relaxed text-ds-text"
+          style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)" }}
+        >
+          <Quote parts={t.parts} />
+        </p>
+        <p className="font-inter text-[15px] text-ds-text-muted">&mdash; {t.name}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function TestimonialsSection() {
   return (
-    <section className="bg-[#ffffff]">
+    <section className="bg-white">
       <style>{equalHeightStyle}</style>
 
       {/* ── MOBILE ─────────────────────────────────────────────── */}
-      <div className="md:hidden pt-10 pb-6">
-        <h2 className="font-crimson font-semibold text-[#4c4a48] text-center mb-6 px-6"
-          style={{ fontSize: "clamp(22px, 7vw, 28px)" }}>
-          Voices of trust
-        </h2>
+      <div className="ds-section md:hidden">
+        <div className="ds-container mb-8">
+          <SectionHeader
+            eyebrow="Real stories"
+            title="Voices of trust"
+            align="left"
+          />
+        </div>
 
         <Swiper
           className="testimonial-swiper"
-          loop={true}
-          slidesPerView={1.15}
-          centeredSlides={true}
-          spaceBetween={40}
-          pagination={false}
+          loop
+          slidesPerView={1.12}
+          centeredSlides
+          spaceBetween={16}
         >
           {testimonials.map((t, i) => (
             <SwiperSlide key={i}>
-              <div className="bg-[#FBF7EF] rounded-[20px] overflow-hidden flex flex-col h-full">
-                <div className="mx-3 mt-3 rounded-[14px] overflow-hidden" style={{ aspectRatio: "1/1" }}>
-                  <video
-                    src={t.video}
-                    autoPlay loop muted playsInline
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-5">
-                  <p className="font-inter text-[#4c4a48] text-[16px] leading-relaxed mb-3">
-                    <Quote parts={t.parts} />
-                  </p>
-                  <p className="font-inter text-[#4c4a48] text-[14px]">&mdash; {t.name}</p>
-                </div>
-              </div>
+              <TestimonialCard t={t} layout="mobile" />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
       {/* ── DESKTOP ─────────────────────────────────────────────── */}
-      <div className="hidden md:block py-16">
-        <div className="max-w-[1360px] mx-auto px-6">
-          <h2 className="font-crimson font-semibold text-[#4c4a48] text-center mb-10"
-            style={{ fontSize: "clamp(28px, 3.8vw, 52px)" }}>
-            Voices of trust
-          </h2>
+      <div className="ds-section hidden md:block">
+        <div className="ds-container mb-12">
+          <SectionHeader eyebrow="Real stories" title="Voices of trust" />
         </div>
 
         <Swiper
           className="testimonial-swiper"
-          loop={true}
+          loop
           slidesPerView={1.4}
-          centeredSlides={true}
-          spaceBetween={48}
+          centeredSlides
+          spaceBetween={32}
           breakpoints={{
-            1024: { slidesPerView: 1.6, spaceBetween: 48 },
+            1024: { slidesPerView: 1.6, spaceBetween: 40 },
             1280: { slidesPerView: 2.1, spaceBetween: 48 },
           }}
         >
           {testimonials.map((t, i) => (
             <SwiperSlide key={i}>
-              <div className="bg-[#FBF7EF] rounded-[20px] overflow-hidden flex gap-5 p-6 h-full"
-                style={{ border: "1px solid rgba(76,74,72,.12)", minHeight: 280 }}>
-                <div className="flex-shrink-0 rounded-[12px] overflow-hidden"
-                  style={{ width: 220, height: 220, alignSelf: "center" }}>
-                  <video
-                    src={t.video}
-                    autoPlay loop muted playsInline
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col justify-center">
-                  <p className="font-inter text-[#4c4a48] leading-normal mb-4"
-                    style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}>
-                    <Quote parts={t.parts} />
-                  </p>
-                  <p className="font-inter text-[#4c4a48] text-[15px]">&mdash; {t.name}</p>
-                </div>
-              </div>
+              <TestimonialCard t={t} layout="desktop" />
             </SwiperSlide>
           ))}
         </Swiper>

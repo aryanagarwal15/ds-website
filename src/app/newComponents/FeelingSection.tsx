@@ -1,59 +1,89 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import Reveal from "./Reveal";
+import SectionHeader from "./SectionHeader";
 
 const desktopCards = [
-  { title: "Overthinking?", img: "/images/feeling-cards/overthinking.webp", bg: "/images/feeling-cards/overthinking_bg.webp", points: ["Thinking about the same thing again and again?", "Finding it hard to make even simple decisions?", "Feeling mentally exhausted?"] },
-  { title: "Feeling stuck?", img: "/images/feeling-cards/feeling_stuck.webp", bg: "/images/feeling-cards/feeling_stuck_bg.webp", points: ["Not making the progress you expected?", "Feeling like you're trying, but not moving forward?", "Unsure what your next step should be?"] },
-  { title: "Seeking Purpose?", img: "/images/feeling-cards/seeking_purpose.webp", bg: "/images/feeling-cards/seeking_purpose_bg.webp", points: ["Wondering if there's something more to life?", "Looking for deeper meaning in what you do?", "Wanting a stronger sense of direction?"] },
+  {
+    title: "Overthinking?",
+    img: "/images/feeling-cards/overthinking.webp",
+    bg: "/images/feeling-cards/overthinking_bg.webp",
+    points: [
+      "Thinking about the same thing again and again?",
+      "Finding it hard to make even simple decisions?",
+      "Feeling mentally exhausted?",
+    ],
+  },
+  {
+    title: "Feeling stuck?",
+    img: "/images/feeling-cards/feeling_stuck.webp",
+    bg: "/images/feeling-cards/feeling_stuck_bg.webp",
+    points: [
+      "Not making the progress you expected?",
+      "Feeling like you're trying, but not moving forward?",
+      "Unsure what your next step should be?",
+    ],
+  },
+  {
+    title: "Seeking Purpose?",
+    img: "/images/feeling-cards/seeking_purpose.webp",
+    bg: "/images/feeling-cards/seeking_purpose_bg.webp",
+    points: [
+      "Wondering if there's something more to life?",
+      "Looking for deeper meaning in what you do?",
+      "Wanting a stronger sense of direction?",
+    ],
+  },
 ];
 
 const mobileCards = [desktopCards[1], desktopCards[0], desktopCards[2]];
 
-const BAND = 178;
-
-function FeelCard({ card, compact = false }: { card: typeof desktopCards[0]; compact?: boolean }) {
+function FeelCard({
+  card,
+  compact = false,
+}: {
+  card: (typeof desktopCards)[0];
+  compact?: boolean;
+}) {
   return (
-    <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
-      {/* Full-card background — no blur, just the _bg image */}
-      <img src={card.bg} alt=""
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
-      <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.35)" }} />
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.25rem] transition-transform duration-500 ease-out hover:scale-[1.02]">
+      <img
+        src={card.bg}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/55" />
 
-      {/* In-flow content — flex: 1 so it fills the grid-stretched height */}
-      <div style={{ position: "relative", display: "flex", flexDirection: "column", flex: 1 }}>
-        {/* Inner sharp image — aspect ratio scales with card width */}
-        <div style={{
-          margin: "16px 13px 0 13px",
-          aspectRatio: "4 / 3",
-          borderRadius: 16,
-          overflow: "hidden",
-          flexShrink: 0,
-        }}>
-          <img src={card.img} alt={card.title}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+      <div className="relative flex flex-1 flex-col">
+        <div className="mx-3.5 mt-3.5 aspect-[4/3] flex-shrink-0 overflow-hidden rounded-2xl ring-1 ring-white/20">
+          <img
+            src={card.img}
+            alt={card.title}
+            className="block h-full w-full object-cover"
+          />
         </div>
 
-        {/* Text */}
-        <div style={{ padding: "14px 16px 24px 16px", display: "flex", flexDirection: "column" }}>
+        <div className="flex flex-col p-4 pb-6">
           {compact && (
-            <p className="font-inter text-white"
-              style={{ fontSize: 13, lineHeight: "16px", margin: "0 0 4px 0", opacity: 0.85 }}>
+            <p className="font-inter mb-1 text-[13px] leading-4 text-white/80">
               Have you ever felt you are
             </p>
           )}
-          <div style={{ display: "inline-flex", flexDirection: "column", alignSelf: "flex-start", marginBottom: 12 }}>
-            <h3 className="font-crimson font-semibold text-white"
-              style={{ fontSize: compact ? 28 : 36, lineHeight: 1.2, margin: "0 0 8px 0" }}>
+          <div className="mb-3 inline-flex flex-col self-start">
+            <h3
+              className="font-crimson font-semibold leading-tight text-white"
+              style={{ fontSize: compact ? 28 : 36 }}
+            >
               {card.title}
             </h3>
-            <div style={{ width: "100%", height: 1.5, background: "rgba(255,255,255,0.6)" }} />
+            <div className="mt-2 h-px w-full bg-white/50" />
           </div>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: compact ? 10 : 14 }}>
+          <ul className="m-0 flex list-none flex-col gap-3 p-0">
             {card.points.map((pt, j) => (
-              <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: 8, paddingLeft: 4 }}>
-                <span style={{ color: "#fff", fontSize: 6, marginTop: 7, flexShrink: 0 }}>●</span>
-                <span className="font-inter" style={{ color: "#e8e8e8", fontSize: 16, lineHeight: "20px" }}>
+              <li key={j} className="flex items-start gap-2.5 pl-1">
+                <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-white/90" />
+                <span className="font-inter text-[15px] leading-5 text-white/90">
                   {pt}
                 </span>
               </li>
@@ -61,7 +91,7 @@ function FeelCard({ card, compact = false }: { card: typeof desktopCards[0]; com
           </ul>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -70,7 +100,8 @@ export default function FeelingSection() {
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
 
-  const goTo = (idx: number) => setActiveIdx(Math.max(0, Math.min(idx, mobileCards.length - 1)));
+  const goTo = (idx: number) =>
+    setActiveIdx(Math.max(0, Math.min(idx, mobileCards.length - 1)));
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -80,92 +111,109 @@ export default function FeelingSection() {
   const onTouchEnd = (e: React.TouchEvent) => {
     const dx = touchStartX.current - e.changedTouches[0].clientX;
     const dy = touchStartY.current - e.changedTouches[0].clientY;
-    // Only respond to horizontal swipes, ignore vertical scrolls
     if (Math.abs(dx) < Math.abs(dy) || Math.abs(dx) < 40) return;
     goTo(dx > 0 ? activeIdx + 1 : activeIdx - 1);
   };
 
   return (
-    <section className="overflow-hidden">
-
+    <section className="overflow-hidden bg-white">
       {/* ── MOBILE ─────────────────────────────────────────────── */}
-      <div className="lg:hidden bg-white">
+      <div className="lg:hidden">
+        <div className="ds-container pt-12 pb-2">
+          <SectionHeader
+            eyebrow="Sound familiar?"
+            title="Have you ever felt you are"
+            align="left"
+          />
+        </div>
 
-        {/* Carousel viewport — overflow hidden, touch handlers here */}
         <div
-          style={{ overflow: "hidden", paddingTop: 32 }}
+          className="overflow-hidden pb-4"
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
         >
-          {/* Slide track — shifts left by activeIdx cards */}
-          <div style={{
-            display: "flex",
-            gap: 12,
-            paddingLeft: 24,
-            paddingBottom: 16,
-            transform: `translateX(calc(${-activeIdx} * (85vw + 12px)))`,
-            transition: "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-            willChange: "transform",
-          }}>
+          <div
+            className="flex gap-3 pl-6 pb-2"
+            style={{
+              transform: `translateX(calc(${-activeIdx} * (82vw + 12px)))`,
+              transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
+              willChange: "transform",
+            }}
+          >
             {mobileCards.map((card, i) => (
-              <div key={i} style={{ flex: "0 0 85vw" }}>
+              <div key={i} className="w-[82vw] flex-shrink-0">
                 <FeelCard card={card} compact />
               </div>
             ))}
           </div>
         </div>
 
-        {/* Dots */}
-        <div style={{ display: "flex", justifyContent: "center", gap: 8, paddingBottom: 24 }}>
+        <div className="flex justify-center gap-2 pb-8">
           {mobileCards.map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className="border-none p-0 transition-all duration-300"
               style={{
-                height: 8,
-                width: i === activeIdx ? 24 : 8,
-                borderRadius: 4,
-                background: i === activeIdx ? "#1a1a1a" : "rgba(0,0,0,0.2)",
-                border: "none",
-                padding: 0,
+                height: 6,
+                width: i === activeIdx ? 20 : 6,
+                borderRadius: 3,
+                background:
+                  i === activeIdx ? "var(--ds-navy)" : "rgba(5, 52, 102, 0.15)",
                 cursor: "pointer",
-                transition: "all 0.3s",
               }}
             />
           ))}
         </div>
-
-        {/* Cream band */}
-        <div className="bg-[#fbf7ef] flex flex-col items-center justify-center px-5 text-center"
-          style={{ height: BAND }}>
-          <h3 className="font-crimson font-semibold text-[#053466] text-[28px] leading-tight mb-1">
-            You&apos;re not alone
-          </h3>
-          <p className="font-inter text-[#4c4a48] text-[15px] leading-5 max-w-[340px]">
-            In today&apos;s fast-moving world, many of us feel this way. But the way we seek guidance
-            hasn&apos;t kept up with how we live today. That&apos;s where DivineSarathi comes in.
-          </p>
-        </div>
       </div>
 
       {/* ── DESKTOP ─────────────────────────────────────────────── */}
-      <div className="hidden lg:block bg-white py-20 px-10">
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <div className="ds-section hidden lg:block">
+        <div className="ds-container">
+          <SectionHeader
+            eyebrow="Sound familiar?"
+            title="Have you ever felt you are"
+            className="mb-16"
+          />
 
-          <div className="text-center mb-14" style={{ paddingTop: 40 }}>
-            <h2 className="font-crimson font-semibold"
-              style={{ fontSize: 36, lineHeight: 1.2, color: "#1a1a1a", margin: "0 0 16px 0" }}>
-              Have you ever felt you are
-            </h2>
-            <div style={{ width: 120, height: 2, background: "#1a1a1a", margin: "0 auto" }} />
-          </div>
-
-          {/* No fixed aspect ratio — card height driven by content */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-5">
             {desktopCards.map((card, i) => (
-              <FeelCard key={i} card={card} />
+              <Reveal key={i} delay={i * 0.1}>
+                <FeelCard card={card} />
+              </Reveal>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* ── Unified "not alone" bridge ─────────────────────────── */}
+      <div className="relative overflow-hidden bg-ds-cream">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-40"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(193,86,15,0.08), transparent)",
+          }}
+        />
+        <div className="ds-container relative py-16 text-center md:py-20">
+          <Reveal>
+            <p className="ds-eyebrow mb-4">You&apos;re not alone</p>
+            <h3
+              className="font-crimson font-semibold tracking-tight text-ds-navy"
+              style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
+            >
+              Guidance hasn&apos;t kept up with how we live today.
+            </h3>
+            <p
+              className="font-inter mx-auto mt-5 max-w-2xl leading-relaxed text-ds-text"
+              style={{ fontSize: "clamp(1rem, 1.6vw, 1.25rem)" }}
+            >
+              In today&apos;s fast-moving world, many of us feel this way.
+              DivineSarathi brings timeless wisdom into the rhythm of your
+              everyday life.
+            </p>
+          </Reveal>
         </div>
       </div>
     </section>

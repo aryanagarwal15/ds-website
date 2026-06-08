@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Linkedin } from "lucide-react";
 
 const usefulLinks = [
   { label: "About Us",       href: "/about" },
@@ -11,15 +12,78 @@ const usefulLinks = [
 ];
 
 const socials = [
-  { src: "/images/footer/social_ig.webp",  alt: "Instagram", href: "#" },
-  { src: "/images/footer/social_x.webp",   alt: "X",         href: "https://x.com/DivineSarathi" },
-  { src: "/images/footer/social_fb.webp",  alt: "Facebook",  href: "https://www.facebook.com/profile.php?id=61578551830799" },
-  { src: "/images/footer/social_yt.webp",  alt: "YouTube",   href: "https://www.youtube.com/@DivineSarathi" },
+  {
+    alt: "Instagram",
+    href: "https://www.instagram.com/divinesarathi",
+    src: "/images/footer/social_ig.webp",
+  },
+  {
+    alt: "X",
+    href: "https://x.com/DivineSarathi",
+    src: "/images/footer/social_x.webp",
+  },
+  {
+    alt: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61578551830799",
+    src: "/images/footer/social_fb.webp",
+  },
+  {
+    alt: "YouTube",
+    href: "https://www.youtube.com/@DivineSarathi",
+    src: "/images/footer/social_yt.webp",
+  },
+  {
+    alt: "LinkedIn",
+    href: "https://www.linkedin.com/company/divinesarathi",
+    icon: "linkedin" as const,
+  },
 ];
+
+function SocialLink({
+  social,
+  size,
+  rounded,
+}: {
+  social: (typeof socials)[number];
+  size: number;
+  rounded: string;
+}) {
+  if (social.icon === "linkedin") {
+    return (
+      <a
+        href={social.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={social.alt}
+        className={`flex items-center justify-center bg-[#0A66C2] ${rounded} transition-opacity hover:opacity-90`}
+        style={{ width: size, height: size }}
+      >
+        <Linkedin
+          className="text-white"
+          style={{ width: size * 0.46, height: size * 0.46 }}
+          strokeWidth={1.75}
+        />
+      </a>
+    );
+  }
+
+  return (
+    <a
+      href={social.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={social.alt}
+      className={`block overflow-hidden ${rounded}`}
+      style={{ width: size, height: size }}
+    >
+      <img src={social.src} alt="" className="h-full w-full object-cover" />
+    </a>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer className="bg-[#053466]">
+    <footer className="bg-ds-navy-deep">
 
       {/* ── MOBILE ─────────────────────────────────────────────── */}
       <div className="md:hidden px-5 pt-10 pb-8 flex flex-col gap-8">
@@ -30,7 +94,7 @@ export default function Footer() {
             <img src="/images/footer/logo_icon_m.webp" alt="" style={{ width: 40, height: 40 }} className="object-contain" />
             <img src="/images/footer/logo_text_m.webp" alt="DivineSarathi" style={{ height: 22 }} className="object-contain" />
           </div>
-          <p className="font-inter text-white text-[16px] leading-relaxed">
+          <p className="font-inter text-[16px] leading-relaxed text-white/85">
             Bridging ancient wisdom with artificial intelligence to guide you through daily life.
           </p>
         </div>
@@ -66,11 +130,13 @@ export default function Footer() {
         <div className="flex flex-col gap-3">
           <h4 className="font-inter font-semibold text-white text-[18px]">Stay connected</h4>
           <div className="flex gap-3">
-            {socials.map(s => (
-              <a key={s.alt} href={s.href} target="_blank" rel="noopener noreferrer"
-                 className="block rounded-[10px] overflow-hidden" style={{ width: 48, height: 48 }}>
-                <img src={s.src} alt={s.alt} className="w-full h-full object-cover" />
-              </a>
+            {socials.map((s) => (
+              <SocialLink
+                key={s.alt}
+                social={s}
+                size={48}
+                rounded="rounded-[10px]"
+              />
             ))}
           </div>
         </div>
@@ -88,7 +154,7 @@ export default function Footer() {
             <img src="/images/footer/logo_icon_d.webp" alt="" style={{ width: 40, height: 40 }} className="object-contain" />
             <img src="/images/footer/logo_text_d.webp" alt="DivineSarathi" style={{ height: 24 }} className="object-contain" />
           </div>
-          <p className="font-inter text-white text-[18px] leading-relaxed">
+          <p className="font-inter text-[18px] leading-relaxed text-white/85">
             Bridging ancient wisdom with artificial intelligence to guide you through daily life.
           </p>
           <p className="font-inter text-white/70 text-[16px] mt-auto">© DivineSarathi 2026.</p>
@@ -114,11 +180,13 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h4 className="font-inter font-semibold text-white text-[20px]">Stay connected</h4>
             <div className="flex gap-3">
-              {socials.map(s => (
-                <a key={s.alt} href={s.href} target="_blank" rel="noopener noreferrer"
-                   className="block rounded-[12px] overflow-hidden" style={{ width: 52, height: 52 }}>
-                  <img src={s.src} alt={s.alt} className="w-full h-full object-cover" />
-                </a>
+              {socials.map((s) => (
+                <SocialLink
+                  key={s.alt}
+                  social={s}
+                  size={52}
+                  rounded="rounded-[12px]"
+                />
               ))}
             </div>
           </div>

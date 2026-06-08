@@ -5,6 +5,13 @@
 :root {
   --background: #fafafa;
   --foreground: #171717;
+  --ds-navy: #053466;
+  --ds-navy-deep: #031f3d;
+  --ds-cream: #fbf7ef;
+  --ds-cream-warm: #f5efe4;
+  --ds-text: #4c4a48;
+  --ds-text-muted: #7a7876;
+  --ds-accent: #c1560f;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -89,15 +96,277 @@ html {
   mix-blend-mode: screen;
   filter: brightness(1.25) saturate(1.35);
   transform: translate(-50%, 0);
+  transform-origin: bottom center;
   animation: krishna-pulse-glow 3.6s ease-in-out infinite;
   animation-delay: 2.5s;
 }
 
 @media (min-width: 768px) {
   .krishna-pulse-bg--desktop {
-    width: 92%;
-    height: auto;
-    max-height: 82vh;
+    width: 108%;
+    height: 108%;
+    max-height: none;
     filter: brightness(1.3) saturate(1.4);
+  }
+}
+
+/* ── Homepage design system ─────────────────────────────── */
+
+.ds-section {
+  padding-top: clamp(4rem, 8vw, 7rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.ds-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.ds-eyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ds-accent);
+}
+
+.ds-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ds-navy);
+  color: #fff;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 500;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 4px 16px rgba(5, 52, 102, 0.2);
+}
+
+.ds-btn-primary:hover {
+  background: var(--ds-navy-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(5, 52, 102, 0.28);
+}
+
+.ds-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--ds-navy);
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 500;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 12px rgba(5, 52, 102, 0.08);
+}
+
+.ds-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.92);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(5, 52, 102, 0.12);
+}
+
+.ds-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(5, 52, 102, 0.06);
+  box-shadow: 0 4px 24px rgba(5, 52, 102, 0.04);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ds-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(5, 52, 102, 0.1);
+}
+
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+.hero-scroll-hint {
+  animation: scroll-hint 2s ease-in-out infinite;
+  animation-delay: 3.5s;
+}
+
+@keyframes promise-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+.promise-ticker {
+  animation: promise-scroll 18s linear infinite;
+}
+
+/* ── Return / ritual section ─────────────────────────────── */
+
+.ritual-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  will-change: transform;
+}
+
+.ritual-grid {
+  align-items: stretch;
+}
+
+.ritual-grid > * {
+  height: 100%;
+}
+
+.ritual-orb--1 {
+  top: 2%;
+  left: -10%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(
+    circle,
+    rgba(193, 86, 15, 0.18) 0%,
+    transparent 70%
+  );
+  animation: ritual-drift-1 22s ease-in-out infinite;
+}
+
+.ritual-orb--2 {
+  top: 8%;
+  right: -12%;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(
+    circle,
+    rgba(5, 52, 102, 0.14) 0%,
+    transparent 70%
+  );
+  animation: ritual-drift-2 28s ease-in-out infinite;
+}
+
+.ritual-orb--3 {
+  bottom: 5%;
+  left: 30%;
+  width: 500px;
+  height: 200px;
+  background: radial-gradient(
+    ellipse,
+    rgba(193, 86, 15, 0.08) 0%,
+    transparent 70%
+  );
+  animation: ritual-drift-3 26s ease-in-out infinite;
+}
+
+@keyframes ritual-drift-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, 30px) scale(1.08);
+  }
+}
+
+@keyframes ritual-drift-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-35px, 25px) scale(1.06);
+  }
+}
+
+@keyframes ritual-drift-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(20px, -20px) scale(1.05);
+  }
+}
+
+.ritual-flow-pulse {
+  animation: ritual-flow-travel 6s ease-in-out infinite;
+}
+
+@keyframes ritual-flow-travel {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(880px);
+    opacity: 0;
+  }
+}
+
+.ritual-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 24px rgba(5, 52, 102, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease;
+}
+
+.ritual-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(5, 52, 102, 0.1);
+  box-shadow: 0 20px 56px rgba(5, 52, 102, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.ritual-card-accent {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(193, 86, 15, 0.25) 50%,
+    transparent
+  );
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ritual-card:hover .ritual-card-accent {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ritual-orb,
+  .ritual-flow-pulse {
+    animation: none;
   }
 }
