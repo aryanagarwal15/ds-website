@@ -163,7 +163,7 @@ export default function AboutPage() {
             {[
               {
                 name: "Mohith Mahadevan",
-                image: "/images/about/founder_placeholder.webp",
+                image: "/images/about/mohith_mahadevan.png",
                 bio: "Mohith studied engineering at BITS Pilani and later completed his MBA at London Business School as a BK Birla Scholar. He previously worked in the CEO's office at Navi, where he worked closely with Sachin Bansal and helped scale the lending business from zero to over one billion dollars in assets under management.",
               },
               {
