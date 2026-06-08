@@ -129,7 +129,7 @@ export default function DownloadRedirect({
                 referrer: document.referrer || serverReferrer || "Unknown",
                 ...(tracking ? { tracking } : {}),
             };
-
+            
             // Send analytics if API is configured
             try {
                 await fetch("https://api.divinesarathi.in/generic/download-analytics", {

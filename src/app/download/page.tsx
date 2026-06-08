@@ -66,6 +66,7 @@ export default async function DownloadPage({ searchParams }: PageProps) {
   // Desktop fallback
   return (
     <>
+
       <JsonLd
         data={[
           breadcrumbJsonLd([
@@ -83,6 +84,7 @@ export default async function DownloadPage({ searchParams }: PageProps) {
       />
       <div className="min-h-screen bg-[#fdf6ee] flex flex-col items-center justify-center px-6 text-center">
         <img src="/images/logo.webp" alt="DivineSarathi" className="h-16 mb-8" />
+
         <h1 className="font-garamond text-[2.5rem] text-[#D9712C] mb-4 font-semibold">
           Download DivineSarathi
         </h1>
