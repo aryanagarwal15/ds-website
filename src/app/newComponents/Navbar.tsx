@@ -11,13 +11,28 @@ const NAV_LINKS = [
   { label: "FAQs", href: "/faqs" },
 ];
 
-const SECONDARY_LINKS = [
-  { label: "Terms of use", href: "/terms" },
-  { label: "Privacy policy", href: "/privacy" },
-];
+const SECONDARY_LINKS = [{ label: "Privacy policy", href: "/privacy" }];
 
 const logoEmblem = "/images/navbar/logo_emblem.png";
-const menuIcon = "/images/navbar/menu_icon.webp";
+
+function MenuIcon({ light = false }: { light?: boolean }) {
+  return (
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={light ? "#ffffff" : "#053466"}
+      strokeWidth="2"
+      strokeLinecap="round"
+      className={light ? "drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]" : undefined}
+    >
+      <line x1="4" y1="7" x2="20" y2="7" />
+      <line x1="4" y1="12" x2="20" y2="12" />
+      <line x1="4" y1="17" x2="20" y2="17" />
+    </svg>
+  );
+}
 
 function LogoMark() {
   return (
@@ -152,7 +167,7 @@ export default function Navbar() {
           className="cursor-pointer border-none bg-transparent p-1"
           aria-label="Open menu"
         >
-          <img src={menuIcon} alt="" className="h-9 w-9 object-contain" />
+          <MenuIcon light={isHome && !scrolled} />
         </button>
       </nav>
 
@@ -207,10 +222,7 @@ export default function Navbar() {
 
         <ul className="m-0 flex list-none flex-col px-6 p-0">
           {SECONDARY_LINKS.map((link) => (
-            <li
-              key={link.label}
-              style={{ marginTop: link.label === "Terms of use" ? 72 : 36 }}
-            >
+            <li key={link.label} style={{ marginTop: 72 }}>
               <Link
                 href={link.href}
                 onClick={() => setOpen(false)}

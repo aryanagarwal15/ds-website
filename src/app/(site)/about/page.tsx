@@ -1,10 +1,64 @@
 "use client";
 
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { CheckCircle2, Loader2, Send } from "lucide-react";
 import Footer from "@/app/newComponents/Footer";
 
+type FormState = { name: string; email: string; message: string };
+type FormStatus = "idle" | "submitting" | "success" | "error";
+
+const initialForm: FormState = { name: "", email: "", message: "" };
+
 export default function AboutPage() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState<FormState>(initialForm);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const message = form.message.trim();
+
+    if (!name || !email || !message) {
+      setStatus("error");
+      setErrorMessage("Please fill in all fields.");
+      return;
+    }
+
+    setStatus("submitting");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
+      setForm(initialForm);
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
+      );
+    }
+  };
+
+  const resetForm = () => {
+    setForm(initialForm);
+    setStatus("idle");
+    setErrorMessage("");
+  };
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -109,16 +163,18 @@ export default function AboutPage() {
             {[
               {
                 name: "Mohith Mahadevan",
+                image: "/images/about/founder_placeholder.webp",
                 bio: "Mohith studied engineering at BITS Pilani and later completed his MBA at London Business School as a BK Birla Scholar. He previously worked in the CEO's office at Navi, where he worked closely with Sachin Bansal and helped scale the lending business from zero to over one billion dollars in assets under management.",
               },
               {
                 name: "Aryan Agarwal",
+                image: "/images/about/aryan_agarwal.png",
                 bio: "Aryan Agarwal studied engineering at BITS Pilani and is the co-founder and CTO of Yenmo, a Y Combinator backed fintech startup in the financial technology space. He has extensive experience building technology products and leading teams from zero to scale.",
               },
             ].map(f => (
               <div key={f.name} className="flex-1 flex flex-col items-center md:items-start md:flex-row gap-5 max-w-[560px]">
-                <img src="/images/about/founder_placeholder.webp" alt={f.name}
-                  className="rounded-full object-cover flex-shrink-0 bg-[#d9d9d9]"
+                <img src={f.image} alt={f.name}
+                  className="rounded-full object-cover object-center flex-shrink-0 bg-[#d9d9d9]"
                   style={{ width: 140, height: 140, backgroundColor: "#d9d9d9" }} />
                 <div className="text-center md:text-left">
                   <h3 className="font-crimson text-[#053466] mb-3"
@@ -155,29 +211,113 @@ export default function AboutPage() {
               style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}>
               Contact Us
             </h2>
-            <form className="flex flex-col gap-4 text-left"
-              onSubmit={e => { e.preventDefault(); }}>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <input
-                  className="flex-1 bg-[#f5f5f5] rounded-[12px] px-4 py-3 font-inter text-[#4c4a48] text-[18px] outline-none border border-transparent focus:border-[#053466]"
-                  placeholder="Name" value={form.name}
-                  onChange={e => setForm(p => ({ ...p, name: e.target.value }))} />
-                <input
-                  className="flex-1 bg-[#f5f5f5] rounded-[12px] px-4 py-3 font-inter text-[#4c4a48] text-[18px] outline-none border border-transparent focus:border-[#053466]"
-                  placeholder="Email address" type="email" value={form.email}
-                  onChange={e => setForm(p => ({ ...p, email: e.target.value }))} />
-              </div>
-              <textarea
-                className="bg-[#f5f5f5] rounded-[12px] px-4 py-3 font-inter text-[#4c4a48] text-[18px] outline-none border border-transparent focus:border-[#053466] resize-none"
-                placeholder="Your message" rows={5} value={form.message}
-                onChange={e => setForm(p => ({ ...p, message: e.target.value }))} />
-              <div className="flex justify-center mt-2">
-                <button type="submit"
-                  className="bg-[#053466] text-white font-inter text-[20px] rounded-[12px] px-10 py-3 hover:opacity-90 transition-opacity">
-                  Send message
-                </button>
-              </div>
-            </form>
+
+            <AnimatePresence mode="wait">
+              {status === "success" ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 16, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="bg-white/90 backdrop-blur-sm rounded-[20px] px-8 py-12 shadow-[0_8px_40px_rgba(5,52,102,0.08)] border border-white/60"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.15, type: "spring", stiffness: 200, damping: 15 }}
+                    className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#053466]/10"
+                  >
+                    <CheckCircle2 className="h-8 w-8 text-[#053466]" strokeWidth={1.75} />
+                  </motion.div>
+                  <h3 className="font-crimson text-[#053466] mb-3"
+                    style={{ fontSize: "clamp(24px, 2.5vw, 36px)" }}>
+                    Message sent
+                  </h3>
+                  <p className="font-inter text-[#4c4a48] mb-8 leading-relaxed"
+                    style={{ fontSize: "clamp(16px, 1.4vw, 18px)" }}>
+                    Thank you for reaching out. We&apos;ve received your message and will get back to you soon.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={resetForm}
+                    className="font-inter text-[#053466] text-[16px] underline underline-offset-4 hover:opacity-70 transition-opacity"
+                  >
+                    Send another message
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.35 }}
+                  className="flex flex-col gap-4 text-left"
+                  onSubmit={handleSubmit}
+                  noValidate
+                >
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <input
+                      className="flex-1 bg-white/80 backdrop-blur-sm rounded-[12px] px-4 py-3 font-inter text-[#4c4a48] text-[18px] outline-none border border-white/60 focus:border-[#053466] focus:bg-white transition-colors disabled:opacity-60"
+                      placeholder="Name"
+                      value={form.name}
+                      disabled={status === "submitting"}
+                      onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
+                    />
+                    <input
+                      className="flex-1 bg-white/80 backdrop-blur-sm rounded-[12px] px-4 py-3 font-inter text-[#4c4a48] text-[18px] outline-none border border-white/60 focus:border-[#053466] focus:bg-white transition-colors disabled:opacity-60"
+                      placeholder="Email address"
+                      type="email"
+                      value={form.email}
+                      disabled={status === "submitting"}
+                      onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
+                    />
+                  </div>
+                  <textarea
+                    className="bg-white/80 backdrop-blur-sm rounded-[12px] px-4 py-3 font-inter text-[#4c4a48] text-[18px] outline-none border border-white/60 focus:border-[#053466] focus:bg-white transition-colors resize-none disabled:opacity-60"
+                    placeholder="Your message"
+                    rows={5}
+                    value={form.message}
+                    disabled={status === "submitting"}
+                    onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
+                  />
+
+                  <AnimatePresence>
+                    {status === "error" && errorMessage && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="font-inter text-[15px] text-[#b42318] text-center"
+                      >
+                        {errorMessage}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+
+                  <div className="flex justify-center mt-2">
+                    <button
+                      type="submit"
+                      disabled={status === "submitting"}
+                      className="inline-flex items-center gap-2.5 bg-[#053466] text-white font-inter text-[20px] rounded-[12px] px-10 py-3 hover:opacity-90 transition-opacity disabled:opacity-70 disabled:cursor-not-allowed min-w-[200px] justify-center"
+                    >
+                      {status === "submitting" ? (
+                        <>
+                          <Loader2 className="h-5 w-5 animate-spin" />
+                          Sending…
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-5 w-5" strokeWidth={1.75} />
+                          Send message
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </motion.form>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </section>

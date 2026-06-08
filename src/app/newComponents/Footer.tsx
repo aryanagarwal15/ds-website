@@ -7,7 +7,6 @@ const usefulLinks = [
   { label: "About Us",       href: "/about" },
   { label: "Contact Us",     href: "/about#contact" },
   { label: "FAQs",           href: "/faqs" },
-  { label: "Terms of use",   href: "/terms" },
   { label: "Privacy policy", href: "/privacy-policy" },
 ];
 
@@ -38,6 +37,19 @@ const socials = [
     icon: "linkedin" as const,
   },
 ];
+
+const footerLogoEmblem = "/images/navbar/logo_emblem_color.png";
+
+function FooterLogoMark() {
+  return (
+    <img
+      src={footerLogoEmblem}
+      alt=""
+      aria-hidden
+      className="block h-10 w-10 flex-shrink-0 object-contain"
+    />
+  );
+}
 
 function SocialLink({
   social,
@@ -90,8 +102,8 @@ export default function Footer() {
 
         {/* Brand */}
         <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-2">
-            <img src="/images/footer/logo_icon_m.webp" alt="" style={{ width: 40, height: 40 }} className="object-contain" />
+          <div className="flex items-center gap-2.5">
+            <FooterLogoMark />
             <img src="/images/footer/logo_text_m.webp" alt="DivineSarathi" style={{ height: 22 }} className="object-contain" />
           </div>
           <p className="font-inter text-[16px] leading-relaxed text-white/85">
@@ -150,8 +162,8 @@ export default function Footer() {
 
         {/* Col 1 — Brand */}
         <div className="flex flex-col gap-5 max-w-[300px]">
-          <div className="flex items-center gap-2">
-            <img src="/images/footer/logo_icon_d.webp" alt="" style={{ width: 40, height: 40 }} className="object-contain" />
+          <div className="flex items-center gap-2.5">
+            <FooterLogoMark />
             <img src="/images/footer/logo_text_d.webp" alt="DivineSarathi" style={{ height: 24 }} className="object-contain" />
           </div>
           <p className="font-inter text-[18px] leading-relaxed text-white/85">
