@@ -9,31 +9,31 @@ const practiceCards = [
   {
     thought: "I'm spiritual, not religious.",
     description: "Get insights without rituals or rules",
-    image: "/images/guidance/Guide4.png",
+    image: "/images/guidance/Guide4.webp",
     takeaway: "Clear explanations you can actually apply.",
   },
   {
     thought: "I can't stay consistent.",
     description: "Stay on track with reminders and streaks",
-    image: "/images/guidance/Guide5.png",
+    image: "/images/guidance/Guide5.webp",
     takeaway: "Supportive nudges that build a habit without pressure.",
   },
   {
     thought: "I don't know where to start.",
     description: "Begin easily with one 3-minute story and one verse each day.",
-    image: "/images/guidance/Guide6.png",
+    image: "/images/guidance/Guide6.webp",
     takeaway: "Simple steps to get started without feeling overwhelmed.",
   },
   {
     thought: "I want a mentor.",
     description:
       "Turn to Krishna-AI anytime for thoughtful answers and guidance",
-    image: "/images/guidance/Guide7.png",
+    image: "/images/guidance/Guide7.webp",
     takeaway: "Like a trusted guide who's always there for you.",
   },
 ];
 
-const AUTO_SLIDE_INTERVAL = 5000;
+const AUTO_SLIDE_INTERVAL = 6500;
 
 const slideVariants = {
   enter: (direction: number) => ({

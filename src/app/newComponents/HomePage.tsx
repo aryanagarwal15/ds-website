@@ -1,24 +1,28 @@
 "use client";
 
 import React from "react";
-import Navbar from "./Navbar";
 import HeroSection from "./HeroSection";
-import GuidanceSection from "./GuidanceSection";
-import DailyPracticeSection from "./DailyPracticeSection";
+import FeaturesSection from "./FeaturesSection";
+import FeelingSection from "./FeelingSection";
+import MeetSection from "./MeetSection";
+import ReturnSection from "./ReturnSection";
+import PromiseSection from "./PromiseSection";
 import TestimonialsSection from "./Testimonial";
-import FloatingAudioButton from "./FloatingAudioButton";
+import CTASection from "./CTASection";
 import Footer from "./Footer";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#f7efe6] overflow-x-hidden">
-      <Navbar />
+    <main className="min-h-screen bg-ds-cream overflow-x-hidden selection:bg-ds-navy/10 selection:text-ds-navy">
       <HeroSection />
-      <GuidanceSection />
-      <DailyPracticeSection />
+      {/* <FeaturesSection /> */}
+      <FeelingSection />
+      <MeetSection />
+      <ReturnSection />
+      <PromiseSection />
       <TestimonialsSection />
-      <FloatingAudioButton />
+      <CTASection />
       <Footer />
-    </div>
+    </main>
   );
 }

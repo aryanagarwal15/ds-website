@@ -1,11 +1,24 @@
-// src/app/download/page.tsx
+import type { Metadata } from "next";
 import { headers } from "next/headers";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, createPageMetadata, mobileAppJsonLd } from "@/lib/seo";
 import DownloadRedirect from "./DownloadRedirect";
 import DownloadVisitTracker from "./DownloadVisitTracker";
 import { parseDownloadTracking } from "./tracking";
 
-const APP_STORE_URL =
-  "https://apps.apple.com/in/app/divinesarathi/id6752269118";
+export const metadata: Metadata = createPageMetadata({
+  title: "Download DivineSarathi — Bhagavad Gita App for iOS",
+  description:
+    "Download DivineSarathi on the App Store. A free voice-first Bhagavad Gita devotional app with Krishna AI, daily stories, and Gita for daily life guidance.",
+  pageKey: "download",
+  keywords: [
+    "download DivineSarathi",
+    "Bhagavad Gita app download",
+    "Krishna app iOS",
+  ],
+});
+
+const APP_STORE_URL = "https://apps.apple.com/in/app/divinesarathi/id6752269118";
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=in.divinesarathi";
 
@@ -28,20 +41,41 @@ export default async function DownloadPage({ searchParams }: PageProps) {
 
   if (redirectUrl) {
     return (
-      <DownloadRedirect
-        redirectUrl={redirectUrl}
-        platform={isIOS ? "ios" : "android"}
-        serverIp={ipAddress}
-        serverUserAgent={userAgent}
-        serverReferrer={referrer}
-        tracking={tracking}
-      />
+      <>
+        <JsonLd
+          data={[
+            breadcrumbJsonLd([
+              { name: "Home", path: "/" },
+              { name: "Download", path: "/download" },
+            ]),
+            mobileAppJsonLd,
+          ]}
+        />
+        <DownloadRedirect
+          redirectUrl={redirectUrl}
+          platform={isIOS ? "ios" : "android"}
+          serverIp={ipAddress}
+          serverUserAgent={userAgent}
+          serverReferrer={referrer}
+          tracking={tracking}
+        />
+      </>
     );
   }
 
   // Desktop fallback
   return (
     <>
+
+      <JsonLd
+        data={[
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Download", path: "/download" },
+          ]),
+          mobileAppJsonLd,
+        ]}
+      />
       <DownloadVisitTracker
         tracking={tracking}
         platform="desktop"
@@ -49,7 +83,8 @@ export default async function DownloadPage({ searchParams }: PageProps) {
         serverReferrer={referrer}
       />
       <div className="min-h-screen bg-[#fdf6ee] flex flex-col items-center justify-center px-6 text-center">
-        <img src="/images/logo.png" alt="DivineSarathi" className="h-16 mb-8" />
+        <img src="/images/logo.webp" alt="DivineSarathi" className="h-16 mb-8" />
+
         <h1 className="font-garamond text-[2.5rem] text-[#D9712C] mb-4 font-semibold">
           Download DivineSarathi
         </h1>

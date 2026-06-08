@@ -8,23 +8,23 @@ import StoreButtons from "./StoreButtons";
 const guidanceCards = [
   {
     question: "Stressed after a tough day?",
-    image: "/images/guidance/Guide1.png",
+    image: "/images/guidance/Guide1.webp",
     answer: "Krishna-AI shows you a 2-minute steadiness practice.",
   },
   {
     question: "Feeling unseen in your relationship?",
-    image: "/images/guidance/Guide2.png",
+    image: "/images/guidance/Guide2.webp",
     answer:
       "Hear a story from Krishna-AI and learn to stay grounded when you feel invisible.",
   },
   {
     question: "Feeling stuck or anxious?",
-    image: "/images/guidance/Guide3.png",
+    image: "/images/guidance/Guide3.webp",
     answer: "Krishna-AI helps you build discipline and clarity.",
   },
 ];
 
-const AUTO_SLIDE_INTERVAL = 5000;
+const AUTO_SLIDE_INTERVAL = 6500;
 
 const slideVariants = {
   enter: (direction: number) => ({

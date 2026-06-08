@@ -150,7 +150,7 @@ export default function DownloadRedirect({
 
     return (
         <div className="min-h-screen bg-[#fdf6ee] flex flex-col items-center justify-center">
-            <img src="/images/logo.png" alt="DivineSarathi" className="h-12 mb-6 animate-pulse" />
+            <img src="/images/logo.webp" alt="DivineSarathi" className="h-12 mb-6 animate-pulse" />
             <p className="font-cormorant text-[1.2rem] text-[#D9712C]">
                 Redirecting you to the app...
             </p>

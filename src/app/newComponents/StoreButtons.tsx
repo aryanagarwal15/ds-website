@@ -14,9 +14,7 @@ export default function StoreButtons({
   mobileBadgeHeight = "max-md:h-[46px]",
 }: StoreButtonsProps) {
   return (
-    <div
-      className={`flex gap-4 max-md:justify-center max-md:gap-3 ${className}`}
-    >
+    <div className={`flex gap-4 max-md:justify-center max-md:gap-3 ${className}`}>
       <a
         href="https://play.google.com/store/apps/details?id=in.divinesarathi"
         target="_blank"
@@ -25,7 +23,7 @@ export default function StoreButtons({
         <img
           src="/images/GooglePlay.svg"
           alt="Get it on Google Play"
-          className={`${badgeHeight} ${mobileBadgeHeight} rounded-lg hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200`}
+          className={`${badgeHeight} ${mobileBadgeHeight} rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg`}
         />
       </a>
       <a
@@ -36,7 +34,7 @@ export default function StoreButtons({
         <img
           src="/images/appstore.svg"
           alt="Download on the App Store"
-          className={`${badgeHeight} ${mobileBadgeHeight} rounded-lg hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200`}
+          className={`${badgeHeight} ${mobileBadgeHeight} rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg`}
         />
       </a>
     </div>
