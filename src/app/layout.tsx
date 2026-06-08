@@ -64,6 +64,9 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   publisher: SITE_NAME,
   category: "Spirituality",
+  verification: {
+    google: "7F6JGmyPHFbC_JPXTGoLP8I-oBAaqGMJgsOcj_8pQkE",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },
