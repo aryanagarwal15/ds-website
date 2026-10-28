@@ -8,6 +8,7 @@ const usefulLinks = [
   { label: "Contact Us",     href: "/about#contact" },
   { label: "FAQs",           href: "/faqs" },
   { label: "Privacy policy", href: "/privacy-policy" },
+  { label: "Terms of use",   href: "/terms" },
 ];
 
 const socials = [

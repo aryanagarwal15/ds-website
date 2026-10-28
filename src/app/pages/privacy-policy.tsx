@@ -4,7 +4,7 @@ export default function PrivacyPolicy() {
     return (
         <div className="privacy-policy-container">
             <h1>Privacy Policy</h1>
-            <p className="last-updated">Last updated: 10 September 2025</p>
+            <p className="last-updated">Last updated: 28 October 2026</p>
             
             <p><strong>DivineSarathi</strong> (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) provides a voice‑first companion that shares scripture‑based stories and reflections. This Privacy Policy explains what data we collect, how we use it, and the choices you have.</p>
             
@@ -16,7 +16,8 @@ export default function PrivacyPolicy() {
                     <li><strong>Account data:</strong> name, email, country/region, profile photo (optional), settings.</li>
                     <li><strong>Voice & conversation data:</strong> audio streams, transcriptions, conversation history, prompts, feedback.</li>
                     <li><strong>Usage & device data:</strong> app version, device type, IP address, language, crash logs, diagnostics.</li>
-                    <li><strong>Payment data:</strong> transaction identifiers, payment method (processed by payment processor).</li>
+                    <li><strong>Purchase data:</strong> if you buy Sarathi Plus, the plan, its status, renewal dates and store transaction identifiers. Payment itself is handled by Apple or Google; we never see your card or bank details.</li>
+                    <li><strong>Usage of voice time:</strong> how long each voice conversation lasts, so we can show your free allowance or Plus time.</li>
                     <li><strong>Communications:</strong> emails, messages, survey responses, beta feedback.</li>
                     <li><strong>Inferred preferences:</strong> themes/topics, usage patterns, feature adoption.</li>
                 </ul>
@@ -49,17 +50,22 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-                <h2>6. Security</h2>
+                <h2>6. Subscriptions</h2>
+                <p>Sarathi Plus is sold through the App Store and Google Play. We use RevenueCat, a subscription service, to confirm purchases and renewals with the stores. RevenueCat receives your DivineSarathi user ID, basic device details and the store&apos;s purchase records, not your name, email or payment details. See our <a href="/terms">Terms of Use</a> for how the subscription works.</p>
+            </section>
+
+            <section>
+                <h2>7. Security</h2>
                 <p>We employ encryption, access controls, and audit logs. No system is 100% secure; please use strong passwords.</p>
             </section>
 
             <section>
-                <h2>7. Data retention</h2>
+                <h2>8. Data retention</h2>
                 <p>We retain data only as long as necessary to provide Services and comply with legal obligations.</p>
             </section>
 
             <section>
-                <h2>8. Contact</h2>
+                <h2>9. Contact</h2>
                 <p>Grievance Contact: <a href="mailto:founders@divinesarathi.in">founders@divinesarathi.in</a></p>
             </section>
 
