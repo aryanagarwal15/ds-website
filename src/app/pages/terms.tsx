@@ -37,6 +37,7 @@ export default function Terms() {
                     <li><strong>Monthly:</strong> ₹349 a month. New subscribers may be offered the first month for ₹99, after which the plan renews at ₹349 a month.</li>
                     <li><strong>Yearly:</strong> ₹2,699 a year.</li>
                 </ul>
+                <p>Prices are in Indian rupees and include GST.</p>
                 <p><strong>Payment and renewal.</strong> Payment is charged to your Apple ID or Google Play account when you confirm the purchase. The subscription renews automatically for the same length and price unless you turn off auto‑renew at least 24 hours before the end of the current period. Your account is charged for renewal within the 24 hours before the current period ends.</p>
                 <p><strong>Cancelling.</strong> You can manage or cancel the subscription in your App Store account settings (iPhone: Settings, your name, Subscriptions) or in Google Play (Profile, Payments and subscriptions, Subscriptions). Uninstalling the app does not cancel it. When you cancel, Plus stays on until the end of the period you have paid for.</p>
                 <p><strong>Refunds.</strong> Purchases are handled by Apple and Google, so refunds follow their policies. You can ask Apple at reportaproblem.apple.com, or Google through Google Play. We cannot issue refunds for store purchases ourselves.</p>
