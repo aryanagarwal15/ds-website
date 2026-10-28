@@ -60,7 +60,7 @@ export const KEYWORDS_HI = [
 
 export type Locale = "en" | "hi";
 
-export type PageKey = "home" | "about" | "faqs" | "download" | "privacy" | "terms";
+export type PageKey = "home" | "about" | "faqs" | "download" | "privacy" | "terms" | "deleteAccount";
 
 export const PAGE_PATHS: Record<
   PageKey,
@@ -72,6 +72,7 @@ export const PAGE_PATHS: Record<
   download: { en: "/download", hi: null },
   privacy: { en: "/privacy-policy", hi: null },
   terms: { en: "/terms", hi: null },
+  deleteAccount: { en: "/delete-account", hi: null },
 };
 
 export function getPagePath(pageKey: PageKey, locale: Locale): string {

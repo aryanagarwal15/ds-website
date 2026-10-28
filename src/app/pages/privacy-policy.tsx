@@ -62,6 +62,7 @@ export default function PrivacyPolicy() {
             <section>
                 <h2>8. Data retention</h2>
                 <p>We retain data only as long as necessary to provide Services and comply with legal obligations.</p>
+                <p>You can delete your account and its data at any time, in the app (Profile, Account details, Delete account) or on our <a href="/delete-account">account deletion page</a>.</p>
             </section>
 
             <section>
