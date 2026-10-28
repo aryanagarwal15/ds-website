@@ -34,8 +34,8 @@ export default function Terms() {
                 <h2>4. Sarathi Plus</h2>
                 <p>Sarathi Plus is an optional auto‑renewing subscription that gives you more voice time with Krishna. It is sold in India through the App Store and Google Play. The plans and prices shown in the app at the time you subscribe are the ones that apply. At launch they are:</p>
                 <ul>
-                    <li><strong>Monthly:</strong> ₹199 a month. New subscribers may be offered the first month for ₹49, after which the plan renews at ₹199 a month.</li>
-                    <li><strong>Yearly:</strong> ₹1,499 a year.</li>
+                    <li><strong>Monthly:</strong> ₹349 a month. New subscribers may be offered the first month for ₹99, after which the plan renews at ₹349 a month.</li>
+                    <li><strong>Yearly:</strong> ₹2,699 a year.</li>
                 </ul>
                 <p><strong>Payment and renewal.</strong> Payment is charged to your Apple ID or Google Play account when you confirm the purchase. The subscription renews automatically for the same length and price unless you turn off auto‑renew at least 24 hours before the end of the current period. Your account is charged for renewal within the 24 hours before the current period ends.</p>
                 <p><strong>Cancelling.</strong> You can manage or cancel the subscription in your App Store account settings (iPhone: Settings, your name, Subscriptions) or in Google Play (Profile, Payments and subscriptions, Subscriptions). Uninstalling the app does not cancel it. When you cancel, Plus stays on until the end of the period you have paid for.</p>
