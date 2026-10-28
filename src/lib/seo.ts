@@ -119,7 +119,9 @@ export function createPageMetadata({
   const baseKeywords = locale === "hi" ? KEYWORDS_HI : KEYWORDS;
 
   return {
-    title: fullTitle,
+    // Non-home titles already end in the brand, so skip the root layout's
+    // "%s | DivineSarathi" template (it doubled the suffix).
+    title: isHome ? fullTitle : { absolute: fullTitle },
     description,
     keywords: [...baseKeywords, ...keywords],
     alternates: {
@@ -138,7 +140,7 @@ export function createPageMetadata({
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: `${SITE_NAME} — Bhagavad Gita spiritual companion app`,
+          alt: `${SITE_NAME}, the Bhagavad Gita spiritual companion app`,
         },
       ],
     },
@@ -204,9 +206,21 @@ export const mobileAppJsonLd = {
   "@type": "MobileApplication",
   "@id": `${SITE_URL}/#mobileapp`,
   name: SITE_NAME,
+  alternateName: [`${SITE_NAME}: Krishna AI Gita`, "Krishna AI"],
   operatingSystem: "iOS, Android",
   applicationCategory: "LifestyleApplication",
   description: SITE_DESCRIPTION,
+  image: `${SITE_URL}/images/logo.webp`,
+  inLanguage: ["en-IN", "hi-IN"],
+  featureList: [
+    "Talk to Krishna AI by voice or text",
+    "Bhagavad Gita verse by verse",
+    "Two shlokas a day",
+    "Daily stories",
+    "Gita for daily life",
+    "Guided breathing meditation",
+  ],
+  sameAs: [APP_STORE_URL, PLAY_STORE_URL],
   offers: {
     "@type": "Offer",
     price: "0",
