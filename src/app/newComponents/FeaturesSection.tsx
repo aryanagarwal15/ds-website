@@ -6,9 +6,9 @@ const phoneBgM   = "/images/features/phone_bg_m.webp";
 const screenM    = "/images/features/screen_m.webp";
 const maskMLight = "/images/features/mask_m_light.webp";
 
-const compassIcon = "/images/icons/compass.svg";
-const omIcon = "/images/icons/om.svg";
-const literatureIcon = "/images/icons/literature.svg";
+const compassIcon = "/images/icons/Compass.svg";
+const omIcon = "/images/icons/Om.svg";
+const literatureIcon = "/images/icons/Literature.svg";
 const krishnaAiIcon = "/images/icons/krishna_ai.svg";
 
 const rightCards = [
