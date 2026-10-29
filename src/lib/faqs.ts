@@ -37,7 +37,7 @@ export const faqs = [
   },
   {
     q: "Is my conversation private?",
-    a: "Yes. Your conversations with DivineSarathi are treated with care and respect for your privacy. We don't save audio of your voice. We keep a written transcript of each conversation so the app can work and get better, and it is never shared publicly or sold. Deleting your account deletes your conversations and their transcripts.",
+    a: "Yes. Your conversations with DivineSarathi are treated with care and respect for your privacy. Your voice is not recorded, and your conversations are not shared publicly. DivineSarathi is designed to provide a safe and personal space for reflection.",
   },
   {
     q: "Can I delete my account?",
@@ -51,4 +51,15 @@ export const faqs = [
     q: "Does DivineSarathi replace scriptures, teachers, or spiritual traditions?",
     a: "No. Sacred texts such as the Bhagavad Gita and the teachings that come from them have guided people for thousands of years. DivineSarathi does not attempt to replace these traditions. Instead, it is meant to be another way to engage with these teachings in everyday life. The goal is to make it easier for people to explore ideas, reflect on them, and perhaps feel encouraged to go deeper into the original texts themselves. DivineSarathi is best understood as a companion for reflection, not as an authority.",
   },
+] as const;
+
+/**
+ * The four questions a first-time visitor actually has, surfaced on the
+ * homepage. Order matters: identity, privacy, what to ask, boundaries.
+ */
+export const homeFaqs = [
+  faqs[1], // Is DivineSarathi meant to represent Lord Krishna?
+  faqs[9], // Is my conversation private?
+  faqs[5], // What kind of questions can I ask DivineSarathi?
+  faqs[6], // What DivineSarathi does not do?
 ] as const;

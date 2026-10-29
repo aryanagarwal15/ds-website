@@ -1,26 +1,49 @@
 import type { Metadata } from "next";
-import React from "react";
-import App from "@/app/App";
 import JsonLd from "@/components/JsonLd";
-import { createPageMetadata, mobileAppJsonLd } from "@/lib/seo";
+import MalaDivider from "@/components/MalaDivider";
+import DayFlow from "@/components/home/DayFlow";
+import FaqPreview from "@/components/home/FaqPreview";
+import Features from "@/components/home/Features";
+import FinalCta from "@/components/home/FinalCta";
+import Founders from "@/components/home/Founders";
+import Hero from "@/components/home/Hero";
+import Pillars from "@/components/home/Pillars";
+import Why from "@/components/home/Why";
+import PromiseSection from "@/components/home/Promise";
+import Testimonials from "@/components/home/Testimonials";
+import { homeFaqs } from "@/lib/faqs";
+import {
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  createPageMetadata,
+  faqPageJsonLd,
+  mobileAppJsonLd,
+} from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Talk to Krishna | Bhagavad Gita Devotional App",
-  description:
-    "DivineSarathi is your voice-first spiritual companion. Talk to Krishna AI, learn the Bhagavad Gita verse by verse, explore Gita for daily life, and listen to daily devotional stories.",
+  title: `${SITE_NAME}: Talk with Krishna | Voice AI Bhagavad Gita Companion`,
+  description: SITE_DESCRIPTION,
   pageKey: "home",
-  keywords: [
-    "download Bhagavad Gita app",
-    "Krishna spiritual guide",
-    "daily Gita verse app",
-  ],
 });
 
-export default function Page() {
+export default function HomePage() {
   return (
     <>
-      <JsonLd data={mobileAppJsonLd} />
-      <App />
+      <JsonLd data={[mobileAppJsonLd, faqPageJsonLd(homeFaqs)]} />
+      <Hero />
+      <MalaDivider />
+      <Pillars />
+      <MalaDivider />
+      <DayFlow />
+      <Why />
+      <Features />
+      <Testimonials />
+      <MalaDivider />
+      <PromiseSection />
+      <Founders />
+      <MalaDivider />
+      <FaqPreview />
+      <FinalCta />
     </>
   );
 }

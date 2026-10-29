@@ -1,15 +1,14 @@
 type JsonLdProps = {
-  data: Record<string, unknown> | Record<string, unknown>[];
+  data: object | object[];
 };
 
 export default function JsonLd({ data }: JsonLdProps) {
   const items = Array.isArray(data) ? data : [data];
-
   return (
     <>
-      {items.map((item, index) => (
+      {items.map((item, i) => (
         <script
-          key={index}
+          key={i}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
         />

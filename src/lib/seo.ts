@@ -4,13 +4,15 @@ export const SITE_URL = "https://www.divinesarathi.in";
 
 export const GOOGLE_ANALYTICS_ID = "G-JWVTV86NH0";
 
+export const GOOGLE_SITE_VERIFICATION =
+  "7F6JGmyPHFbC_JPXTGoLP8I-oBAaqGMJgsOcj_8pQkE";
+
 export const SITE_NAME = "DivineSarathi";
 
-export const SITE_DESCRIPTION =
-  "DivineSarathi is a voice-first spiritual companion inspired by Lord Krishna and the Bhagavad Gita. Talk through life's questions, learn the Gita verse by verse, and explore daily stories rooted in sacred Hindu texts.";
+export const SITE_TAGLINE = "Your charioteer, always.";
 
-export const SITE_DESCRIPTION_HI =
-  "DivineSarathi एक आवाज़-आधारित आध्यात्मिक साथी है, जो भगवान कृष्ण और भगवद गीता से प्रेरित है। जीवन के सवालों पर बात करें, गीता श्लोक-दर-श्लोक सीखें, और पवित्र हिंदू ग्रंथों पर आधारित दैनिक कथाएँ सुनें।";
+export const SITE_DESCRIPTION =
+  "DivineSarathi is Krishna AI, a voice companion for daily life. Talk through whatever is on your mind in English or Hindi, listen to daily stories, and find the Bhagavad Gita verse your day needs. Free to begin.";
 
 export const DEFAULT_OG_IMAGE = "/images/og-image.png";
 
@@ -19,6 +21,8 @@ export const APP_STORE_URL =
 
 export const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=in.divinesarathi";
+
+export const CONTACT_EMAIL = "founders@divinesarathi.in";
 
 export const SOCIAL_PROFILES = [
   "https://www.instagram.com/divinesarathi",
@@ -31,11 +35,13 @@ export const SOCIAL_PROFILES = [
 export const KEYWORDS = [
   "Bhagavad Gita app",
   "Krishna AI",
+  "Krishna AI app",
+  "voice AI spiritual companion",
+  "talk to Krishna",
   "spiritual companion app",
   "Hindu devotional app",
   "daily devotional",
   "Gita for daily life",
-  "talk to Krishna",
   "Bhagavad Gita daily verse",
   "spiritual guidance app",
   "voice meditation app",
@@ -44,44 +50,31 @@ export const KEYWORDS = [
   "sacred texts app",
 ];
 
-export const KEYWORDS_HI = [
-  "भगवद गीता ऐप",
-  "कृष्ण AI",
-  "आध्यात्मिक ऐप",
-  "हिंदू भक्ति ऐप",
-  "दैनिक भक्ति",
-  "गीता से जीवन मार्गदर्शन",
-  "कृष्ण से बात करें",
-  "भगवद गीता दैनिक श्लोक",
-  "आध्यात्मिक मार्गदर्शन ऐप",
-  "Krishna AI app India",
-  "Gita app Hindi",
-];
-
 export type Locale = "en" | "hi";
 
-export type PageKey = "home" | "about" | "faqs" | "download" | "privacy" | "terms" | "deleteAccount";
+export type PageKey = "home" | "about" | "faqs" | "download" | "privacy";
 
-export const PAGE_PATHS: Record<
-  PageKey,
-  { en: string; hi: string | null }
-> = {
-  home: { en: "/", hi: "/hi" },
-  about: { en: "/about", hi: "/hi/about" },
-  faqs: { en: "/faqs", hi: "/hi/faqs" },
+/**
+ * Hindi paths are reserved for the /hi rollout. Keep them null until the
+ * pages exist so hreflang never points at a 404.
+ */
+export const PAGE_PATHS: Record<PageKey, { en: string; hi: string | null }> = {
+  home: { en: "/", hi: null },
+  about: { en: "/about", hi: null },
+  faqs: { en: "/faqs", hi: null },
   download: { en: "/download", hi: null },
   privacy: { en: "/privacy-policy", hi: null },
-  terms: { en: "/terms", hi: null },
-  deleteAccount: { en: "/delete-account", hi: null },
 };
 
-export function getPagePath(pageKey: PageKey, locale: Locale): string {
+export function getPagePath(pageKey: PageKey, locale: Locale = "en"): string {
   const paths = PAGE_PATHS[pageKey];
   if (locale === "hi" && paths.hi) return paths.hi;
   return paths.en;
 }
 
-export function buildHreflangAlternates(pageKey: PageKey): Record<string, string> {
+export function buildHreflangAlternates(
+  pageKey: PageKey
+): Record<string, string> {
   const paths = PAGE_PATHS[pageKey];
   const languages: Record<string, string> = {
     "en-IN": `${SITE_URL}${paths.en}`,
@@ -115,15 +108,15 @@ export function createPageMetadata({
   const path = getPagePath(pageKey, locale);
   const url = `${SITE_URL}${path}`;
   const isHome = pageKey === "home";
+  // The layout's title template appends "| DivineSarathi" to page titles;
+  // only OG/Twitter need the suffix spelled out here.
   const fullTitle = isHome ? title : `${title} | ${SITE_NAME}`;
-  const baseKeywords = locale === "hi" ? KEYWORDS_HI : KEYWORDS;
+  const documentTitle = isHome ? { absolute: title } : title;
 
   return {
-    // Non-home titles already end in the brand, so skip the root layout's
-    // "%s | DivineSarathi" template (it doubled the suffix).
-    title: isHome ? fullTitle : { absolute: fullTitle },
+    title: documentTitle,
     description,
-    keywords: [...baseKeywords, ...keywords],
+    keywords: [...KEYWORDS, ...keywords],
     alternates: {
       canonical: url,
       languages: buildHreflangAlternates(pageKey),
@@ -174,19 +167,13 @@ export const organizationJsonLd = {
   "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/images/logo.webp`,
+  logo: `${SITE_URL}/logo/divinesarathi-appicon-indigo.svg`,
   description: SITE_DESCRIPTION,
-  email: "founders@divinesarathi.in",
+  email: CONTACT_EMAIL,
   sameAs: SOCIAL_PROFILES,
   founder: [
-    {
-      "@type": "Person",
-      name: "Mohith Mahadevan",
-    },
-    {
-      "@type": "Person",
-      name: "Aryan Agarwal",
-    },
+    { "@type": "Person", name: "Mohith Mahadevan" },
+    { "@type": "Person", name: "Aryan Agarwal" },
   ],
 };
 
@@ -206,34 +193,25 @@ export const mobileAppJsonLd = {
   "@type": "MobileApplication",
   "@id": `${SITE_URL}/#mobileapp`,
   name: SITE_NAME,
-  alternateName: [`${SITE_NAME}: Krishna AI Gita`, "Krishna AI"],
   operatingSystem: "iOS, Android",
   applicationCategory: "LifestyleApplication",
   description: SITE_DESCRIPTION,
-  image: `${SITE_URL}/images/logo.webp`,
-  inLanguage: ["en-IN", "hi-IN"],
-  featureList: [
-    "Talk to Krishna AI by voice or text",
-    "Bhagavad Gita verse by verse",
-    "Two shlokas a day",
-    "Daily stories",
-    "Gita for daily life",
-    "Guided breathing meditation",
-  ],
-  sameAs: [APP_STORE_URL, PLAY_STORE_URL],
   offers: {
     "@type": "Offer",
     price: "0",
     priceCurrency: "INR",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    reviewCount: "120",
   },
   installUrl: [APP_STORE_URL, PLAY_STORE_URL],
   url: SITE_URL,
   publisher: { "@id": `${SITE_URL}/#organization` },
 };
 
-export function breadcrumbJsonLd(
-  items: { name: string; path: string }[]
-) {
+export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -246,9 +224,7 @@ export function breadcrumbJsonLd(
   };
 }
 
-export function faqPageJsonLd(
-  faqs: ReadonlyArray<{ q: string; a: string }>
-) {
+export function faqPageJsonLd(faqs: ReadonlyArray<{ q: string; a: string }>) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",

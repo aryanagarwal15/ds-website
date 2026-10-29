@@ -1,0 +1,13 @@
+/** The DivineSarathi mark, inlined so it inherits currentColor.
+ * Light surfaces: Gold-Ink (text-gold). Dark: token flips to Temple Gold. */
+export default function Mark({ size = 34, className = "" }: { size?: number; className?: string }) {
+  return (
+    <span
+      className={`inline-block text-gold ${className}`}
+      style={{ width: size, height: size }}
+      aria-hidden="true"
+    >
+      <svg width="100%" height="100%" viewBox="0 0 1024 1024" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><clipPath id="cpa"><circle cx="512" cy="512" r="277"/></clipPath><mask id="vma"><rect width="1024" height="1024" fill="white"/><circle cx="512" cy="512" r="40" fill="black"/></mask><g clipPath="url(#cpa)" mask="url(#vma)" fill="none" stroke="currentColor" strokeWidth="14"><circle cx="604.12" cy="192.88" r="106.38"/><circle cx="696.25" cy="246.06" r="106.38"/><circle cx="419.88" cy="192.88" r="106.38"/><circle cx="512.00" cy="246.06" r="106.38"/><circle cx="604.12" cy="299.25" r="106.38"/><circle cx="696.25" cy="352.44" r="106.38"/><circle cx="788.37" cy="405.62" r="106.38"/><circle cx="327.75" cy="246.06" r="106.38"/><circle cx="419.88" cy="299.25" r="106.38"/><circle cx="512.00" cy="352.44" r="106.38"/><circle cx="604.12" cy="405.62" r="106.38"/><circle cx="696.25" cy="458.81" r="106.38"/><circle cx="788.37" cy="512.00" r="106.38"/><circle cx="327.75" cy="352.44" r="106.38"/><circle cx="419.88" cy="405.62" r="106.38"/><circle cx="512.00" cy="458.81" r="106.38"/><circle cx="604.12" cy="512.00" r="106.38"/><circle cx="696.25" cy="565.19" r="106.38"/><circle cx="788.37" cy="618.38" r="106.38"/><circle cx="235.63" cy="405.62" r="106.38"/><circle cx="327.75" cy="458.81" r="106.38"/><circle cx="419.88" cy="512.00" r="106.38"/><circle cx="512.00" cy="565.19" r="106.38"/><circle cx="604.12" cy="618.38" r="106.38"/><circle cx="696.25" cy="671.56" r="106.38"/><circle cx="235.63" cy="512.00" r="106.38"/><circle cx="327.75" cy="565.19" r="106.38"/><circle cx="419.88" cy="618.38" r="106.38"/><circle cx="512.00" cy="671.56" r="106.38"/><circle cx="604.12" cy="724.75" r="106.38"/><circle cx="696.25" cy="777.94" r="106.38"/><circle cx="235.63" cy="618.38" r="106.38"/><circle cx="327.75" cy="671.56" r="106.38"/><circle cx="419.88" cy="724.75" r="106.38"/><circle cx="512.00" cy="777.94" r="106.38"/><circle cx="604.12" cy="831.12" r="106.38"/><circle cx="327.75" cy="777.94" r="106.38"/><circle cx="419.88" cy="831.12" r="106.38"/></g><g fill="none" stroke="currentColor" strokeWidth="12"><circle cx="512" cy="512" r="284.1"/><circle cx="512" cy="512" r="331.8"/></g><circle cx="512" cy="512" r="33.8" fill="none" stroke="currentColor" strokeWidth="12.60"/></svg>
+    </span>
+  );
+}

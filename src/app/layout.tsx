@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Cormorant, Cormorant_Garamond, Roboto, DM_Sans, Inter, Crimson_Text } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import Script from "next/script";
 import JsonLd from "@/components/JsonLd";
 import {
   DEFAULT_OG_IMAGE,
   GOOGLE_ANALYTICS_ID,
+  GOOGLE_SITE_VERIFICATION,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_URL,
@@ -14,50 +15,27 @@ import {
 } from "@/lib/seo";
 import "./globals.css";
 
-const cormorant = Cormorant({
-  subsets: ["latin"],
-  variable: "--font-cormorant",
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
-
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-garamond",
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600"],
+  variable: "--font-cormorant",
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const crimsonText = Crimson_Text({
-  subsets: ["latin"],
-  variable: "--font-crimson",
-  weight: ["400", "600", "700"],
-  display: "swap",
-});
+const DEFAULT_TITLE = `${SITE_NAME}: Talk with Krishna | Voice AI Bhagavad Gita Companion`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Talk to Krishna | Bhagavad Gita Devotional App`,
+    default: DEFAULT_TITLE,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -67,15 +45,15 @@ export const metadata: Metadata = {
   publisher: SITE_NAME,
   category: "Spirituality",
   verification: {
-    google: "7F6JGmyPHFbC_JPXTGoLP8I-oBAaqGMJgsOcj_8pQkE",
+    google: GOOGLE_SITE_VERIFICATION,
   },
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/favicon-16x16.webp", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.webp", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: "/apple-touch-icon.webp",
+    apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
   alternates: {
@@ -87,14 +65,14 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Talk to Krishna | Bhagavad Gita Devotional App`,
+    title: DEFAULT_TITLE,
     description: SITE_DESCRIPTION,
     images: [
       {
         url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} — Bhagavad Gita spiritual companion app`,
+        alt: `${SITE_NAME}, the Bhagavad Gita spiritual companion app`,
       },
     ],
   },
@@ -102,7 +80,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@DivineSarathi",
     creator: "@DivineSarathi",
-    title: `${SITE_NAME} — Talk to Krishna | Bhagavad Gita Devotional App`,
+    title: DEFAULT_TITLE,
     description: SITE_DESCRIPTION,
     images: [DEFAULT_OG_IMAGE],
   },
@@ -125,10 +103,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${cormorant.variable} ${roboto.className} ${cormorantGaramond.variable} ${dmSans.variable} ${inter.variable} ${crimsonText.variable}`}
-    >
+    <html lang="en" className={`${cormorantGaramond.variable} ${inter.variable}`}>
       <body className="antialiased">
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
