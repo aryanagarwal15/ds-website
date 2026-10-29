@@ -10,51 +10,61 @@ const equalHeightStyle = `
   .testimonial-swiper .swiper-slide   { height: auto; }
 `;
 
+const APP_STORE_URL = "https://apps.apple.com/in/app/divinesarathi/id6752269118?see-all=reviews";
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=in.divinesarathi&showAllReviews=true";
+
+// Real reviews, quoted word for word from the stores ("…" marks a cut).
+// Play shows full names, so we use first name and initial; App Store names are as shown there.
 const testimonials = [
   {
-    video: "/videos/testimonials/women_1.mp4",
     parts: [
-      { t: "\u201cAfter 3 minutes with Krishna\u2011AI, I finally ", b: false },
-      { t: "paused instead of reacting.", b: true },
-      { t: " My 1:1 meeting at work went so much better.\u201d", b: false },
+      { t: "“I just felt peace, happy and calm. … ", b: false },
+      { t: "Talking with Krishna even though it is AI I felt that I was really talking to Krishna ji.", b: true },
+      { t: "”", b: false },
     ],
-    name: "Ananya, 29",
+    name: "Ganga P.",
+    store: "Google Play",
+    date: "Oct 2026",
   },
   {
-    video: "/videos/testimonials/man_1.mp4",
     parts: [
-      { t: "\u201cFive minutes with a story and ", b: false },
-      { t: "I\u2019m calmer for the whole day.", b: true },
-      { t: "\u201d", b: false },
+      { t: "“This Krishna AI is just perfect for me to ", b: false },
+      { t: "speak about my day, my fears and learn about Bhagavad Gita.", b: true },
+      { t: "”", b: false },
     ],
-    name: "Rahul, 33",
+    name: "mac chavan",
+    store: "App Store",
+    date: "Jun 2026",
   },
   {
-    video: "/videos/testimonials/women_3.mp4",
     parts: [
-      { t: "\u201cMy 10-year-old asked what karma meant. ", b: false },
-      { t: "We listened together.", b: true },
-      { t: "\u201d", b: false },
+      { t: "“The stories, Gita learnings, and Krishna AI conversations feel ", b: false },
+      { t: "very very simple, soothing, and meaningful.", b: true },
+      { t: "”", b: false },
     ],
-    name: "Neha, 37",
+    name: "Naman G.",
+    store: "Google Play",
+    date: "May 2026",
   },
   {
-    video: "/videos/testimonials/man_3.mp4",
     parts: [
-      { t: "\u201cThe Gita never felt this ", b: false },
-      { t: "relevant to my life before.", b: true },
-      { t: "\u201d", b: false },
+      { t: "“The best app to explore spirituality. ", b: false },
+      { t: "I never realised Gita can be taught like this.", b: true },
+      { t: "”", b: false },
     ],
-    name: "Arjun, 41",
+    name: "Anitamanish92",
+    store: "App Store",
+    date: "Apr 2026",
   },
   {
-    video: "/videos/testimonials/women_4.mp4",
     parts: [
-      { t: "\u201cI open the app every morning. It\u2019s become ", b: false },
-      { t: "my moment of stillness.", b: true },
-      { t: "\u201d", b: false },
+      { t: "“Sarathi Krishna AI is truly a beautiful support. ", b: false },
+      { t: "It gives me peace, guidance and positive energy whenever I need it.", b: true },
+      { t: "”", b: false },
     ],
-    name: "Priya, 31",
+    name: "Sakshi K.",
+    store: "Google Play",
+    date: "Aug 2026",
   },
 ];
 
@@ -74,6 +84,18 @@ function Quote({ parts }: { parts: { t: string; b: boolean }[] }) {
   );
 }
 
+function Stars() {
+  return (
+    <div className="mb-4 flex gap-1 text-[#8A6D1F]" role="img" aria-label="5 out of 5 stars">
+      {[0, 1, 2, 3, 4].map((i) => (
+        <svg key={i} viewBox="0 0 20 20" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+          <path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8L10 1.5z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
+
 function TestimonialCard({
   t,
   layout,
@@ -81,57 +103,33 @@ function TestimonialCard({
   t: (typeof testimonials)[0];
   layout: "mobile" | "desktop";
 }) {
-  if (layout === "mobile") {
-    return (
-      <div className="flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-ds-navy/[0.06] bg-ds-cream">
-        <div className="mx-3 mt-3 overflow-hidden rounded-2xl" style={{ aspectRatio: "1/1" }}>
-          <video
-            src={t.video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <div className="p-5">
-          <p className="font-inter mb-3 text-[16px] leading-relaxed text-ds-text">
-            <Quote parts={t.parts} />
-          </p>
-          <p className="font-inter text-[14px] text-ds-text-muted">&mdash; {t.name}</p>
-        </div>
-      </div>
-    );
-  }
-
+  const href = t.store === "App Store" ? APP_STORE_URL : PLAY_STORE_URL;
+  const mobile = layout === "mobile";
   return (
-    <div
-      className="ds-card flex h-full gap-5 rounded-3xl p-6"
-      style={{ minHeight: 280 }}
+    <figure
+      className={
+        mobile
+          ? "flex h-full flex-col rounded-[1.25rem] border border-ds-navy/[0.06] bg-ds-cream p-6"
+          : "ds-card flex h-full flex-col rounded-3xl p-8"
+      }
     >
-      <div
-        className="flex-shrink-0 self-center overflow-hidden rounded-2xl"
-        style={{ width: 220, height: 220 }}
+      <Stars />
+      <blockquote
+        className={`font-inter flex-1 leading-relaxed text-ds-text ${mobile ? "text-[17px]" : ""}`}
+        style={mobile ? undefined : { fontSize: "clamp(1.05rem, 1.5vw, 1.3rem)" }}
       >
-        <video
-          src={t.video}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="h-full w-full object-cover"
-        />
-      </div>
-      <div className="flex flex-col justify-center">
-        <p
-          className="font-inter mb-4 leading-relaxed text-ds-text"
-          style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)" }}
-        >
-          <Quote parts={t.parts} />
-        </p>
-        <p className="font-inter text-[15px] text-ds-text-muted">&mdash; {t.name}</p>
-      </div>
-    </div>
+        <Quote parts={t.parts} />
+      </blockquote>
+      <figcaption className={`font-inter mt-5 text-ds-text-muted ${mobile ? "text-[14px]" : "text-[15px]"}`}>
+        <span className="text-ds-text">{t.name}</span>
+        {" · "}
+        <a href={href} target="_blank" rel="noopener" className="underline decoration-ds-navy/20 underline-offset-4 hover:text-ds-navy">
+          {t.store}
+        </a>
+        {" · "}
+        {t.date}
+      </figcaption>
+    </figure>
   );
 }
 
@@ -144,7 +142,7 @@ export default function TestimonialsSection() {
       <div className="ds-section md:hidden">
         <div className="ds-container mb-8">
           <SectionHeader
-            eyebrow="Real stories"
+            eyebrow="From the App Store and Google Play"
             title="Voices of trust"
             align="left"
           />
@@ -168,7 +166,7 @@ export default function TestimonialsSection() {
       {/* ── DESKTOP ─────────────────────────────────────────────── */}
       <div className="ds-section hidden md:block">
         <div className="ds-container mb-12">
-          <SectionHeader eyebrow="Real stories" title="Voices of trust" />
+          <SectionHeader eyebrow="From the App Store and Google Play" title="Voices of trust" />
         </div>
 
         <Swiper
