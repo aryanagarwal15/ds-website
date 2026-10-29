@@ -9,10 +9,10 @@ export const DOC: Record<Locale, LongDoc> = {
     summary: {
       title: "In short",
       items: [
-        "**We never save your voice.** It is streamed live to Microsoft's Azure OpenAI service so Krishna AI can reply, and we do not store the audio.",
+        "**We never save your voice.** It is processed live by our AI service provider so Krishna AI can reply, and we do not store the audio.",
         "**We keep text transcripts** of your conversations so Krishna AI can pick up where you left off, and so we can improve the app.",
         "**We never sell your personal data.**",
-        "**We measure our own ads only.** App activity goes to Google Analytics for Firebase to see which of our Google ads work. There are no ads in the app, and we do not track you across other companies' apps or websites.",
+        "**We measure our own ads only.** App activity helps us see which of our ads work. There are no ads in the app, and we do not track you across other companies' apps or websites.",
         "**Payments for Sarathi Plus go through Apple or Google.** We never see your card or bank details.",
         "**You can delete your account and its data at any time**, in the app or on our [account deletion page](/delete-account).",
         "Questions or complaints go straight to the founders at [founders@divinesarathi.in](mailto:founders@divinesarathi.in).",
@@ -46,16 +46,16 @@ export const DOC: Record<Locale, LongDoc> = {
             ],
             [
               "**Your voice:** the audio of a voice conversation while it is happening",
-              "Streamed live to Azure OpenAI so Krishna AI can hear and answer you",
+              "Processed live by our AI service provider so Krishna AI can hear and answer you",
               "Never stored by us",
             ],
             [
               "**App activity:** the features you use, such as stories, Gita verses, Daily Sadhana, meditation and favourites, your sessions, and how long each voice conversation lasts",
               "To run features such as your free voice allowance or Plus time, to learn what people find useful, and to measure our own ads",
-              "On our servers, until you delete your account, then kept with nothing that identifies you. In Google Analytics, for the retention period we set there",
+              "On our servers, until you delete your account, then kept with nothing that identifies you. With our analytics provider, for the retention period we set there",
             ],
             [
-              "**Device details and identifiers:** your account ID, push notification tokens, the Firebase app instance ID, device model, app version and, on Android, the advertising ID",
+              "**Device details and identifiers:** your account ID, push notification tokens, an app instance ID, device model, app version and, on Android, the advertising ID",
               "To keep you signed in, send the notifications you allow, count installs and measure our own ads",
               "You delete your account, or the token stops working",
             ],
@@ -104,8 +104,8 @@ export const DOC: Record<Locale, LongDoc> = {
         ul: [
           "**To run the app:** sign you in, keep your conversations going, show your voice allowance or Plus time, and send the reminders and notifications you allow.",
           "**To fit it to you:** use your language and what you have told us so that replies make sense for you.",
-          "**To improve DivineSarathi:** including the instructions and AI models behind Krishna AI's replies. This can mean our team reading conversation transcripts.",
-          "**To measure our own ads:** app events, such as starting a practice or coming back the next day, go to Google Analytics for Firebase and are used in Google Ads to see which of our ads bring people who use the app. We do not show ads in the app, and we do not track you across other companies' apps or websites. On iPhone we do not ask for or use the advertising identifier (IDFA).",
+          "**To improve DivineSarathi:** including how Krishna AI replies. This can mean a small part of our team reading conversation transcripts.",
+          "**To measure our own ads:** app events, such as starting a practice or coming back the next day, are shared with our analytics provider and the ad platforms we advertise on, such as Google, to see which of our ads bring people who use the app. We do not show ads in the app, and we do not track you across other companies' apps or websites. On iPhone we do not ask for or use the advertising identifier (IDFA).",
           "**To keep the service safe:** spot misuse, fraud and abuse.",
           "**To follow the law:** keep the records the law requires and answer lawful requests.",
           "**To write to you:** about your account and, if you allow notifications, about stories and your practice.",
@@ -118,77 +118,34 @@ export const DOC: Record<Locale, LongDoc> = {
 
       { h2: "Who processes it", id: "who-processes-it" },
       {
-        p: "We use a small number of services to run DivineSarathi. They handle data for us under their contracts with us, for the purpose shown here.",
+        p: "We use a small number of trusted service providers to run DivineSarathi. They handle data only for us, under contracts with us, for the purpose shown here. If you would like the current list of providers, write to [founders@divinesarathi.in](mailto:founders@divinesarathi.in).",
       },
       {
         table: {
-          head: ["Service", "What it does for us", "What it receives"],
+          head: ["Type of provider", "What it does for us", "What it receives"],
           rows: [
-            [
-              "**Google Cloud**",
-              "Hosts our servers and database in Mumbai, India",
-              "The data we store, as listed above",
-            ],
-            [
-              "**Microsoft Azure OpenAI**",
-              "Powers Krishna AI's voice and text replies, and live narration",
-              "Your voice while you talk, your messages, and the context Krishna AI needs to reply",
-            ],
-            [
-              "**Google Analytics for Firebase**",
-              "App analytics, and measuring our own ads with Google Ads",
-              "App activity, your account ID, the Firebase app instance ID and, on Android, the advertising ID",
-            ],
-            [
-              "**Google Analytics**",
-              "Website analytics",
-              "Pages visited, approximate location and device type, through cookies",
-            ],
-            [
-              "**Apple Push Notification service** and **Firebase Cloud Messaging**",
-              "Deliver notifications on iPhone and Android",
-              "Your push token and the notification text",
-            ],
-            [
-              "**OneSignal**",
-              "Delivered notifications in app versions before 1.28. We are retiring it",
-              "Your push token and basic device details",
-            ],
-            [
-              "**RevenueCat**",
-              "Confirms Sarathi Plus purchases and renewals with the stores",
-              "Your DivineSarathi user ID, basic device details and the store's purchase records, not your name, email or payment details",
-            ],
-            [
-              "**Apple App Store** and **Google Play**",
-              "Sell and bill Sarathi Plus",
-              "Your purchase, under Apple's and Google's own privacy policies",
-            ],
-            [
-              "**Sign in with Apple** and **Google Sign-In**",
-              "Let you sign in without a password",
-              "What you agree to share with us, usually your name and email address",
-            ],
-            ["**MSG91**", "Sends sign-in codes by SMS", "Your phone number"],
-            ["**Google (Gmail)**", "Sends sign-in codes by email", "Your email address"],
-            [
-              "**Sentry**",
-              "Monitors our servers for errors",
-              "Error details, which can include your IP address and account ID",
-            ],
+            ["**Cloud hosting**", "Hosts our servers and database", "The data we store, as listed above"],
+            ["**AI service**", "Lets Krishna AI understand you and reply, by voice and text", "Your voice while you talk, your messages, and the context Krishna AI needs to reply"],
+            ["**Analytics**", "Shows us how the app and website are used, and measures our own ads", "App activity, your account ID, an app instance ID and, on Android, the advertising ID. On the website, pages visited, through cookies"],
+            ["**Notifications** (from Apple and Google)", "Deliver notifications on iPhone and Android", "Your push token and the notification text"],
+            ["**Subscriptions**", "Confirms Sarathi Plus purchases and renewals with the stores", "Your DivineSarathi user ID, basic device details and the store's purchase records, not your name, email or payment details"],
+            ["**Apple App Store** and **Google Play**", "Sell and bill Sarathi Plus", "Your purchase, under Apple's and Google's own privacy policies"],
+            ["**Sign in with Apple** and **Google Sign-In**", "Let you sign in without a password", "What you agree to share with us, usually your name and email address"],
+            ["**SMS and email**", "Send sign-in codes", "Your phone number or email address"],
+            ["**Error monitoring**", "Helps us find and fix problems on our servers", "Error details, which can include your IP address and account ID"],
           ],
         },
       },
       {
-        p: "Some of these services may process data outside India. When they do, we rely on their contracts and security commitments, and we follow Indian law on transfers.",
+        p: "Some of these providers may process data outside India. When they do, we rely on their contracts and security commitments, and we follow Indian law on transfers.",
       },
       {
-        p: "We may also share data with companies in our own group, if we ever have any, and where the law requires it or to protect someone's safety.",
+        p: "We may also share data where the law requires it or to protect someone's safety.",
       },
 
       { h2: "Sarathi Plus purchases", id: "sarathi-plus" },
       {
-        p: "Sarathi Plus is sold through the App Store and Google Play. Apple or Google take the payment, and we never see your card or bank details. We use RevenueCat, a subscription service, to confirm purchases and renewals with the stores. RevenueCat receives your DivineSarathi user ID, basic device details and the store's purchase records, not your name, email or payment details.",
+        p: "Sarathi Plus is sold through the App Store and Google Play. Apple or Google take the payment, and we never see your card or bank details. We use a subscription service to confirm purchases and renewals with the stores. It receives your DivineSarathi user ID, basic device details and the store's purchase records, not your name, email or payment details.",
       },
       {
         p: "We record how long each voice conversation lasts so we can show your free allowance or your Plus time. See our [Terms of Use](/terms) for how the subscription works, and [Cancel and refunds](/refunds) for cancelling.",
@@ -265,10 +222,10 @@ export const DOC: Record<Locale, LongDoc> = {
     summary: {
       title: "संक्षेप में",
       items: [
-        "**हम आपकी आवाज़ कभी सेव नहीं करते।** कृष्ण AI जवाब दे सके, इसके लिए आवाज़ उसी समय Microsoft की Azure OpenAI सेवा तक जाती है, और हम ऑडियो नहीं रखते।",
+        "**हम आपकी आवाज़ कभी सेव नहीं करते।** कृष्ण AI जवाब दे सके, इसके लिए आवाज़ उसी समय हमारी AI सेवा देने वाली कंपनी प्रोसेस करती है, और हम ऑडियो नहीं रखते।",
         "**हम आपकी बातचीत का लिखित रिकॉर्ड (ट्रांसक्रिप्ट) रखते हैं**, ताकि कृष्ण AI वहीं से बात आगे बढ़ा सके जहाँ आपने छोड़ी थी, और हम ऐप बेहतर बना सकें।",
         "**हम आपका निजी डेटा कभी नहीं बेचते।**",
-        "**हम सिर्फ़ अपने विज्ञापन मापते हैं।** हमारे कौन से Google विज्ञापन काम कर रहे हैं, यह देखने के लिए ऐप की गतिविधि Google Analytics for Firebase तक जाती है। ऐप में कोई विज्ञापन नहीं है, और हम दूसरी कंपनियों के ऐप या वेबसाइटों पर आपको ट्रैक नहीं करते।",
+        "**हम सिर्फ़ अपने विज्ञापन मापते हैं।** ऐप की गतिविधि से हम देखते हैं कि हमारे कौन से विज्ञापन काम कर रहे हैं। ऐप में कोई विज्ञापन नहीं है, और हम दूसरी कंपनियों के ऐप या वेबसाइटों पर आपको ट्रैक नहीं करते।",
         "**Sarathi Plus का भुगतान Apple या Google के ज़रिए होता है।** आपके कार्ड या बैंक की जानकारी हम कभी नहीं देखते।",
         "**आप जब चाहें अपना अकाउंट और उसका डेटा डिलीट कर सकते हैं**, ऐप में या हमारे [अकाउंट डिलीट करने वाले पेज](/hi/delete-account) पर।",
         "सवाल या शिकायत सीधे संस्थापकों को भेजें: [founders@divinesarathi.in](mailto:founders@divinesarathi.in)।",
@@ -302,16 +259,16 @@ export const DOC: Record<Locale, LongDoc> = {
             ],
             [
               "**आपकी आवाज़:** वॉइस बातचीत के दौरान का ऑडियो",
-              "उसी समय Azure OpenAI तक जाती है ताकि कृष्ण AI आपको सुनकर जवाब दे सके",
+              "उसी समय हमारी AI सेवा देने वाली कंपनी प्रोसेस करती है ताकि कृष्ण AI आपको सुनकर जवाब दे सके",
               "हम इसे कभी सेव नहीं करते",
             ],
             [
               "**ऐप में गतिविधि:** आप कौन से फ़ीचर इस्तेमाल करते हैं, जैसे कथाएँ, गीता के श्लोक, Daily Sadhana, ध्यान और पसंदीदा, आपके सेशन, और हर वॉइस बातचीत कितनी देर चली",
               "मुफ़्त वॉइस समय या Plus का समय दिखाने जैसे फ़ीचर चलाने, यह समझने कि लोगों को क्या काम का लगता है, और अपने विज्ञापन मापने के लिए",
-              "हमारे सर्वर पर, अकाउंट डिलीट होने तक, उसके बाद ऐसी जानकारी के बिना जिससे आपकी पहचान हो। Google Analytics में, उतने समय तक जितना हमने वहाँ तय किया है",
+              "हमारे सर्वर पर, अकाउंट डिलीट होने तक, उसके बाद ऐसी जानकारी के बिना जिससे आपकी पहचान हो। हमारी एनालिटिक्स सेवा में, उतने समय तक जितना हमने वहाँ तय किया है",
             ],
             [
-              "**डिवाइस की जानकारी और पहचान नंबर:** आपकी अकाउंट ID, नोटिफ़िकेशन टोकन, Firebase app instance ID, डिवाइस मॉडल, ऐप वर्ज़न, और Android पर advertising ID",
+              "**डिवाइस की जानकारी और पहचान नंबर:** आपकी अकाउंट ID, नोटिफ़िकेशन टोकन, ऐप इंस्टेंस ID, डिवाइस मॉडल, ऐप वर्ज़न, और Android पर advertising ID",
               "आपको साइन इन रखने, आपकी इजाज़त वाले नोटिफ़िकेशन भेजने, इंस्टॉल गिनने और अपने विज्ञापन मापने के लिए",
               "जब तक आप अकाउंट डिलीट न करें या टोकन काम करना बंद न कर दे",
             ],
@@ -360,8 +317,8 @@ export const DOC: Record<Locale, LongDoc> = {
         ul: [
           "**ऐप चलाने के लिए:** साइन इन कराना, बातचीत आगे बढ़ाना, आपका मुफ़्त वॉइस समय या Plus का समय दिखाना, और आपकी इजाज़त वाले रिमाइंडर और नोटिफ़िकेशन भेजना।",
           "**आपके हिसाब से ढालने के लिए:** आपकी भाषा और आपने जो बताया है, उसका ध्यान रखना ताकि जवाब आपके लिए मायने रखें।",
-          "**DivineSarathi बेहतर बनाने के लिए:** इसमें कृष्ण AI के जवाबों के पीछे के निर्देश और AI मॉडल भी शामिल हैं। इसके लिए हमारी टीम बातचीत के ट्रांसक्रिप्ट पढ़ सकती है।",
-          "**अपने विज्ञापन मापने के लिए:** ऐप की कुछ घटनाएँ, जैसे कोई अभ्यास शुरू करना या अगले दिन वापस आना, Google Analytics for Firebase तक जाती हैं, और Google Ads में यह देखने के लिए इस्तेमाल होती हैं कि हमारे कौन से विज्ञापन ऐसे लोगों को लाते हैं जो ऐप इस्तेमाल करते हैं। ऐप में हम कोई विज्ञापन नहीं दिखाते, और दूसरी कंपनियों के ऐप या वेबसाइटों पर आपको ट्रैक नहीं करते। iPhone पर हम advertising identifier (IDFA) न माँगते हैं, न उसका उपयोग करते हैं।",
+          "**DivineSarathi बेहतर बनाने के लिए:** इसमें यह भी शामिल है कि कृष्ण AI कैसे जवाब देता है। इसके लिए हमारी टीम के कुछ लोग बातचीत के ट्रांसक्रिप्ट पढ़ सकते हैं।",
+          "**अपने विज्ञापन मापने के लिए:** ऐप की कुछ घटनाएँ, जैसे कोई अभ्यास शुरू करना या अगले दिन वापस आना, हमारी एनालिटिक्स सेवा और उन विज्ञापन प्लैटफ़ॉर्म के साथ साझा होती हैं जिन पर हम विज्ञापन देते हैं (जैसे Google), यह देखने के लिए कि हमारे कौन से विज्ञापन ऐसे लोगों को लाते हैं जो ऐप इस्तेमाल करते हैं। ऐप में हम कोई विज्ञापन नहीं दिखाते, और दूसरी कंपनियों के ऐप या वेबसाइटों पर आपको ट्रैक नहीं करते। iPhone पर हम advertising identifier (IDFA) न माँगते हैं, न उसका उपयोग करते हैं।",
           "**सेवा सुरक्षित रखने के लिए:** ग़लत इस्तेमाल, धोखाधड़ी और दुरुपयोग पकड़ना।",
           "**क़ानून का पालन करने के लिए:** क़ानून के मुताबिक़ ज़रूरी रिकॉर्ड रखना और वैध अनुरोधों का जवाब देना।",
           "**आपसे संपर्क करने के लिए:** आपके अकाउंट के बारे में, और अगर आपने नोटिफ़िकेशन की इजाज़त दी है तो कथाओं और आपके अभ्यास के बारे में।",
@@ -374,77 +331,34 @@ export const DOC: Record<Locale, LongDoc> = {
 
       { h2: "आपका डेटा कौन प्रोसेस करता है", id: "who-processes-it" },
       {
-        p: "DivineSarathi चलाने के लिए हम कुछ सेवाओं की मदद लेते हैं। ये हमारे साथ हुए अनुबंध के तहत, नीचे लिखे काम के लिए ही, हमारी ओर से डेटा संभालती हैं।",
+        p: "DivineSarathi चलाने के लिए हम कुछ भरोसेमंद सेवा देने वाली कंपनियों की मदद लेते हैं। ये हमारे साथ हुए अनुबंध के तहत, नीचे लिखे काम के लिए ही, सिर्फ़ हमारी ओर से डेटा संभालती हैं। अगर आप इन कंपनियों की मौजूदा सूची चाहते हैं, तो [founders@divinesarathi.in](mailto:founders@divinesarathi.in) पर लिखें।",
       },
       {
         table: {
-          head: ["सेवा", "हमारे लिए क्या करती है", "उसे क्या मिलता है"],
+          head: ["सेवा का प्रकार", "हमारे लिए क्या करती है", "उसे क्या मिलता है"],
           rows: [
-            [
-              "**Google Cloud**",
-              "हमारे सर्वर और डेटाबेस मुंबई, भारत में चलाती है",
-              "ऊपर लिखा वह डेटा जो हम रखते हैं",
-            ],
-            [
-              "**Microsoft Azure OpenAI**",
-              "कृष्ण AI के वॉइस और टेक्स्ट जवाब, और लाइव कथा-वाचन",
-              "बात करते समय आपकी आवाज़, आपके संदेश, और जवाब देने के लिए ज़रूरी संदर्भ",
-            ],
-            [
-              "**Google Analytics for Firebase**",
-              "ऐप का एनालिटिक्स, और Google Ads के साथ अपने विज्ञापन मापना",
-              "ऐप में गतिविधि, आपकी अकाउंट ID, Firebase app instance ID, और Android पर advertising ID",
-            ],
-            [
-              "**Google Analytics**",
-              "वेबसाइट का एनालिटिक्स",
-              "देखे गए पेज, अंदाज़न लोकेशन और डिवाइस का प्रकार, कुकीज़ के ज़रिए",
-            ],
-            [
-              "**Apple Push Notification service** और **Firebase Cloud Messaging**",
-              "iPhone और Android पर नोटिफ़िकेशन पहुँचाती हैं",
-              "आपका नोटिफ़िकेशन टोकन और नोटिफ़िकेशन का टेक्स्ट",
-            ],
-            [
-              "**OneSignal**",
-              "ऐप के 1.28 से पुराने वर्ज़न में नोटिफ़िकेशन पहुँचाती थी। हम इसे बंद कर रहे हैं",
-              "आपका नोटिफ़िकेशन टोकन और डिवाइस की बुनियादी जानकारी",
-            ],
-            [
-              "**RevenueCat**",
-              "स्टोर से Sarathi Plus की ख़रीद और रिन्यूअल की पुष्टि करती है",
-              "आपकी DivineSarathi यूज़र ID, डिवाइस की बुनियादी जानकारी और स्टोर का ख़रीद रिकॉर्ड, आपका नाम, ईमेल या भुगतान की जानकारी नहीं",
-            ],
-            [
-              "**Apple App Store** और **Google Play**",
-              "Sarathi Plus बेचते हैं और उसका बिल लेते हैं",
-              "आपकी ख़रीद, Apple और Google की अपनी गोपनीयता नीतियों के तहत",
-            ],
-            [
-              "**Sign in with Apple** और **Google Sign-In**",
-              "बिना पासवर्ड साइन इन करने देती हैं",
-              "जो आप हमारे साथ साझा करने को राज़ी हों, आमतौर पर नाम और ईमेल",
-            ],
-            ["**MSG91**", "SMS से साइन इन कोड भेजती है", "आपका फ़ोन नंबर"],
-            ["**Google (Gmail)**", "ईमेल से साइन इन कोड भेजती है", "आपका ईमेल पता"],
-            [
-              "**Sentry**",
-              "हमारे सर्वर पर एरर पर नज़र रखती है",
-              "एरर की जानकारी, जिसमें आपका IP पता और अकाउंट ID हो सकते हैं",
-            ],
+            ["**क्लाउड होस्टिंग**", "हमारे सर्वर और डेटाबेस चलाती है", "ऊपर बताया गया वह डेटा जो हम रखते हैं"],
+            ["**AI सेवा**", "कृष्ण AI को आपकी बात समझने और आवाज़ या टेक्स्ट में जवाब देने देती है", "बात करते समय आपकी आवाज़, आपके संदेश, और जवाब देने के लिए ज़रूरी संदर्भ"],
+            ["**एनालिटिक्स**", "दिखाती है कि ऐप और वेबसाइट कैसे इस्तेमाल होते हैं, और हमारे अपने विज्ञापन मापती है", "ऐप में गतिविधि, आपकी अकाउंट ID, ऐप इंस्टेंस ID, और Android पर advertising ID। वेबसाइट पर, कुकीज़ के ज़रिए देखे गए पेज"],
+            ["**नोटिफ़िकेशन** (Apple और Google की)", "iPhone और Android पर नोटिफ़िकेशन पहुँचाती हैं", "आपका पुश टोकन और नोटिफ़िकेशन का टेक्स्ट"],
+            ["**सब्सक्रिप्शन**", "स्टोर से Sarathi Plus की ख़रीद और रिन्यूअल की पुष्टि करती है", "आपकी DivineSarathi यूज़र ID, डिवाइस की बुनियादी जानकारी और स्टोर का ख़रीद रिकॉर्ड, आपका नाम, ईमेल या भुगतान की जानकारी नहीं"],
+            ["**Apple App Store** और **Google Play**", "Sarathi Plus बेचते और बिल करते हैं", "आपकी ख़रीद, Apple और Google की अपनी गोपनीयता नीतियों के तहत"],
+            ["**Sign in with Apple** और **Google Sign-In**", "बिना पासवर्ड साइन इन करने देते हैं", "जो आप हमसे साझा करने की अनुमति देते हैं, आमतौर पर आपका नाम और ईमेल"],
+            ["**SMS और ईमेल**", "साइन इन कोड भेजती हैं", "आपका फ़ोन नंबर या ईमेल पता"],
+            ["**एरर मॉनिटरिंग**", "हमारे सर्वर की दिक़्क़तें ढूँढने और ठीक करने में मदद करती है", "एरर की जानकारी, जिसमें आपका IP पता और अकाउंट ID हो सकते हैं"],
           ],
         },
       },
       {
-        p: "इनमें से कुछ सेवाएँ भारत के बाहर भी डेटा प्रोसेस कर सकती हैं। ऐसे में हम उनके अनुबंध और सुरक्षा के वादों पर भरोसा करते हैं, और डेटा बाहर भेजने से जुड़े भारतीय क़ानून का पालन करते हैं।",
+        p: "इनमें से कुछ कंपनियाँ भारत के बाहर डेटा प्रोसेस कर सकती हैं। ऐसे में हम उनके अनुबंध और सुरक्षा वादों पर भरोसा करते हैं, और डेटा भेजने से जुड़े भारतीय क़ानून का पालन करते हैं।",
       },
       {
-        p: "हम अपने समूह की कंपनियों के साथ भी डेटा साझा कर सकते हैं, अगर कभी ऐसी कंपनियाँ हों, और तब भी जब क़ानून ऐसा माँगे या किसी की सुरक्षा के लिए ज़रूरी हो।",
+        p: "क़ानून के तहत ज़रूरी होने पर या किसी की सुरक्षा के लिए भी हम डेटा साझा कर सकते हैं।",
       },
 
       { h2: "Sarathi Plus की ख़रीद", id: "sarathi-plus" },
       {
-        p: "Sarathi Plus, App Store और Google Play के ज़रिए बिकता है। भुगतान Apple या Google लेते हैं, और आपके कार्ड या बैंक की जानकारी हम कभी नहीं देखते। स्टोर से ख़रीद और रिन्यूअल की पुष्टि के लिए हम RevenueCat नाम की सब्सक्रिप्शन सेवा का उपयोग करते हैं। RevenueCat को आपकी DivineSarathi यूज़र ID, डिवाइस की बुनियादी जानकारी और स्टोर का ख़रीद रिकॉर्ड मिलता है, आपका नाम, ईमेल या भुगतान की जानकारी नहीं।",
+        p: "Sarathi Plus, App Store और Google Play के ज़रिए बिकता है। भुगतान Apple या Google लेते हैं, और आपके कार्ड या बैंक की जानकारी हम कभी नहीं देखते। स्टोर से ख़रीद और रिन्यूअल की पुष्टि के लिए हम एक सब्सक्रिप्शन सेवा का उपयोग करते हैं। उसे आपकी DivineSarathi यूज़र ID, डिवाइस की बुनियादी जानकारी और स्टोर का ख़रीद रिकॉर्ड मिलता है, आपका नाम, ईमेल या भुगतान की जानकारी नहीं।",
       },
       {
         p: "हर वॉइस बातचीत कितनी देर चली, यह हम दर्ज करते हैं ताकि आपका मुफ़्त वॉइस समय या Plus का समय दिखा सकें। सब्सक्रिप्शन कैसे काम करता है, यह हमारी [उपयोग की शर्तें](/hi/terms) में है, और रद्द करने का तरीक़ा [रद्द करना और रिफ़ंड](/hi/refunds) पेज पर।",

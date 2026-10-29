@@ -2,11 +2,7 @@ import type { Locale } from "@/lib/routes";
 import type { LongDoc } from "@/content/types";
 
 /**
- * /sources and /hi/sources.
- * Verse fields match gita_shlokas (sanskrit_text, iast_text, literal_meaning,
- * verse_context, human_insight). Verse content is stored in English and the
- * Hindi voice translates it as it speaks (prompts/krishna.js language rule).
- * Recitation and recordings use the same AI voice (veda lib/content/narration.ts).
+ * /sources and /hi/sources. Says what the texts are, not how the system is built.
  * No scholar review exists yet: do not name one here until it does.
  */
 export const DOC: Record<Locale, LongDoc> = {
@@ -35,7 +31,7 @@ export const DOC: Record<Locale, LongDoc> = {
         ],
       },
       {
-        p: "In open conversation, Krishna AI is told to draw on these and the wider scriptures, including the Vedas and the Dharma Sutras. How that works, and where it can go wrong, is explained on [How Krishna AI works](/how-krishna-ai-works).",
+        p: "In open conversation, Krishna AI also draws on the wider scriptures, including the Vedas and the Dharma Sutras. How that works, and where it can go wrong, is explained on [How Krishna AI works](/how-krishna-ai-works).",
       },
 
       { h2: "What each verse contains", id: "verse-parts" },
@@ -71,7 +67,7 @@ export const DOC: Record<Locale, LongDoc> = {
         p: "The recitation and explanation you hear are spoken by Krishna AI, an AI voice. It is not a recording of a priest or a scholar. It reads from the verse text described above.",
       },
       {
-        p: "The meanings, context and insights are written in English. When you use the app in Hindi, the voice translates them into Hindi as it speaks, while the Sanskrit stays in Sanskrit. A translation can lose some of the meaning. If the Hindi of a verse sounds off, please tell us.",
+        p: "When you use the app in Hindi, the explanation is spoken in Hindi and the Sanskrit stays in Sanskrit. If the Hindi of a verse sounds off, please tell us.",
       },
 
       { h2: "When we get it wrong", id: "mistakes" },
@@ -116,7 +112,7 @@ export const DOC: Record<Locale, LongDoc> = {
         ],
       },
       {
-        p: "खुली बातचीत में कृष्ण AI को इन्हीं और दूसरे शास्त्रों से लेने का निर्देश है, जिनमें वेद और धर्मसूत्र भी हैं। यह कैसे काम करता है और कहाँ ग़लती हो सकती है, यह [कृष्ण AI कैसे काम करता है](/hi/how-krishna-ai-works) पर बताया गया है।",
+        p: "खुली बातचीत में कृष्ण AI इन्हीं और दूसरे शास्त्रों से भी सीख लेता है, जिनमें वेद और धर्मसूत्र भी हैं। यह कैसे काम करता है और कहाँ ग़लती हो सकती है, यह [कृष्ण AI कैसे काम करता है](/hi/how-krishna-ai-works) पर बताया गया है।",
       },
 
       { h2: "हर श्लोक में क्या होता है", id: "verse-parts" },
@@ -152,7 +148,7 @@ export const DOC: Record<Locale, LongDoc> = {
         p: "आप जो पाठ और व्याख्या सुनते हैं, वह कृष्ण AI बोलता है, जो एक AI आवाज़ है। यह किसी पुजारी या विद्वान की रिकॉर्डिंग नहीं है। यह ऊपर बताए गए श्लोक के पाठ से पढ़ती है।",
       },
       {
-        p: "अर्थ, संदर्भ और सीख अंग्रेज़ी में लिखे गए हैं। जब आप ऐप हिंदी में इस्तेमाल करते हैं, तो आवाज़ बोलते समय उन्हें हिंदी में अनुवाद करती है, और संस्कृत संस्कृत में ही रहती है। अनुवाद में अर्थ का कुछ हिस्सा छूट सकता है। अगर किसी श्लोक की हिंदी ठीक न लगे, तो कृपया हमें बताइए।",
+        p: "जब आप ऐप हिंदी में इस्तेमाल करते हैं, तो अर्थ हिंदी में बोला जाता है और संस्कृत संस्कृत में ही रहती है। अगर किसी श्लोक की हिंदी ठीक न लगे, तो हमें ज़रूर बताइए।",
       },
 
       { h2: "जब हमसे ग़लती हो", id: "mistakes" },

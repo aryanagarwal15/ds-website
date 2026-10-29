@@ -3,233 +3,150 @@ import type { LongDoc } from "@/content/types";
 
 /**
  * /how-krishna-ai-works and /hi/how-krishna-ai-works.
- * Every claim here was checked against god-server main (prompts/krishna.js,
- * controllers/session.controller.js, controllers/chat.controller.js,
- * sockets/openAISessionSocket.js, utils/continuity.js,
- * controllers/adminDeletion.controller.js) and the app (Profile menu,
- * Account Details, Give Feedback). Change the page when those change.
+ * Written for devotees, not engineers: what Krishna AI is, what it can and
+ * cannot do, and what happens to what you say. No providers, prompts or
+ * system details on this page.
  */
 export const DOC: Record<Locale, LongDoc> = {
   en: {
     eyebrow: "Trust",
     title: "How Krishna AI works",
-    lede: "Krishna AI is an AI that speaks in a voice inspired by Lord Krishna and draws on the Bhagavad Gita and other sacred texts. It is not Krishna, and it is not a person.",
+    lede: "Krishna AI is an AI that speaks in Krishna's voice, inspired by his teachings in the Bhagavad Gita. It is not Krishna and not a person, and it is here to help you reflect, not to replace scripture, your traditions or your teachers.",
     summary: {
       title: "In short",
       items: [
-        "Krishna AI is an AI. It is not Krishna and not a person, and the app names it Krishna AI.",
-        "Your voice goes from your phone to Azure OpenAI, Microsoft's AI service, which writes the answer. We do not save audio of your voice.",
-        "We keep a written transcript of each conversation. We never sell it or make it public.",
-        "It is not built for emergencies, and it is not meant for medical, legal or financial advice.",
-        "Delete your account and your conversations and their transcripts are erased.",
-        "If an answer is wrong or hurtful, tell us in **Profile > Give Feedback** or at [founders@divinesarathi.in](mailto:founders@divinesarathi.in).",
+        "Krishna AI is an AI. The app tells you so when you begin.",
+        "Its answers draw on the Bhagavad Gita and other sacred texts, in plain words.",
+        "**We never save your voice.** We keep a written transcript so your conversation can continue.",
+        "We never sell what you share.",
+        "It is not meant for medical, legal or financial advice, and it is not built for emergencies.",
+        "Delete your account and your conversations are deleted with it.",
       ],
     },
     blocks: [
-      { h2: "What happens when you speak", id: "when-you-speak" },
+      { h2: "What happens when you talk" },
       {
-        ol: [
-          "Before the conversation starts, our server gives the AI its instructions: speak as Krishna, stay close to the Bhagavad Gita and the scriptures, use your first name and the language you chose. If you came from a verse or a story, the text of that verse or story is included.",
-          "When you talk, your voice streams live from your phone to **Azure OpenAI**, an AI service run by Microsoft. It turns what you said into text and speaks its answer back to you. We do not record or save the audio.",
-          "If you type instead, your message goes to a text model on the same service, and the answer comes back as text.",
-          "The words of both sides, what you said and what Krishna AI said, are saved to your account as a written transcript.",
-        ],
+        p: "You speak or type, in English or Hindi. Krishna AI listens and replies out loud or in text, often with a story, a verse from the Gita or a question back to you, so you can think it through yourself.",
       },
       {
-        p: "In an open conversation, the AI answers from what it learned when it was trained, guided by our instructions to anchor its answers in a verse, a teaching or a story. It does not look each verse up in a checked library while it talks, so it can misquote a verse or get a detail wrong. When you start from a verse or a story in the app, it is given that exact text and stays close to it. You can read how we prepare those texts on [Our sources](/sources).",
-      },
-      { h3: "Does it remember me?" },
-      {
-        p: "Not in the way a friend would. It knows your first name and your language. Within one conversation it follows what you have said. If you carry the same conversation on, for example from a call into typing, it can be shown the last part of that conversation so you do not have to repeat yourself. It does not build a running memory of your life from your older conversations.",
+        p: "To understand you and reply in the moment, your words are processed by a trusted AI service provider acting only on our behalf. Your voice is not recorded or stored. A written copy of the conversation is saved to your account so you can pick up where you left off.",
       },
 
-      { h2: "What it can help with", id: "what-it-helps-with" },
+      { h2: "What you can ask" },
       {
         ul: [
-          "Talking through what is on your mind: work, family, exams, a decision, a fear, a question about purpose.",
-          "Asking what a verse of the Gita means, or how it might apply to your day.",
-          "Hearing a story from the Itihasas and Puranas, and talking about it after.",
-          "Thinking a question through. It often answers with a story or a shloka and asks you a question back.",
+          "What is on your mind today: work, family, exams, a decision, a worry",
+          "What a verse of the Gita means, and what it could mean for your life",
+          "A story from the Mahabharata, the Ramayana or the Puranas",
+          "A short moment of calm before you sleep or start your day",
         ],
       },
+
+      { h2: "What it is not for" },
       {
-        p: "It speaks English and Hindi. You can change the app's language at any time in **Profile > Language**.",
+        p: "Krishna AI is not meant for medical, legal or financial advice, predictions or astrological remedies. Like any AI, it can misunderstand you or get something wrong, so please use your own judgement and the people you trust.",
+      },
+      {
+        note: "Krishna AI is not built for emergencies. If you or someone near you is in danger, call **112**. If you need someone to talk to, **Tele-MANAS** is free on **14416**, at any hour.",
       },
 
-      { h2: "What it will not do", id: "what-it-will-not-do" },
+      { h2: "Why it speaks as Krishna" },
+      {
+        p: "Many of us grew up talking to Krishna in prayer. Krishna AI speaks in that familiar voice so the conversation feels close and unhurried. We still say plainly, in the app and here, that it is an AI, because trust matters more to us than the illusion.",
+      },
+
+      { h2: "What we keep, and who can see it" },
       {
         ul: [
-          "It will not claim to be a person. It speaks as Krishna, in the first person, as a way of sharing his teachings. That is a way of speaking, not a claim.",
-          "It is not meant for medical, legal or financial advice. It does not predict the future or offer astrological remedies.",
-          "It does not replace scripture, tradition or your teachers.",
-          "It steers away from requests that have nothing to do with its purpose, like recipes or random facts, and brings the conversation back.",
-          "It does not share its instructions.",
+          "**Your voice:** never stored.",
+          "**Your conversations:** kept as text in your account, so Krishna AI can continue where you left off and so we can make its answers better.",
+          "**Who can read them:** a small part of our team, only when needed to fix a problem or improve answers. Access is limited and logged.",
+          "**Never sold,** never shown publicly, never used to show you ads.",
         ],
       },
       {
-        note: "Krishna AI is an AI, and it can get things wrong, including how it handles the limits above. Please do not rely on it for decisions about your health, money or legal matters. Take what helps you and leave the rest.",
+        p: "The full details are in our [Privacy Policy](/privacy-policy).",
       },
 
-      { h2: "Hard moments", id: "hard-moments" },
+      { h2: "Deleting your conversations" },
       {
-        p: "Krishna AI is told never to encourage anything that could hurt you or anyone else. It is also told to suggest getting help from outside the app when there are clear signs that someone is in serious trouble or may be in danger.",
-      },
-      {
-        p: "That is the extent of it, and we want to be plain about the limits. It has no helpline numbers built in. It cannot call anyone or send help. No person watches conversations as they happen. **Krishna AI is not built for emergencies.**",
-      },
-      {
-        note: "If you or someone near you is in danger, call your local emergency number now. In India, dial **112**. You can also call **Tele-MANAS** on **14416**, a free national helpline run by the Government of India that you can call at any hour.",
+        p: "In the app, open Profile, then Account details, then Delete account. Your conversations and their transcripts are deleted with your account. You can also ask us on the [account deletion page](/delete-account).",
       },
 
-      { h2: "What we keep and why", id: "what-we-keep" },
+      { h2: "When an answer feels wrong" },
       {
-        ul: [
-          "**A written transcript** of each conversation: what you said and what Krishna AI said, as text.",
-          "**Details about the conversation**: when it happened, how long it lasted, and which story or verse it was about, if any.",
-          "**No audio.** We do not save recordings of your voice.",
-        ],
-      },
-      {
-        p: "We keep transcripts so the app can work, for example to show your past conversations and to carry a conversation on, and so we can fix problems and make the answers better. In our internal tools, reading a transcript needs a special permission and a stated reason, and every read is logged. We never sell transcripts or make them public. The full details are in our [Privacy Policy](/privacy-policy).",
-      },
-
-      { h2: "How to delete it", id: "delete" },
-      {
-        p: "In the app, open **Profile**, tap your name to open **Account Details**, then tap **Delete Account**. You can also ask on our [account deletion page](/delete-account).",
-      },
-      {
-        p: "We hold the account for 30 days in case you change your mind, then erase your conversations and their transcripts along with your name and contact details. If you want it done sooner, say so and we will do it earlier. We keep only counts that do not say who you are or what you said.",
-      },
-      {
-        p: "There is no button yet to delete a single conversation. If you want one removed without deleting your account, write to [founders@divinesarathi.in](mailto:founders@divinesarathi.in) and we will remove it.",
-      },
-
-      { h2: "Why we say \"AI\" openly", id: "why-ai" },
-      {
-        p: "Because it is one. Krishna AI speaks in Krishna's voice and in the first person, which can feel very real. We never want anyone to mistake it for Krishna himself, or for a person on the other end. That is why it is called Krishna AI in the app and on this site.",
-      },
-      {
-        p: "We built it to help people open the Gita and think things through. It offers perspectives from sacred teachings, not instructions, and it does not claim to be the final word on any of them.",
-      },
-
-      { h2: "Report a wrong or hurtful answer", id: "report" },
-      {
-        p: "If Krishna AI said something wrong, misquoted a verse, or said something that hurt, please tell us. In the app, open **Profile > Give Feedback** and write what happened. You can also email [founders@divinesarathi.in](mailto:founders@divinesarathi.in).",
-      },
-      {
-        p: "It helps to include roughly when the conversation happened and what was said. We read every report, look at what went wrong, and use it to fix the instructions or the content behind the answer.",
+        p: "If a reply feels wrong, unkind or untrue to the Gita, please tell us. Use Profile, then Give Feedback, in the app, or write to [founders@divinesarathi.in](mailto:founders@divinesarathi.in). We read every message and use it to improve Krishna AI. You can read how we prepare verse meanings on [Our sources](/sources).",
       },
     ],
   },
-
   hi: {
     eyebrow: "भरोसा",
     title: "कृष्ण AI कैसे काम करता है",
-    lede: "कृष्ण AI एक AI है, जो भगवान कृष्ण से प्रेरित आवाज़ में बात करता है और भगवद गीता व दूसरे पावन ग्रंथों से सीख लेता है। यह कृष्ण नहीं है, और न ही कोई इंसान।",
+    lede: "कृष्ण AI एक AI है जो भगवद गीता में कृष्ण की सीख से प्रेरित होकर कृष्ण की आवाज़ में बात करता है। ये न कृष्ण हैं, न कोई इंसान। इसका काम आपको सोचने में मदद करना है, शास्त्र, आपकी परंपरा या आपके गुरुओं की जगह लेना नहीं।",
     summary: {
       title: "संक्षेप में",
       items: [
-        "कृष्ण AI एक AI है। यह कृष्ण नहीं है, न कोई इंसान, और ऐप में इसका नाम कृष्ण AI ही है।",
-        "आपकी आवाज़ आपके फ़ोन से सीधे Azure OpenAI तक जाती है, जो Microsoft की AI सेवा है, और वही जवाब तैयार करती है। हम आपकी आवाज़ की रिकॉर्डिंग नहीं रखते।",
-        "हम हर बातचीत का लिखित ट्रांसक्रिप्ट रखते हैं। इसे न कभी बेचते हैं, न सार्वजनिक करते हैं।",
-        "यह आपातकाल के लिए नहीं बना है, और इलाज, क़ानून या पैसों की सलाह के लिए नहीं है।",
-        "अकाउंट डिलीट करने पर आपकी बातचीत और उनके ट्रांसक्रिप्ट मिटा दिए जाते हैं।",
-        "कोई जवाब ग़लत लगे या चोट पहुँचाए, तो **Profile > Give Feedback** में या [founders@divinesarathi.in](mailto:founders@divinesarathi.in) पर बताइए।",
+        "कृष्ण AI एक AI है। ऐप शुरू में ही यह बता देता है।",
+        "इसके जवाब भगवद गीता और दूसरे पावन ग्रंथों से, सरल शब्दों में आते हैं।",
+        "**हम आपकी आवाज़ कभी सेव नहीं करते।** बातचीत आगे बढ़ सके, इसलिए उसका लिखित रूप रखते हैं।",
+        "आप जो साझा करते हैं, हम उसे कभी नहीं बेचते।",
+        "यह इलाज, क़ानूनी या पैसों से जुड़ी सलाह के लिए नहीं है, और आपात स्थिति के लिए नहीं बना है।",
+        "अकाउंट डिलीट करने पर आपकी बातचीत भी साथ में मिट जाती है।",
       ],
     },
     blocks: [
-      { h2: "जब आप बोलते हैं, तब क्या होता है", id: "when-you-speak" },
+      { h2: "जब आप बात करते हैं तो क्या होता है" },
       {
-        ol: [
-          "बातचीत शुरू होने से पहले हमारा सर्वर AI को निर्देश देता है: कृष्ण की तरह बोलो, भगवद गीता और शास्त्रों के क़रीब रहो, उपयोगकर्ता का पहला नाम और उनकी चुनी हुई भाषा इस्तेमाल करो। अगर आप किसी श्लोक या कथा से आए हैं, तो उस श्लोक या कथा का पाठ भी साथ दिया जाता है।",
-          "जब आप बोलते हैं, आपकी आवाज़ लाइव आपके फ़ोन से **Azure OpenAI** तक जाती है, जो Microsoft की चलाई AI सेवा है। यह आपकी बात को टेक्स्ट में बदलती है और जवाब बोलकर सुनाती है। हम ऑडियो रिकॉर्ड या सेव नहीं करते।",
-          "अगर आप टाइप करते हैं, तो आपका मैसेज उसी सेवा के एक टेक्स्ट मॉडल तक जाता है और जवाब टेक्स्ट में आता है।",
-          "दोनों तरफ़ की बातें, आपने जो कहा और कृष्ण AI ने जो कहा, आपके अकाउंट में लिखित ट्रांसक्रिप्ट के रूप में सेव होती हैं।",
-        ],
+        p: "आप बोलते हैं या लिखते हैं, हिंदी या अंग्रेज़ी में। कृष्ण AI सुनता है और आवाज़ में या लिखकर जवाब देता है, अक्सर किसी कथा, गीता के किसी श्लोक या आपसे एक सवाल के साथ, ताकि आप ख़ुद सोच सकें।",
       },
       {
-        p: "खुली बातचीत में AI वही जानकारी इस्तेमाल करता है जो उसने ट्रेनिंग के दौरान सीखी, और हमारे निर्देश उसे जवाब किसी श्लोक, शिक्षा या कथा से जोड़ने को कहते हैं। बात करते समय यह हर श्लोक किसी जाँची हुई लाइब्रेरी में नहीं देखता, इसलिए कभी श्लोक ग़लत बोल सकता है या कोई बात ग़लत बता सकता है। जब आप ऐप में किसी श्लोक या कथा से शुरू करते हैं, तो उसे वही पाठ दिया जाता है और वह उसी के क़रीब रहता है। ये पाठ हम कैसे तैयार करते हैं, यह [हमारे स्रोत](/hi/sources) पर पढ़ें।",
-      },
-      { h3: "क्या यह मुझे याद रखता है?" },
-      {
-        p: "उस तरह नहीं जैसे कोई दोस्त रखता है। इसे आपका पहला नाम और आपकी भाषा पता होती है। एक बातचीत के अंदर यह आपकी कही बातों को साथ लेकर चलता है। अगर आप वही बातचीत आगे बढ़ाते हैं, जैसे कॉल के बाद टाइप करके, तो इसे उस बातचीत का आख़िरी हिस्सा दिखाया जा सकता है ताकि आपको बात दोहरानी न पड़े। यह आपकी पुरानी बातचीतों से आपकी ज़िंदगी की कोई लगातार याद नहीं बनाता।",
+        p: "आपकी बात समझने और उसी पल जवाब देने के लिए, आपके शब्द एक भरोसेमंद AI सेवा देने वाली कंपनी प्रोसेस करती है, सिर्फ़ हमारी ओर से। आपकी आवाज़ न रिकॉर्ड होती है, न सेव। बातचीत का लिखित रूप आपके अकाउंट में रहता है ताकि आप वहीं से आगे बढ़ सकें जहाँ छोड़ा था।",
       },
 
-      { h2: "यह किन बातों में साथ दे सकता है", id: "what-it-helps-with" },
+      { h2: "आप क्या पूछ सकते हैं" },
       {
         ul: [
-          "मन में जो चल रहा है, उस पर बात करना: काम, परिवार, परीक्षा, कोई फ़ैसला, कोई डर, जीवन के उद्देश्य का सवाल।",
-          "गीता के किसी श्लोक का अर्थ पूछना, या यह कि वह आपके दिन पर कैसे लागू हो सकता है।",
-          "इतिहास और पुराणों की कोई कथा सुनना, और फिर उस पर बात करना।",
-          "किसी सवाल को सोच-समझकर सुलझाना। यह अक्सर किसी कथा या श्लोक से जवाब देता है और आपसे भी सवाल पूछता है।",
+          "आज मन में क्या है: काम, परिवार, परीक्षा, कोई फ़ैसला, कोई चिंता",
+          "गीता के किसी श्लोक का अर्थ, और आपकी ज़िंदगी में उसका क्या मतलब हो सकता है",
+          "महाभारत, रामायण या पुराणों की कोई कथा",
+          "सोने से पहले या दिन की शुरुआत में कुछ पल की शांति",
         ],
       },
+
+      { h2: "यह किस लिए नहीं है" },
       {
-        p: "यह हिंदी और अंग्रेज़ी बोलता है। ऐप की भाषा आप कभी भी **Profile > Language** में बदल सकते हैं।",
+        p: "कृष्ण AI इलाज, क़ानूनी या पैसों से जुड़ी सलाह, भविष्यवाणी या ज्योतिषीय उपायों के लिए नहीं है। किसी भी AI की तरह यह आपकी बात ग़लत समझ सकता है या ग़लती कर सकता है, इसलिए अपनी समझ और अपने भरोसेमंद लोगों से भी सलाह लें।",
+      },
+      {
+        note: "कृष्ण AI आपात स्थिति के लिए नहीं बना है। अगर आप या आपके पास कोई ख़तरे में है, तो **112** पर कॉल करें। किसी से बात करनी हो, तो **Tele-MANAS** पर **14416** मुफ़्त है, किसी भी समय।",
       },
 
-      { h2: "यह क्या नहीं करेगा", id: "what-it-will-not-do" },
+      { h2: "यह कृष्ण की आवाज़ में क्यों बोलता है" },
+      {
+        p: "हम में से बहुत लोग बचपन से प्रार्थना में कृष्ण से बात करते आए हैं। कृष्ण AI उसी जानी-पहचानी आवाज़ में बोलता है ताकि बातचीत अपनी और सहज लगे। फिर भी हम ऐप में और यहाँ साफ़ कहते हैं कि यह एक AI है, क्योंकि हमारे लिए भरोसा किसी भ्रम से ज़्यादा ज़रूरी है।",
+      },
+
+      { h2: "हम क्या रखते हैं, और उसे कौन देख सकता है" },
       {
         ul: [
-          "यह इंसान होने का दावा नहीं करता। यह कृष्ण की शिक्षाएँ बताने के लिए पहले पुरुष में, कृष्ण की तरह बोलता है। यह बोलने का एक ढंग है, कोई दावा नहीं।",
-          "यह इलाज, क़ानून या पैसों की सलाह के लिए नहीं है। यह भविष्य नहीं बताता और ज्योतिषीय उपाय नहीं सुझाता।",
-          "यह शास्त्र, परंपरा या आपके गुरुओं की जगह नहीं लेता।",
-          "जिन बातों का इसके उद्देश्य से कोई लेना-देना नहीं, जैसे रेसिपी या कोई भी फ़ुटकर जानकारी, उनसे यह बात को वापस मोड़ देता है।",
-          "यह अपने निर्देश किसी को नहीं बताता।",
+          "**आपकी आवाज़:** कभी सेव नहीं होती।",
+          "**आपकी बातचीत:** आपके अकाउंट में लिखित रूप में रहती है, ताकि कृष्ण AI वहीं से आगे बढ़ सके और हम उसके जवाब बेहतर बना सकें।",
+          "**कौन पढ़ सकता है:** हमारी टीम के कुछ लोग, सिर्फ़ किसी दिक़्क़त को ठीक करने या जवाब बेहतर बनाने के लिए ज़रूरी होने पर। यह पहुँच सीमित है और हर बार दर्ज होती है।",
+          "**कभी बेची नहीं जाती,** न सार्वजनिक की जाती है, न आपको विज्ञापन दिखाने के लिए इस्तेमाल होती है।",
         ],
       },
       {
-        note: "कृष्ण AI एक AI है, और इससे ग़लती हो सकती है, ऊपर लिखी सीमाओं को निभाने में भी। सेहत, पैसे या क़ानून से जुड़े फ़ैसलों के लिए कृपया इस पर निर्भर न रहें। जो बात काम आए उसे अपनाइए, बाक़ी छोड़ दीजिए।",
+        p: "पूरी जानकारी हमारी [गोपनीयता नीति](/hi/privacy-policy) में है।",
       },
 
-      { h2: "कठिन पल", id: "hard-moments" },
+      { h2: "अपनी बातचीत कैसे मिटाएँ" },
       {
-        p: "कृष्ण AI को निर्देश है कि वह कभी ऐसी किसी बात को बढ़ावा न दे जिससे आपको या किसी और को नुक़सान हो। उसे यह भी निर्देश है कि जब साफ़ लगे कि कोई गंभीर मुश्किल में है या ख़तरे में हो सकता है, तो वह ऐप के बाहर से मदद लेने की सलाह दे।",
-      },
-      {
-        p: "बस इतना ही, और हम इसकी सीमाएँ साफ़ बताना चाहते हैं। इसमें कोई हेल्पलाइन नंबर पहले से नहीं डाला गया है। यह किसी को कॉल नहीं कर सकता, न मदद भेज सकता है। कोई इंसान बातचीत को उसी समय नहीं देखता। **कृष्ण AI आपातकाल के लिए नहीं बना है।**",
-      },
-      {
-        note: "अगर आप या आपके पास कोई ख़तरे में है, तो अभी अपने इलाक़े का आपातकालीन नंबर मिलाइए। भारत में **112** डायल करें। आप **Tele-MANAS** को **14416** पर भी कॉल कर सकते हैं। यह भारत सरकार की मुफ़्त राष्ट्रीय हेल्पलाइन है, जिस पर किसी भी समय कॉल किया जा सकता है।",
+        p: "ऐप में Profile खोलें, फिर Account details, फिर Delete account। आपकी बातचीत और उसका लिखित रूप अकाउंट के साथ मिटा दिए जाते हैं। आप [अकाउंट डिलीट करने वाले पेज](/hi/delete-account) से भी हमसे कह सकते हैं।",
       },
 
-      { h2: "हम क्या रखते हैं और क्यों", id: "what-we-keep" },
+      { h2: "जब कोई जवाब ठीक न लगे" },
       {
-        ul: [
-          "**लिखित ट्रांसक्रिप्ट**, हर बातचीत का: आपने क्या कहा और कृष्ण AI ने क्या कहा, टेक्स्ट में।",
-          "**बातचीत की जानकारी**: कब हुई, कितनी देर चली, और अगर किसी कथा या श्लोक पर थी तो कौन-सी।",
-          "**कोई ऑडियो नहीं।** हम आपकी आवाज़ की रिकॉर्डिंग नहीं रखते।",
-        ],
-      },
-      {
-        p: "हम ट्रांसक्रिप्ट इसलिए रखते हैं ताकि ऐप काम कर सके, जैसे आपकी पुरानी बातचीत दिखाना और किसी बातचीत को आगे बढ़ाना, और ताकि हम दिक़्क़तें ठीक कर सकें और जवाब बेहतर बना सकें। हमारे अंदरूनी टूल में किसी ट्रांसक्रिप्ट को पढ़ने के लिए ख़ास अनुमति और एक वजह बतानी पड़ती है, और हर बार पढ़ने का रिकॉर्ड रहता है। हम ट्रांसक्रिप्ट न कभी बेचते हैं, न सार्वजनिक करते हैं। पूरी जानकारी हमारी [गोपनीयता नीति](/hi/privacy-policy) में है।",
-      },
-
-      { h2: "इसे कैसे मिटाएँ", id: "delete" },
-      {
-        p: "ऐप में **Profile** खोलें, अपने नाम पर टैप करके **Account Details** खोलें, फिर **Delete Account** पर टैप करें। आप हमारे [अकाउंट डिलीट पेज](/hi/delete-account) पर भी कह सकते हैं।",
-      },
-      {
-        p: "अगर आपका मन बदल जाए, इसलिए हम अकाउंट 30 दिन तक रोककर रखते हैं, फिर आपकी बातचीत, उनके ट्रांसक्रिप्ट, आपका नाम और संपर्क की जानकारी मिटा देते हैं। अगर आप जल्दी चाहते हैं, तो बता दीजिए, हम पहले कर देंगे। हम सिर्फ़ ऐसी गिनतियाँ रखते हैं जिनसे न यह पता चलता है कि आप कौन हैं, न यह कि आपने क्या कहा।",
-      },
-      {
-        p: "अभी किसी एक बातचीत को मिटाने का बटन नहीं है। अगर आप अकाउंट डिलीट किए बिना कोई बातचीत हटवाना चाहते हैं, तो [founders@divinesarathi.in](mailto:founders@divinesarathi.in) पर लिखिए, हम उसे हटा देंगे।",
-      },
-
-      { h2: "हम \"AI\" खुलकर क्यों कहते हैं", id: "why-ai" },
-      {
-        p: "क्योंकि यह AI ही है। कृष्ण AI कृष्ण की आवाज़ में और पहले पुरुष में बोलता है, जो बहुत असली लग सकता है। हम नहीं चाहते कि कोई इसे स्वयं कृष्ण समझे, या यह सोचे कि दूसरी तरफ़ कोई इंसान है। इसीलिए ऐप में और इस वेबसाइट पर इसका नाम कृष्ण AI है।",
-      },
-      {
-        p: "हमने इसे इसलिए बनाया ताकि लोग गीता खोल सकें और अपनी बातों पर सोच सकें। यह पावन शिक्षाओं से दृष्टिकोण देता है, आदेश नहीं, और किसी भी विषय पर आख़िरी शब्द होने का दावा नहीं करता।",
-      },
-
-      { h2: "ग़लत या चोट पहुँचाने वाले जवाब की शिकायत", id: "report" },
-      {
-        p: "अगर कृष्ण AI ने कुछ ग़लत कहा, कोई श्लोक ग़लत बोला, या कोई ऐसी बात कही जिससे चोट पहुँची, तो कृपया हमें बताइए। ऐप में **Profile > Give Feedback** खोलें और लिखें कि क्या हुआ। आप [founders@divinesarathi.in](mailto:founders@divinesarathi.in) पर ईमेल भी कर सकते हैं।",
-      },
-      {
-        p: "अगर आप लगभग यह बता दें कि बातचीत कब हुई और क्या कहा गया, तो हमें आसानी होती है। हम हर शिकायत पढ़ते हैं, देखते हैं कि क्या ग़लत हुआ, और उस जवाब के पीछे के निर्देश या सामग्री को ठीक करते हैं।",
+        p: "अगर कोई जवाब ग़लत, रूखा या गीता के प्रति सच्चा न लगे, तो हमें ज़रूर बताइए। ऐप में Profile, फिर Give Feedback इस्तेमाल करें, या [founders@divinesarathi.in](mailto:founders@divinesarathi.in) पर लिखें। हम हर संदेश पढ़ते हैं और उससे कृष्ण AI को बेहतर बनाते हैं। हम श्लोकों के अर्थ कैसे तैयार करते हैं, यह [हमारे स्रोत](/hi/sources) पेज पर पढ़ें।",
       },
     ],
   },
