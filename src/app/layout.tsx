@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter, Noto_Sans_Devanagari, Noto_Serif_Devanagari } from "next/font/google";
+import { Cormorant_Garamond, Inter, Noto_Serif_Devanagari } from "next/font/google";
 import Script from "next/script";
 import JsonLd from "@/components/JsonLd";
 import { GOOGLE_ANALYTICS_ID, GOOGLE_SITE_VERIFICATION, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -21,15 +21,8 @@ const inter = Inter({
   display: "swap",
 });
 
-// Devanagari faces only download when Devanagari text is on the page (unicode-range).
-const devaSans = Noto_Sans_Devanagari({
-  subsets: ["devanagari"],
-  variable: "--font-deva-sans",
-  weight: ["400", "500", "600"],
-  display: "swap",
-  preload: false,
-});
-
+// Hindi headings use Noto Serif Devanagari, downloaded only where Devanagari appears (unicode-range).
+// Hindi body text uses the phone's own Devanagari font (Kohinoor on iPhone, Noto Sans on Android).
 const devaSerif = Noto_Serif_Devanagari({
   subsets: ["devanagari"],
   variable: "--font-deva-serif",
@@ -77,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorantGaramond.variable} ${inter.variable} ${devaSans.variable} ${devaSerif.variable}`}>
+    <html lang="en" className={`${cormorantGaramond.variable} ${inter.variable} ${devaSerif.variable}`}>
       <body className="antialiased">
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
