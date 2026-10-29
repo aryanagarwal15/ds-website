@@ -33,7 +33,6 @@ export default function DownloadContent() {
             </div>
           </div>
           <div className="relative flex justify-center">
-            <div className="hero-glow" aria-hidden="true" />
             <PhoneShot src="/images/app/krishna-greet-en.webp" alt="Krishna AI greeting you in the DivineSarathi app" width={280} priority />
           </div>
         </section>

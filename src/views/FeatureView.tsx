@@ -41,7 +41,6 @@ export default function FeatureView({ feature, locale }: { feature: FeatureKey; 
             </div>
           </div>
           <div className="relative flex justify-center">
-            <div className="hero-glow" aria-hidden="true" />
             <PhoneShot src={c.hero.src} alt={c.hero.alt} width={290} priority />
           </div>
         </div>

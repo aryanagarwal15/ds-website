@@ -36,7 +36,6 @@ export default function HomeView({ locale }: { locale: Locale }) {
           </div>
 
           <div className="relative mx-auto flex w-full max-w-[460px] justify-center" aria-hidden={false}>
-            <div className="hero-glow" aria-hidden="true" />
             <div className="absolute left-0 top-10 hidden -rotate-6 opacity-90 sm:block">
               <PhoneShot src={c.hero.screenBack} alt={c.hero.altBack} width={230} />
             </div>
