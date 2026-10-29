@@ -27,7 +27,7 @@ export function PressView() {
   ];
   const logos = [
     { file: "/logo/divinesarathi-mark-goldink.svg", label: "Mark, gold ink (light backgrounds)" },
-    { file: "/logo/divinesarathi-mark-ivory.svg", label: "Mark, ivory (dark backgrounds)" },
+    { file: "/logo/divinesarathi-mark-ivory.svg", label: "Mark, ivory (dark backgrounds)", dark: true },
     { file: "/logo/divinesarathi-appicon-indigo.svg", label: "App icon, gold on indigo" },
   ];
   return (
@@ -55,8 +55,10 @@ export function PressView() {
           <ul className="!list-none !pl-0 mt-6 grid gap-4 sm:grid-cols-3">
             {logos.map((l) => (
               <li key={l.file} className="dcard flex flex-col items-center gap-3 p-5 text-center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={l.file} alt={l.label} className="h-20 w-20" />
+                <span className={`flex h-24 w-24 items-center justify-center rounded-2xl ${"dark" in l ? "bg-[#053466]" : ""}`}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={l.file} alt={l.label} className="h-20 w-20" />
+                </span>
                 <a href={l.file} download className="text-[0.92rem]">{l.label}</a>
               </li>
             ))}

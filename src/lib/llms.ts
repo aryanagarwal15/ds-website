@@ -20,7 +20,7 @@ export function generateLlmsTxt(): string {
 
 > ${SUMMARY}
 
-Key facts: free to download; text chat with Krishna, the daily story, the Gita and meditation are free; languages English and Hindi; ${RATINGS.appStore.value.toFixed(1)} on the App Store and ${RATINGS.googlePlay.value.toFixed(1)} on Google Play (as of ${RATINGS.asOf}); ${RATINGS.downloads} downloads on Google Play. Krishna AI is an AI, not Krishna, and gives no medical, legal or financial advice. No audio of your voice is saved; written transcripts are kept, never sold, and deleted with the account. Contact: ${CONTACT_EMAIL}.
+Key facts: free to download; text chat with Krishna, the daily story, the Gita and meditation are free; languages English and Hindi; ${RATINGS.appStore.value.toFixed(1)} on the App Store and ${RATINGS.googlePlay.value.toFixed(1)} on Google Play (as of ${RATINGS.asOf}); ${RATINGS.downloads} downloads on Google Play. Krishna AI is an AI, not Krishna, and is not meant for medical, legal or financial advice. No audio of your voice is saved; written transcripts are kept, never sold, and deleted with the account. Contact: ${CONTACT_EMAIL}.
 
 ## In the app
 
