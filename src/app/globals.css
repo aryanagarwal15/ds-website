@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────────────────────
-   Sarathi Design System v1.4 — design tokens
+   Sarathi Design System v1.4 - design tokens
    Source of truth: design-system/sarathi-design-system-v1.4.html
    Never hard-code a hex in components. Use these variables.
    ───────────────────────────────────────────────────────────── */
@@ -40,7 +40,7 @@
   --ds-shadow-2: 0 4px 12px rgba(36, 27, 14, 0.07), 0 12px 32px rgba(36, 27, 14, 0.07);
   --ds-shadow-3: 0 12px 28px rgba(36, 27, 14, 0.1), 0 28px 64px rgba(36, 27, 14, 0.12);
 
-  /* motion — the aarti principles */
+  /* motion - the aarti principles */
   --ds-ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
   --ds-duration-fast: 150ms;
   --ds-duration-ui: 250ms;
@@ -151,6 +151,11 @@ h3 {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* Devanagari on English pages (the Hindi link, the tagline) uses the phone's own font, so English pages never download the Hindi web fonts. */
+.deva-system {
+  font-family: "Kohinoor Devanagari", "Noto Sans Devanagari", "Mangal", system-ui, sans-serif;
 }
 
 @layer components {

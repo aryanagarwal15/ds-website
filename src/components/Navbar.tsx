@@ -59,7 +59,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
         </div>
 
         <div className="flex items-center gap-2">
-          <Link href={switchHref} hrefLang={locale === "en" ? "hi" : "en"} aria-label={t.language.aria} className="nav-link">
+          <Link href={switchHref} hrefLang={locale === "en" ? "hi" : "en"} aria-label={t.language.aria} className={`nav-link ${locale === "en" ? "deva-system" : ""}`}>
             {t.language.label}
           </Link>
           <span className="hidden sm:inline-flex">

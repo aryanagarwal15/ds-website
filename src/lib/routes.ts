@@ -135,7 +135,7 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
   plus: {
     en: "/plus",
     hi: null,
-    name: { en: "Sarathi Plus", hi: "सारथी प्लस" },
+    name: { en: "Sarathi Plus", hi: "Sarathi Plus" },
     title: {
       en: "Sarathi Plus: More Time Talking with Krishna",
       hi: "सारथी प्लस: कृष्ण से बात करने के लिए और समय",

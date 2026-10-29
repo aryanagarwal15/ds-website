@@ -50,7 +50,7 @@ export const FAQS: Record<Locale, FaqGroup[]> = {
         {
           id: "is-it-really-krishna",
           q: "Is it really Krishna?",
-          a: "No. Krishna AI is an AI, and the app says so. It is inspired by Krishna's teachings in the Gita and does not claim to replace scripture, tradition or your teachers.",
+          a: "No. Krishna AI is an AI that speaks in Krishna's voice, and the app tells you so when you begin. It is inspired by Krishna's teachings in the Gita and does not claim to replace scripture, tradition or your teachers.",
         },
         {
           id: "what-can-i-ask",
@@ -60,7 +60,7 @@ export const FAQS: Record<Locale, FaqGroup[]> = {
         {
           id: "what-it-does-not-do",
           q: "What does Krishna AI not do?",
-          a: "It does not give medical, legal or financial advice, predict the future or offer astrological remedies. In a crisis, please reach a doctor or a helpline near you.",
+          a: "It is not meant for medical, legal or financial advice, predictions or astrological remedies, and like any AI it can get things wrong. In an emergency, call 112. For someone to talk to, Tele-MANAS is free on 14416.",
         },
         {
           id: "do-i-have-to-follow",
@@ -132,7 +132,7 @@ export const FAQS: Record<Locale, FaqGroup[]> = {
         {
           id: "is-it-really-krishna",
           q: "क्या ये सच में कृष्ण हैं?",
-          a: "नहीं। कृष्ण AI एक AI है, और ऐप यह साफ़ बताता है। यह गीता में कृष्ण की सीख से प्रेरित है और शास्त्र, परंपरा या आपके गुरुओं की जगह लेने का दावा नहीं करता।",
+          a: "नहीं। कृष्ण AI एक AI है जो कृष्ण की आवाज़ में बात करता है, और ऐप शुरू में ही यह बता देता है। यह गीता में कृष्ण की सीख से प्रेरित है और शास्त्र, परंपरा या आपके गुरुओं की जगह लेने का दावा नहीं करता।",
         },
         {
           id: "what-can-i-ask",
@@ -142,7 +142,7 @@ export const FAQS: Record<Locale, FaqGroup[]> = {
         {
           id: "what-it-does-not-do",
           q: "कृष्ण AI क्या नहीं करता?",
-          a: "यह इलाज, क़ानूनी या पैसों से जुड़ी सलाह नहीं देता, भविष्य नहीं बताता और ज्योतिषीय उपाय नहीं सुझाता। किसी संकट में कृपया पास के डॉक्टर या हेल्पलाइन से संपर्क करें।",
+          a: "यह इलाज, क़ानूनी या पैसों से जुड़ी सलाह, भविष्यवाणी या ज्योतिषीय उपायों के लिए नहीं बना है, और किसी भी AI की तरह इससे भी ग़लती हो सकती है। आपात स्थिति में 112 पर कॉल करें। किसी से बात करनी हो तो Tele-MANAS पर 14416 मुफ़्त है।",
         },
         {
           id: "do-i-have-to-follow",

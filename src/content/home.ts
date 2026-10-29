@@ -74,7 +74,7 @@ export const HOME: Record<Locale, HomeCopy> = {
       title: "What you say stays between you and Krishna",
       items: [
         { title: "Your voice is never saved", body: "We keep a written transcript so the conversation can continue. No audio is stored." },
-        { title: "Your data is never sold", body: "Not to advertisers, not to anyone." },
+        { title: "Your data is never sold", body: "We don't sell what you share, to anyone, ever." },
         { title: "Delete everything, anytime", body: "Delete your account in the app and your conversations go with it." },
       ],
       links: [
@@ -146,7 +146,7 @@ export const HOME: Record<Locale, HomeCopy> = {
       title: "आप जो कहते हैं, वह आपके और कृष्ण के बीच रहता है",
       items: [
         { title: "आपकी आवाज़ कभी सेव नहीं होती", body: "बातचीत आगे बढ़ सके, इसलिए हम लिखित रूप रखते हैं। कोई ऑडियो नहीं रखा जाता।" },
-        { title: "आपका डेटा कभी बेचा नहीं जाता", body: "न विज्ञापन देने वालों को, न किसी और को।" },
+        { title: "आपका डेटा कभी बेचा नहीं जाता", body: "आप जो साझा करते हैं, हम उसे कभी किसी को नहीं बेचते।" },
         { title: "जब चाहें, सब कुछ डिलीट करें", body: "ऐप में अकाउंट डिलीट करें, आपकी बातचीत भी साथ में मिट जाती है।" },
       ],
       links: [

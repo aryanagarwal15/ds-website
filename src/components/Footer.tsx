@@ -70,7 +70,7 @@ export default function Footer({ locale }: { locale: Locale }) {
         </div>
 
         <div className="overflow-hidden pb-2 pt-10" aria-hidden="true">
-          <p className="text-center font-serif text-[1rem] text-gold">{SITE_TAGLINE.hi}</p>
+          <p className={`text-center text-[1rem] text-gold ${locale === "en" ? "deva-system" : "font-serif"}`}>{SITE_TAGLINE.hi}</p>
           <p className="footer-wordmark">DivineSarathi</p>
         </div>
       </div>

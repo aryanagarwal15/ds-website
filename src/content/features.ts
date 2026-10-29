@@ -52,7 +52,7 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         alt: "A devotee writes that exams are next week, and Krishna answers with a breath, Gita 2.47 and a question back",
       },
       note: {
-        text: "Krishna AI is an AI inspired by Krishna's teachings. It is not Krishna, a guru or a doctor, and it says so.",
+        text: "Krishna AI is an AI inspired by Krishna's teachings. It is not Krishna, a guru or a doctor, and the app tells you so.",
         link: { key: "howItWorks", label: "How Krishna AI works" },
       },
       faqs: [
@@ -90,7 +90,7 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         alt: "कोई लिखता है कि अगले हफ़्ते परीक्षा है, और कृष्ण एक साँस, गीता 2.47 और एक सवाल के साथ जवाब देते हैं",
       },
       note: {
-        text: "कृष्ण AI, कृष्ण की सीख से प्रेरित एक AI है। ये कृष्ण नहीं हैं, न कोई गुरु या डॉक्टर, और ऐप यह साफ़ बताता है।",
+        text: "कृष्ण AI, कृष्ण की सीख से प्रेरित एक AI है। ये कृष्ण नहीं हैं, न कोई गुरु या डॉक्टर, और ऐप यह बताता है।",
         link: { key: "howItWorks", label: "कृष्ण AI कैसे काम करता है" },
       },
       faqs: [
