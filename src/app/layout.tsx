@@ -1,18 +1,9 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter, Noto_Sans_Devanagari, Noto_Serif_Devanagari } from "next/font/google";
 import Script from "next/script";
 import JsonLd from "@/components/JsonLd";
-import {
-  DEFAULT_OG_IMAGE,
-  GOOGLE_ANALYTICS_ID,
-  GOOGLE_SITE_VERIFICATION,
-  SITE_DESCRIPTION,
-  SITE_NAME,
-  SITE_URL,
-  buildHreflangAlternates,
-  organizationJsonLd,
-  websiteJsonLd,
-} from "@/lib/seo";
+import { GOOGLE_ANALYTICS_ID, GOOGLE_SITE_VERIFICATION, SITE_NAME, SITE_URL } from "@/lib/site";
+import { organizationLd, websiteLd } from "@/lib/seo";
 import "./globals.css";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -30,7 +21,24 @@ const inter = Inter({
   display: "swap",
 });
 
-const DEFAULT_TITLE = `${SITE_NAME}: Talk with Krishna | Voice AI Bhagavad Gita Companion`;
+// Devanagari faces only download when Devanagari text is on the page (unicode-range).
+const devaSans = Noto_Sans_Devanagari({
+  subsets: ["devanagari"],
+  variable: "--font-deva-sans",
+  weight: ["400", "500", "600"],
+  display: "swap",
+  preload: false,
+});
+
+const devaSerif = Noto_Serif_Devanagari({
+  subsets: ["devanagari"],
+  variable: "--font-deva-serif",
+  weight: ["500", "600"],
+  display: "swap",
+  preload: false,
+});
+
+const DEFAULT_TITLE = "DivineSarathi: Talk to Krishna AI, Bhagavad Gita app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -38,7 +46,6 @@ export const metadata: Metadata = {
     default: DEFAULT_TITLE,
     template: `%s | ${SITE_NAME}`,
   },
-  description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
   authors: [{ name: "Mohith Mahadevan" }, { name: "Aryan Agarwal" }],
   creator: SITE_NAME,
@@ -50,51 +57,18 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
-  alternates: {
-    canonical: SITE_URL,
-    languages: buildHreflangAlternates("home"),
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_IN",
-    url: SITE_URL,
-    siteName: SITE_NAME,
-    title: DEFAULT_TITLE,
-    description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: DEFAULT_OG_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: `${SITE_NAME}, the Bhagavad Gita spiritual companion app`,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@DivineSarathi",
-    creator: "@DivineSarathi",
-    title: DEFAULT_TITLE,
-    description: SITE_DESCRIPTION,
-    images: [DEFAULT_OG_IMAGE],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+};
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fcf9f2" },
+    { media: "(prefers-color-scheme: dark)", color: "#111826" },
+  ],
 };
 
 export default function RootLayout({
@@ -103,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorantGaramond.variable} ${inter.variable}`}>
+    <html lang="en" className={`${cormorantGaramond.variable} ${inter.variable} ${devaSans.variable} ${devaSerif.variable}`}>
       <body className="antialiased">
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
@@ -117,7 +91,7 @@ export default function RootLayout({
             gtag('config', '${GOOGLE_ANALYTICS_ID}');
           `}
         </Script>
-        <JsonLd data={[organizationJsonLd, websiteJsonLd]} />
+        <JsonLd data={[organizationLd, websiteLd]} />
         {children}
       </body>
     </html>

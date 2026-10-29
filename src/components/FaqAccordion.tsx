@@ -1,16 +1,11 @@
-type Faq = { readonly q: string; readonly a: string };
+type Faq = { readonly id?: string; readonly q: string; readonly a: string };
 
-type FaqAccordionProps = {
-  faqs: ReadonlyArray<Faq>;
-  className?: string;
-};
-
-/** Native details/summary accordion: keyboard and screen-reader friendly by default. */
-export default function FaqAccordion({ faqs, className = "" }: FaqAccordionProps) {
+/** Native details/summary accordion: keyboard and screen-reader friendly, each question linkable by its id. */
+export default function FaqAccordion({ faqs, className = "" }: { faqs: ReadonlyArray<Faq>; className?: string }) {
   return (
     <div className={className}>
       {faqs.map((faq) => (
-        <details key={faq.q} className="faq">
+        <details key={faq.q} id={faq.id} className="faq">
           <summary>{faq.q}</summary>
           <div>
             <p>{faq.a}</p>

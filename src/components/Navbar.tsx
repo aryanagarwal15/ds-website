@@ -4,105 +4,99 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import { UI } from "@/content/ui";
+import { ROUTES, hindiPath, pathFor, type Locale, type RouteKey } from "@/lib/routes";
+import { storeLink } from "@/lib/site";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/faqs", label: "FAQs" },
-];
+/** The same page in the other language, or that language's home if it has no twin. */
+function otherLanguagePath(pathname: string, locale: Locale): string {
+  const key = (Object.keys(ROUTES) as RouteKey[]).find(
+    (k) => ROUTES[k].en === pathname || hindiPath(k) === pathname,
+  );
+  if (locale === "en") return key && hindiPath(key) ? (hindiPath(key) as string) : "/hi";
+  return key ? ROUTES[key].en : "/";
+}
 
-export default function Navbar() {
-  const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
+/**
+ * One fixed-height bar, the same in every state: no shrinking, no detaching on
+ * scroll. Only the hairline under it appears once the page has scrolled.
+ */
+export default function Navbar({ locale }: { locale: Locale }) {
+  const t = UI[locale];
+  const pathname = usePathname() || "/";
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  useEffect(() => setOpen(false), [pathname]);
 
-  const floating = scrolled && !open;
+  const links = t.nav.map((k) => ({ key: k, href: pathFor(k, locale), label: ROUTES[k].name[locale] }));
+  const switchHref = otherLanguagePath(pathname, locale);
 
   return (
-    <header className="sticky top-0 z-50 flow-root">
-      <div className={`nav-shell ${floating ? "is-floating" : ""} ${open ? "is-open" : ""}`}>
-        <nav
-          className="ds-container flex items-center justify-between"
-          style={{ height: floating ? 56 : 64, transition: "height 0.35s var(--ds-ease-settle)" }}
-          aria-label="Main"
-        >
-          <Logo markSize={floating ? 28 : 32} />
+    <header className={`site-nav ${scrolled || open ? "is-scrolled" : ""}`}>
+      <a href="#main" className="skip-link">{t.skip}</a>
+      <nav className="ds-container flex h-16 items-center justify-between gap-4" aria-label="Main">
+        <Logo locale={locale} />
 
-          {/* desktop */}
-          <div className="hidden items-center gap-1 md:flex">
-            {links.map((link) => {
-              const active = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`rounded-full px-4 py-2 text-[0.92rem] font-medium transition-colors duration-150 ${
-                    active ? "text-saffron" : "text-ink-soft hover:bg-gold-soft hover:text-ink"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-            <Link href="/download" className={`btn btn-primary ml-3 ${floating ? "!min-h-[38px] !py-1.5" : ""}`}>
-              Get the app
+        <div className="hidden items-center gap-1 lg:flex">
+          {links.map((l) => (
+            <Link
+              key={l.key}
+              href={l.href}
+              aria-current={pathname === l.href ? "page" : undefined}
+              className={`nav-link ${pathname === l.href ? "is-active" : ""}`}
+            >
+              {l.label}
             </Link>
-          </div>
+          ))}
+        </div>
 
-          {/* mobile toggle */}
+        <div className="flex items-center gap-2">
+          <Link href={switchHref} hrefLang={locale === "en" ? "hi" : "en"} aria-label={t.language.aria} className="nav-link">
+            {t.language.label}
+          </Link>
+          <span className="hidden sm:inline-flex">
+            <a href={storeLink(null, "nav", "get-app")} className="btn btn-primary !min-h-[40px] !px-5 !py-2">
+              {t.getApp}
+            </a>
+          </span>
           <button
             type="button"
-            className="flex h-11 w-11 items-center justify-center rounded-full text-ink md:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-full text-ink lg:hidden"
             aria-expanded={open}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-controls="mobile-menu"
+            aria-label={open ? t.menuClose : t.menuOpen}
             onClick={() => setOpen((v) => !v)}
           >
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
               {open ? (
-                <path d="M4 4l14 14M18 4L4 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                <path d="M5 5l12 12M17 5L5 17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
               ) : (
-                <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                <path d="M3 7h16M3 15h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
               )}
             </svg>
           </button>
-        </nav>
+        </div>
+      </nav>
 
-        {/* mobile sheet */}
-        {open && (
-          <div
-            className="border-t md:hidden"
-            style={{ borderColor: "var(--ds-line-soft)", background: "var(--ds-paper)" }}
-          >
-            <div className="ds-container flex flex-col gap-1 py-4">
-              {links.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`rounded-xl px-4 py-3 text-[1rem] font-medium ${
-                    pathname === link.href ? "text-saffron" : "text-ink-soft"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Link href="/download" className="btn btn-primary mt-2 w-full">
-                Get the app
-              </Link>
-            </div>
-          </div>
-        )}
+      <div id="mobile-menu" hidden={!open} className="border-t border-[var(--ds-line-soft)] bg-[var(--ds-paper)] lg:hidden">
+        <div className="ds-container flex flex-col py-3">
+          {links.map((l) => (
+            <Link key={l.key} href={l.href} className={`rounded-xl px-2 py-3 text-[1.05rem] font-medium ${pathname === l.href ? "text-saffron" : "text-ink"}`}>
+              {l.label}
+            </Link>
+          ))}
+          <a href={storeLink(null, "nav", "get-app-menu")} className="btn btn-primary mt-3 w-full">
+            {t.getApp}
+          </a>
+        </div>
       </div>
     </header>
   );

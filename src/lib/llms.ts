@@ -1,96 +1,83 @@
-import { faqs } from "@/lib/faqs";
-import {
-  APP_STORE_URL,
-  CONTACT_EMAIL,
-  PLAY_STORE_URL,
-  SITE_DESCRIPTION,
-  SITE_NAME,
-  SITE_URL,
-  SOCIAL_PROFILES,
-} from "@/lib/seo";
+import { FAQS } from "@/content/faqs";
+import { FEATURES, type FeatureKey } from "@/content/features";
+import { ROUTES, hindiPath, routesInGroup, type RouteKey } from "./routes";
+import { abs } from "./seo";
+import { APP_STORE_URL, CONTACT_EMAIL, FOUNDERS, PLAY_STORE_URL, RATINGS, SITE_NAME, SOCIAL } from "./site";
 
-const POSITIONING = `${SITE_NAME} is Krishna AI: a voice companion for the ups and downs of daily life. People want a way to understand what they are going through and start looking inward, but do not know where to begin or whom to trust. In India especially, it is faith and culture that have always helped people through hard times. DivineSarathi gives that faith a voice you can talk to: users speak with Krishna about work, relationships, worries, and ordinary days, and hear answers rooted in the Bhagavad Gita and other sacred texts. It is a companion, not a temple and not a spa: Daily Puja, meditation, and conversation all live in the same simple voice-first app, and every answer cites scripture. Rated 4.8 with 120+ reviews across the App Store and Google Play. Tagline: "Your charioteer, always." (Hindi: सदा आपका सारथी)`;
+/**
+ * llms.txt and llms-full.txt, generated from the same route list and content
+ * as the pages, so what AI assistants read is always what the site says.
+ */
 
-const FEATURES = `Core features:
-- Krishna AI: talk through life's questions by voice, in English or Hindi, and receive grounded answers drawn from the Bhagavad Gita, the Mahabharata, and other sacred texts.
-- Gita for Daily Life: pick a real situation (for example, when work feels pointless) and receive the verse that meets it.
-- Daily Puja: a short, guided puja ritual you can do from your phone.
-- Read Bhagavad Gita: all 18 chapters, verse by verse, at your own pace, with visible progress.
-- Meditation: breath practices drawn from the tradition.
-- Daily stories: a three-minute sacred story every morning, easy to follow.
+const SUMMARY = `${SITE_NAME} is a free app for iPhone and Android where people talk with Krishna AI, an AI voice grounded in the Bhagavad Gita, by voice or text, in English or Hindi. It also has a sacred story every morning, the Bhagavad Gita verse by verse (18 chapters, 700 shlokas), Daily Sadhana and guided breath meditation. Made in India by ${FOUNDERS.map((f) => f.name).join(" and ")}.`;
 
-Pricing: free tier includes the daily story and one hour of voice conversation with Krishna every day. A paid plan (SarathiPlus) removes limits. No visible token systems, no time-limited offers.
-
-Privacy: audio is never stored. Transcripts are saved to the user's History so they can return to them, and any conversation can be deleted at any time. Personal data is not sold.`;
-
-const ABOUT = `Founded by Mohith Mahadevan (BITS Pilani; MBA, London Business School; previously CEO's office at Navi) and Aryan Agarwal (BITS Pilani; co-founder and CTO of Yenmo, a Y Combinator backed fintech). Friends for over a decade, both grew up with these teachings. Contact: ${CONTACT_EMAIL}.`;
+const line = (k: RouteKey) => `- [${ROUTES[k].name.en}](${abs(ROUTES[k].en)}): ${ROUTES[k].description.en}`;
+const FEATURE_KEYS: FeatureKey[] = ["krishnaAi", "gita", "dailyPuja", "dhyana"];
 
 export function generateLlmsTxt(): string {
+  const hindi = (Object.keys(ROUTES) as RouteKey[]).filter((k) => hindiPath(k) && ROUTES[k].index);
   return `# ${SITE_NAME}
 
-> ${SITE_DESCRIPTION}
+> ${SUMMARY}
 
-${POSITIONING}
+Key facts: free to download; text chat with Krishna, the daily story, the Gita and meditation are free; languages English and Hindi; ${RATINGS.appStore.value.toFixed(1)} on the App Store and ${RATINGS.googlePlay.value.toFixed(1)} on Google Play (as of ${RATINGS.asOf}); ${RATINGS.downloads} downloads on Google Play. Krishna AI is an AI, not Krishna, and gives no medical, legal or financial advice. No audio of your voice is saved; written transcripts are kept, never sold, and deleted with the account. Contact: ${CONTACT_EMAIL}.
 
-## Product
+## In the app
 
-- [Home](${SITE_URL}/): What DivineSarathi is and how it fits into a day.
-- [Download](${SITE_URL}/download): Get the free app on the App Store and Google Play.
+${line("home")}
+${FEATURE_KEYS.map(line).join("\n")}
+
+## Get the app
+
 - [App Store](${APP_STORE_URL}): DivineSarathi for iPhone and iPad.
 - [Google Play](${PLAY_STORE_URL}): DivineSarathi for Android.
+${line("download")}
 
-## About
+## Company
 
-- [About Us](${SITE_URL}/about): Mission, the founders, and why DivineSarathi was built.
-- [FAQs](${SITE_URL}/faqs): Common questions about Krishna AI, privacy, scriptures, and how the app works.
+${routesInGroup("company").map(line).join("\n")}
 
-## Legal & Reference
+## Trust and legal
 
-- [Privacy Policy](${SITE_URL}/privacy-policy): How DivineSarathi handles user data, conversations, and account information.
-- [Sitemap](${SITE_URL}/sitemap.xml): Machine-readable index of all public pages.
-- [Full content for AI](${SITE_URL}/llms-full.txt): Complete markdown corpus of key site content for single-fetch ingestion.
+${routesInGroup("legal").map(line).join("\n")}
 
-## Social
+## Hindi (हिंदी)
 
-${SOCIAL_PROFILES.map((url) => `- ${url}`).join("\n")}
+${hindi.map((k) => `- [${ROUTES[k].name.hi}](${abs(hindiPath(k) as string)}): ${ROUTES[k].description.hi}`).join("\n")}
+
+## More
+
+- [Full text for AI assistants](${abs("/llms-full.txt")}): the pages above as plain text in one file.
+- [Sitemap](${abs("/sitemap.xml")})
+${Object.values(SOCIAL).map((u) => `- ${u}`).join("\n")}
 `;
 }
 
 export function generateLlmsFullTxt(): string {
-  const faqSection = faqs
-    .map((faq) => `### ${faq.q}\n\n${faq.a}`)
-    .join("\n\n");
+  const features = FEATURE_KEYS.map((k) => {
+    const f = FEATURES[k].en;
+    return `## ${ROUTES[k].name.en}
 
-  return `# ${SITE_NAME}: Full Content Corpus
+URL: ${abs(ROUTES[k].en)}
 
-> ${SITE_DESCRIPTION}
+${f.lede}
 
----
+${f.points.map((p) => `- **${p.title}.** ${p.body}`).join("\n")}
 
-## Positioning
+${f.detail.listTitle}:
+${f.detail.list.map((x) => `- ${x}`).join("\n")}
 
-${POSITIONING}
-
-## Features and pricing
-
-${FEATURES}
-
-## Links
-
-- Website: ${SITE_URL}
-- App Store: ${APP_STORE_URL}
-- Google Play: ${PLAY_STORE_URL}
-- Languages: English (en-IN), Hindi (hi-IN)
-- Contact: ${CONTACT_EMAIL}
-
-## About the company
-
-${ABOUT}
+${f.faqs.map((q) => `### ${q.q}\n\n${q.a}`).join("\n\n")}`;
+  }).join("\n\n");
+  const faqs = FAQS.en.map((g) => `## FAQs: ${g.title}\n\n${g.items.map((q) => `### ${q.q}\n\n${q.a}`).join("\n\n")}`).join("\n\n");
+  return `${generateLlmsTxt()}
 
 ---
 
-## Frequently asked questions
+# ${SITE_NAME}, in full
 
-${faqSection}
+${features}
+
+${faqs}
 `;
 }
