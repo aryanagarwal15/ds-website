@@ -37,7 +37,7 @@ export const faqs = [
   },
   {
     q: "Is my conversation private?",
-    a: "Yes. Your conversations with DivineSarathi are treated with care and respect for your privacy. Your voice is not recorded, and your conversations are not shared publicly. DivineSarathi is designed to provide a safe and personal space for reflection.",
+    a: "Yes. Your conversations with DivineSarathi are treated with care and respect for your privacy. We don't save audio of your voice. We keep a written transcript of each conversation so the app can work and get better, and it is never shared publicly or sold. Deleting your account deletes your conversations and their transcripts.",
   },
   {
     q: "Can I delete my account?",

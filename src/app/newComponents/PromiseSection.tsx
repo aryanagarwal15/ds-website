@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 import SectionHeader from "./SectionHeader";
 
 const items = [
-  { icon: "/images/promise/block_mic_d.webp", label: "No recordings saved" },
+  { icon: "/images/promise/block_mic_d.webp", label: "Voice never saved" },
   { icon: "/images/promise/user_shield_d.webp", label: "Private & secure" },
   { icon: "/images/promise/scales_d.webp", label: "Unbiased guidance" },
   { icon: "/images/promise/scroll_d.webp", label: "Rooted in scripture" },
