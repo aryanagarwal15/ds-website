@@ -1,7 +1,8 @@
 import type { Faq } from "./faqs";
 import type { Locale, RouteKey } from "@/lib/routes";
+import { FREE } from "@/lib/site";
 
-export type FeatureKey = "krishnaAi" | "gita" | "dailyPuja" | "dhyana";
+export type FeatureKey = "krishnaAi" | "gita" | "sadhana" | "meditation";
 
 export type FeatureCopy = {
   eyebrow: string;
@@ -20,8 +21,8 @@ export type FeatureCopy = {
 export const FEATURE_ICONS: Record<FeatureKey, "feather" | "book" | "diya" | "lotus"> = {
   krishnaAi: "feather",
   gita: "book",
-  dailyPuja: "diya",
-  dhyana: "lotus",
+  sadhana: "diya",
+  meditation: "lotus",
 };
 
 export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
@@ -42,27 +43,29 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         body: "Say what happened today. Krishna might take a breath with you first, share a line Arjuna once heard on the battlefield, and then ask what feels heaviest. You stay in charge of what you take from it.",
         listTitle: "Things people ask Krishna",
         list: [
-          "My exams are next week and I can't stop worrying.",
+          "Is my future already fixed, or can I change it?",
+          "Will I pass my exam? I can't stop worrying.",
+          "I don't like my job, but I'm scared to leave. What should I do?",
+          "My family wants me to get married and I'm not ready.",
           "How do I stop comparing my life to everyone else's?",
-          "What does it mean to work without attachment to results?",
-          "Tell me a story about patience.",
           "What does Bhagavad Gita 2.47 mean for me?",
         ],
         src: "/images/app/krishna-chat-exams.webp",
         alt: "A devotee writes that exams are next week, and Krishna answers with a breath, Gita 2.47 and a question back",
       },
       note: {
-        text: "Krishna AI is an AI inspired by Krishna's teachings. It is not Krishna, a guru or a doctor, and the app tells you so.",
+        text: "Krishna AI is an AI inspired by Krishna's teachings. It is not Krishna, a guru or a doctor. It doesn't make predictions either: ask “will I pass?” and Krishna helps you prepare and steady your mind instead.",
         link: { key: "howItWorks", label: "How Krishna AI works" },
       },
       faqs: [
         { id: "krishna-ai-free", q: "Is Krishna AI free?", a: "Yes. The app is free to download, and text chat with Krishna is free for everyone." },
         { id: "krishna-ai-hindi", q: "Can I talk to Krishna AI in Hindi?", a: "Yes. Krishna AI speaks English and Hindi. Choose your language in the app and change it any time in Profile." },
         { id: "krishna-ai-real", q: "Is Krishna AI really Krishna?", a: "No. It is an AI inspired by Krishna and grounded in the Bhagavad Gita. It does not replace scripture, tradition or your teachers." },
+        { id: "krishna-ai-krishan", q: "Is Krishan AI the same as Krishna AI?", a: "Yes. Many people say and spell the name as Krishan, so you may see it written as Krishan AI. In the DivineSarathi app it is called Krishna AI." },
         { id: "krishna-ai-private", q: "Are my conversations with Krishna AI private?", a: "Yes. We don't save audio of your voice. We keep a written transcript so the conversation can continue, never share it publicly or sell it, and delete it when you delete your account." },
       ],
       related: { title: "More in the app" },
-      close: { title: "Whatever is on your mind, Krishna is listening.", body: "Free on iPhone and Android, in English and Hindi." },
+      close: { title: "Whatever is on your mind, Krishna is listening.", body: `${FREE.en.on}, in English and Hindi.` },
     },
     hi: {
       eyebrow: "कृष्ण AI",
@@ -80,17 +83,18 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         body: "बताइए आज क्या हुआ। कृष्ण शायद पहले आपके साथ एक गहरी साँस लें, फिर वह पंक्ति सुनाएँ जो कभी अर्जुन ने रणभूमि में सुनी थी, और फिर पूछें कि सबसे भारी क्या लग रहा है। आप उसमें से क्या लेते हैं, यह आप तय करते हैं।",
         listTitle: "लोग कृष्ण से क्या पूछते हैं",
         list: [
-          "अगले हफ़्ते परीक्षा है और चिंता रुक नहीं रही।",
+          "क्या मेरा भविष्य पहले से लिखा है, या इसे बदला जा सकता है?",
+          "क्या परीक्षा पास हो जाएगी? चिंता रुक नहीं रही।",
+          "नौकरी पसंद नहीं, पर छोड़ने से डर लगता है। क्या करूँ?",
+          "घरवाले शादी के लिए कह रहे हैं, पर मन अभी तैयार नहीं।",
           "दूसरों से अपनी तुलना करना कैसे बंद करूँ?",
-          "फल की चिंता किए बिना कर्म करने का क्या मतलब है?",
-          "धैर्य पर कोई कहानी सुनाइए।",
           "भगवद गीता 2.47 का मेरे लिए क्या अर्थ है?",
         ],
         src: "/images/app/krishna-chat-exams.webp",
         alt: "कोई लिखता है कि अगले हफ़्ते परीक्षा है, और कृष्ण एक साँस, गीता 2.47 और एक सवाल के साथ जवाब देते हैं",
       },
       note: {
-        text: "कृष्ण AI, कृष्ण की सीख से प्रेरित एक AI है। ये कृष्ण नहीं हैं, न कोई गुरु या डॉक्टर, और ऐप यह बताता है।",
+        text: "कृष्ण AI, कृष्ण की सीख से प्रेरित एक AI है। ये कृष्ण नहीं हैं, न कोई गुरु या डॉक्टर। यह भविष्यवाणी भी नहीं करता: “क्या परीक्षा पास हो जाएगी?” पूछें, तो कृष्ण तैयारी करने और मन को स्थिर रखने में मदद करते हैं।",
         link: { key: "howItWorks", label: "कृष्ण AI कैसे काम करता है" },
       },
       faqs: [
@@ -100,7 +104,7 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         { id: "krishna-ai-private", q: "क्या कृष्ण AI से मेरी बातचीत निजी रहती है?", a: "हाँ। हम आपकी आवाज़ की रिकॉर्डिंग सेव नहीं करते। बातचीत आगे बढ़ सके, इसलिए लिखित रूप रखते हैं, उसे न सार्वजनिक करते हैं न बेचते हैं, और अकाउंट डिलीट करने पर मिटा देते हैं।" },
       ],
       related: { title: "ऐप में और भी" },
-      close: { title: "मन में जो भी हो, कृष्ण सुन रहे हैं।", body: "iPhone और Android पर मुफ़्त, हिंदी और अंग्रेज़ी में।" },
+      close: { title: "मन में जो भी हो, कृष्ण सुन रहे हैं।", body: `${FREE.hi.on}, हिंदी और अंग्रेज़ी में।` },
     },
   },
 
@@ -139,7 +143,7 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         { id: "gita-hindi", q: "Can I learn the Gita in Hindi?", a: "Yes. Set the app to Hindi and Krishna explains each verse in Hindi." },
       ],
       related: { title: "More in the app" },
-      close: { title: "Two shlokas a day. All 700 in time.", body: "Free on iPhone and Android, in English and Hindi." },
+      close: { title: "Two shlokas a day. All 700 in time.", body: `${FREE.en.on}, in English and Hindi.` },
     },
     hi: {
       eyebrow: "भगवद गीता",
@@ -175,21 +179,21 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         { id: "gita-hindi", q: "क्या गीता हिंदी में सीख सकते हैं?", a: "हाँ। ऐप की भाषा हिंदी कीजिए, कृष्ण हर श्लोक हिंदी में समझाएँगे।" },
       ],
       related: { title: "ऐप में और भी" },
-      close: { title: "रोज़ दो श्लोक। समय के साथ सभी 700।", body: "iPhone और Android पर मुफ़्त, हिंदी और अंग्रेज़ी में।" },
+      close: { title: "रोज़ दो श्लोक। समय के साथ सभी 700।", body: `${FREE.hi.on}, हिंदी और अंग्रेज़ी में।` },
     },
   },
 
-  dailyPuja: {
+  sadhana: {
     en: {
-      eyebrow: "Daily Puja",
+      eyebrow: "Daily Sadhana",
       title: "A sacred story every morning, and a bead on your mala",
-      lede: "Daily Puja in the DivineSarathi app is a short story from the Itihasas and Puranas each morning, told in a few minutes. Then Daily Sadhana: hear the story, two Gita shlokas, a minute with Krishna and a few minutes of stillness.",
+      lede: "Daily Sadhana in the DivineSarathi app is four small practices a day: today's story in Daily Puja, two shlokas of the Gita, a talk with Krishna and a few minutes of meditation. Keep any one and the day is yours.",
       hero: { src: "/images/app/home.webp", alt: "The app's home screen: today's story, The Cobbler and the Brahmana, with a Play today's story button" },
       points: [
-        { title: "A new story each day", body: "From the Mahabharata, the Ramayana and the Puranas, told simply." },
+        { title: "Daily Puja comes first", body: "A new story each day from the Mahabharata, the Ramayana and the Puranas, told simply." },
         { title: "A few minutes", body: "Short enough for your morning chai, deep enough to carry through the day." },
-        { title: "Daily Sadhana", body: "Puja, Gita, Krishna and meditation. The story comes first." },
-        { title: "Your mala", body: "Each day of sadhana threads a bead. The week shows as a string of beads, with no guilt." },
+        { title: "Four steps", body: "Puja, Gita, Krishna and Meditation, in any order through the day." },
+        { title: "Your mala", body: "Keep any one step and that night a bead threads onto your mala. The week shows as a string of beads, with no guilt." },
       ],
       detail: {
         title: "Four small practices that add up",
@@ -205,23 +209,23 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         alt: "Today's Sadhana: Puja, Gita, Krishna and Meditation, with a week of mala beads",
       },
       faqs: [
-        { id: "puja-what", q: "What is Daily Puja in DivineSarathi?", a: "A short story from the Itihasas and Puranas each morning, told in a few minutes, followed by Daily Sadhana." },
-        { id: "puja-sadhana", q: "What is Daily Sadhana?", a: "Four small practices for the day: listen to the story, hear two Gita shlokas, talk with Krishna for a minute and meditate for at least three minutes." },
+        { id: "puja-sadhana", q: "What is Daily Sadhana?", a: "Four small practices for the day: listen to today's story in Daily Puja, hear two Gita shlokas, talk with Krishna for a minute and meditate for at least three minutes. Keep any one and the day counts on your mala." },
+        { id: "puja-what", q: "What is Daily Puja in DivineSarathi?", a: "The first step of Daily Sadhana: a short story from the Itihasas and Puranas each morning, told in a few minutes." },
         { id: "puja-free", q: "Is the daily story free?", a: "Yes. A new story is free for everyone every day." },
       ],
       related: { title: "More in the app" },
-      close: { title: "Begin tomorrow with a story.", body: "Free on iPhone and Android, in English and Hindi." },
+      close: { title: "Begin tomorrow with a story.", body: `${FREE.en.on}, in English and Hindi.` },
     },
     hi: {
-      eyebrow: "दैनिक पूजा",
+      eyebrow: "दैनिक साधना",
       title: "हर सुबह एक पावन कथा, और माला में एक मनका",
-      lede: "DivineSarathi ऐप में दैनिक पूजा हर सुबह इतिहास और पुराणों की एक छोटी कथा है, कुछ ही मिनटों में। फिर दैनिक साधना: कथा सुनिए, गीता के दो श्लोक, कृष्ण के साथ एक मिनट और कुछ मिनट का ध्यान।",
+      lede: "DivineSarathi ऐप में दैनिक साधना दिन के चार छोटे अभ्यास हैं: दैनिक पूजा में आज की कथा, गीता के दो श्लोक, कृष्ण से बात और कुछ मिनट का ध्यान। इनमें से एक भी कर लें, तो दिन आपका।",
       hero: { src: "/images/app/home.webp", alt: "ऐप की होम स्क्रीन: आज की कथा और कथा सुनने का बटन" },
       points: [
-        { title: "रोज़ नई कथा", body: "महाभारत, रामायण और पुराणों से, सरल शब्दों में।" },
+        { title: "पहले दैनिक पूजा", body: "महाभारत, रामायण और पुराणों से रोज़ एक नई कथा, सरल शब्दों में।" },
         { title: "कुछ ही मिनट", body: "सुबह की चाय जितनी छोटी, पूरे दिन साथ रहने जितनी गहरी।" },
-        { title: "दैनिक साधना", body: "पूजा, गीता, कृष्ण और ध्यान। पहले कथा।" },
-        { title: "आपकी माला", body: "साधना का हर दिन एक मनका पिरोता है। हफ़्ता मनकों की एक लड़ी की तरह दिखता है, बिना किसी अपराध-बोध के।" },
+        { title: "चार कदम", body: "पूजा, गीता, कृष्ण और ध्यान, दिन भर में किसी भी क्रम में।" },
+        { title: "आपकी माला", body: "कोई एक कदम भी पूरा करें, तो रात को माला में एक मनका पिरोया जाता है। हफ़्ता मनकों की एक लड़ी की तरह दिखता है, बिना किसी अपराध-बोध के।" },
       ],
       detail: {
         title: "चार छोटे अभ्यास, जो मिलकर बड़े बनते हैं",
@@ -237,20 +241,20 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         alt: "आज की साधना: पूजा, गीता, कृष्ण और ध्यान, साथ में हफ़्ते भर के माला के मनके",
       },
       faqs: [
-        { id: "puja-what", q: "DivineSarathi में दैनिक पूजा क्या है?", a: "हर सुबह इतिहास और पुराणों की एक छोटी कथा, कुछ ही मिनटों में, और उसके बाद दैनिक साधना।" },
-        { id: "puja-sadhana", q: "दैनिक साधना क्या है?", a: "दिन के लिए चार छोटे अभ्यास: कथा सुनना, गीता के दो श्लोक, एक मिनट कृष्ण से बात और कम से कम तीन मिनट ध्यान।" },
+        { id: "puja-sadhana", q: "दैनिक साधना क्या है?", a: "दिन के लिए चार छोटे अभ्यास: दैनिक पूजा में आज की कथा सुनना, गीता के दो श्लोक, एक मिनट कृष्ण से बात और कम से कम तीन मिनट ध्यान। इनमें से एक भी करें, तो दिन माला में गिना जाता है।" },
+        { id: "puja-what", q: "DivineSarathi में दैनिक पूजा क्या है?", a: "दैनिक साधना का पहला कदम: हर सुबह इतिहास और पुराणों की एक छोटी कथा, कुछ ही मिनटों में।" },
         { id: "puja-free", q: "क्या रोज़ की कथा मुफ़्त है?", a: "हाँ। हर दिन एक नई कथा सबके लिए मुफ़्त है।" },
       ],
       related: { title: "ऐप में और भी" },
-      close: { title: "कल की शुरुआत एक कथा से कीजिए।", body: "iPhone और Android पर मुफ़्त, हिंदी और अंग्रेज़ी में।" },
+      close: { title: "कल की शुरुआत एक कथा से कीजिए।", body: `${FREE.hi.on}, हिंदी और अंग्रेज़ी में।` },
     },
   },
 
-  dhyana: {
+  meditation: {
     en: {
-      eyebrow: "Dhyana",
+      eyebrow: "Dhyana · Meditation",
       title: "Guided breath meditation, a few minutes at a time",
-      lede: "Dhyana in the DivineSarathi app is guided breath meditation to calm, reset and focus the mind. Choose a practice and a length from 5 to 20 minutes, or keep it open, and follow the breath on screen.",
+      lede: "Dhyana, the Meditation tab in the DivineSarathi app, is guided breath meditation to calm, reset and focus the mind. Choose a practice and a length from 5 to 20 minutes, or keep it open, and follow the breath on screen.",
       hero: { src: "/images/app/dhyana-breath.webp", alt: "A Dhyana session guiding a long breath out, over a calm sea" },
       points: [
         { title: "Follow the breath", body: "A circle on screen guides each inhale and exhale, so you never have to count." },
@@ -272,12 +276,12 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         alt: "Setting up the Extended Exhale practice: inhale 4 seconds, exhale 6 seconds, session length 10 minutes",
       },
       faqs: [
-        { id: "dhyana-what", q: "What is Dhyana in DivineSarathi?", a: "Guided breath meditation in the app. Choose a practice and a length, then follow the breath on screen." },
+        { id: "dhyana-what", q: "What is Dhyana in DivineSarathi?", a: "Dhyana is the Meditation tab in the app: guided breath meditation. Choose a practice and a length, then follow the breath on screen." },
         { id: "dhyana-length", q: "How long is a session?", a: "You choose 5, 10, 15 or 20 minutes, or an open session." },
         { id: "dhyana-free", q: "Is meditation free?", a: "Yes. Dhyana is free for everyone." },
       ],
       related: { title: "More in the app" },
-      close: { title: "Three quiet minutes is enough to begin.", body: "Free on iPhone and Android, in English and Hindi." },
+      close: { title: "Three quiet minutes is enough to begin.", body: `${FREE.en.on}, in English and Hindi.` },
     },
     hi: {
       eyebrow: "ध्यान",
@@ -309,7 +313,7 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         { id: "dhyana-free", q: "क्या ध्यान मुफ़्त है?", a: "हाँ। ध्यान सबके लिए मुफ़्त है।" },
       ],
       related: { title: "ऐप में और भी" },
-      close: { title: "शुरू करने के लिए तीन शांत मिनट काफ़ी हैं।", body: "iPhone और Android पर मुफ़्त, हिंदी और अंग्रेज़ी में।" },
+      close: { title: "शुरू करने के लिए तीन शांत मिनट काफ़ी हैं।", body: `${FREE.hi.on}, हिंदी और अंग्रेज़ी में।` },
     },
   },
 };

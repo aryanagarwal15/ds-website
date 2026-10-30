@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { ImageResponse } from "next/og";
 import { ROUTES, type RouteKey } from "@/lib/routes";
+import { FREE } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -28,7 +29,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ file: s
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "radial-gradient(120% 140% at 85% 0%, #0d4a8a 0%, #053466 55%, #031f3d 100%)",
+          background: "linear-gradient(135deg, #0A3D74 0%, #082F5A 50%, #06223F 100%)",
           color: "#f5ead0",
           fontFamily: "Cormorant",
         }}
@@ -41,7 +42,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ file: s
         <div style={{ display: "flex", fontSize: title.length > 48 ? 64 : 76, lineHeight: 1.1, maxWidth: 980 }}>{title}</div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 30, color: "#d8cdb4" }}>
           <span>Krishna AI · Bhagavad Gita · English and Hindi</span>
-          <span>Free on iPhone and Android</span>
+          <span>{FREE.en.on}</span>
         </div>
       </div>
     ),

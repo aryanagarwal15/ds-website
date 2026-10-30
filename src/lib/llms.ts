@@ -2,17 +2,17 @@ import { FAQS } from "@/content/faqs";
 import { FEATURES, type FeatureKey } from "@/content/features";
 import { ROUTES, hindiPath, routesInGroup, type RouteKey } from "./routes";
 import { abs } from "./seo";
-import { APP_STORE_URL, CONTACT_EMAIL, FOUNDERS, PLAY_STORE_URL, RATINGS, SITE_NAME, SOCIAL } from "./site";
+import { APP_STORE_URL, CONTACT_EMAIL, FOUNDERS, FREE, PLAY_STORE_URL, PLUS_PUBLIC, RATINGS, SAME_AS, SITE_ALT_NAME, SITE_NAME } from "./site";
 
 /**
  * llms.txt and llms-full.txt, generated from the same route list and content
  * as the pages, so what AI assistants read is always what the site says.
  */
 
-const SUMMARY = `${SITE_NAME} is a free app for iPhone and Android where people talk with Krishna AI, an AI voice grounded in the Bhagavad Gita, by voice or text, in English or Hindi. It also has a sacred story every morning, the Bhagavad Gita verse by verse (18 chapters, 700 shlokas), Daily Sadhana and guided breath meditation. Made in India by ${FOUNDERS.map((f) => f.name).join(" and ")}.`;
+const SUMMARY = `${SITE_NAME} (also written ${SITE_ALT_NAME}) is ${FREE.en.app} for iPhone and Android where people talk with Krishna AI, an AI voice grounded in the Bhagavad Gita, by voice or text, in English or Hindi. It also has a sacred story every morning, the Bhagavad Gita verse by verse (18 chapters, 700 shlokas), Daily Sadhana and guided breath meditation. Made in India by ${FOUNDERS.map((f) => f.name).join(" and ")}.`;
 
 const line = (k: RouteKey) => `- [${ROUTES[k].name.en}](${abs(ROUTES[k].en)}): ${ROUTES[k].description.en}`;
-const FEATURE_KEYS: FeatureKey[] = ["krishnaAi", "gita", "dailyPuja", "dhyana"];
+const FEATURE_KEYS: FeatureKey[] = ["krishnaAi", "gita", "sadhana", "meditation"];
 
 export function generateLlmsTxt(): string {
   const hindi = (Object.keys(ROUTES) as RouteKey[]).filter((k) => hindiPath(k) && ROUTES[k].index);
@@ -20,7 +20,7 @@ export function generateLlmsTxt(): string {
 
 > ${SUMMARY}
 
-Key facts: free to download; text chat with Krishna, the daily story, the Gita and meditation are free; languages English and Hindi; ${RATINGS.appStore.value.toFixed(1)} on the App Store and ${RATINGS.googlePlay.value.toFixed(1)} on Google Play (as of ${RATINGS.asOf}); ${RATINGS.downloads} downloads on Google Play. Krishna AI is an AI, not Krishna, and is not meant for medical, legal or financial advice. No audio of your voice is saved; written transcripts are kept, never sold, and deleted with the account. Contact: ${CONTACT_EMAIL}.
+Key facts: ${PLUS_PUBLIC ? "free to start, with optional Sarathi Plus for more voice time" : "free to download"}; text chat with Krishna, the daily story, the Gita and meditation are free; languages English and Hindi; ${RATINGS.appStore.value.toFixed(1)} on the App Store and ${RATINGS.googlePlay.value.toFixed(1)} on Google Play (as of ${RATINGS.asOf}); ${RATINGS.downloads} downloads on Google Play. Krishna AI is an AI, not Krishna, does not make predictions or astrological readings, and is not meant for medical, legal or financial advice. No audio of your voice is saved; written transcripts are kept, never sold, and deleted with the account. Contact: ${CONTACT_EMAIL}.
 
 ## In the app
 
@@ -49,7 +49,7 @@ ${hindi.map((k) => `- [${ROUTES[k].name.hi}](${abs(hindiPath(k) as string)}): ${
 
 - [Full text for AI assistants](${abs("/llms-full.txt")}): the pages above as plain text in one file.
 - [Sitemap](${abs("/sitemap.xml")})
-${Object.values(SOCIAL).map((u) => `- ${u}`).join("\n")}
+${SAME_AS.filter((u) => !u.includes("apps.apple") && !u.includes("play.google")).map((u) => `- ${u}`).join("\n")}
 `;
 }
 

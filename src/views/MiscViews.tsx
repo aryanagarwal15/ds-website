@@ -6,24 +6,24 @@ import { HOME } from "@/content/home";
 import { UI, formatDate } from "@/content/ui";
 import { ROUTES } from "@/lib/routes";
 import { breadcrumbLd, faqLd, webPageLd } from "@/lib/seo";
-import { APP_STORE_URL, CONTACT_EMAIL, FOUNDERS, PLAY_STORE_URL, PLUS, RATINGS, SITE_URL, SOCIAL } from "@/lib/site";
+import { APP_STORE_URL, CONTACT_EMAIL, CONTENT_PAGES, FOUNDERS, FREE, PLAY_STORE_URL, PLUS, PLUS_PUBLIC, RATINGS, SITE_URL, SOCIAL } from "@/lib/site";
 
 /** Facts in one place, for journalists and for AI assistants that need a source to quote. */
 export function PressView() {
   const facts: [string, React.ReactNode][] = [
-    ["What it is", "A free app for iPhone and Android where people talk with Krishna AI, an AI voice grounded in the Bhagavad Gita, by voice or text in English or Hindi."],
-    ["Also in the app", "A sacred story every morning (Daily Puja), the Bhagavad Gita verse by verse (18 chapters, 700 shlokas), Daily Sadhana and guided breath meditation (Dhyana)."],
+    ["What it is", `${FREE.en.app[0].toUpperCase()}${FREE.en.app.slice(1)} for iPhone and Android where people talk with Krishna AI, an AI voice grounded in the Bhagavad Gita, by voice or text in English or Hindi.`],
+    ["Also in the app", "Daily Sadhana, which starts each day with a sacred story (Daily Puja); the Bhagavad Gita verse by verse (18 chapters, 700 shlokas); and guided breath meditation (Dhyana, the Meditation tab)."],
     ["Founders", FOUNDERS.map((f) => f.name).join(" and ")],
     ["Made in", "India"],
     ["Platforms", <span key="p"><a href={APP_STORE_URL}>App Store</a> (iPhone, iPad) and <a href={PLAY_STORE_URL}>Google Play</a> (Android)</span>],
     ["Store category", "Lifestyle"],
     ["Languages", "English and Hindi"],
-    ["Price", "Free to download. Text chat with Krishna, the daily story, the Gita and meditation are free."],
+    ["Price", `${PLUS_PUBLIC ? `Free to start. Sarathi Plus adds more voice time with Krishna: ${PLUS.monthly} a month or ${PLUS.yearly} a year, first month ${PLUS.firstMonth}. ` : "Free to download. "}Text chat with Krishna, the daily story, the Gita and meditation are free.`],
     ["Ratings", `${RATINGS.appStore.value.toFixed(1)} on the App Store (${RATINGS.appStore.count} ratings), ${RATINGS.googlePlay.value.toFixed(1)} on Google Play (${RATINGS.googlePlay.count} reviews), as of ${formatDate(RATINGS.asOf, "en")}`],
     ["Downloads", `${RATINGS.downloads} on Google Play`],
     ["Website", SITE_URL.replace("https://", "")],
     ["Contact", <a key="c" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>],
-    ["Social", <span key="s"><a href={SOCIAL.instagram}>Instagram</a>, <a href={SOCIAL.youtube}>YouTube</a>, <a href={SOCIAL.x}>X</a>, <a href={SOCIAL.linkedin}>LinkedIn</a></span>],
+    ["Social", <span key="s"><a href={SOCIAL.instagram}>Instagram</a>, <a href={SOCIAL.youtube}>YouTube</a>, <a href={SOCIAL.x}>X</a>, <a href={SOCIAL.linkedin}>LinkedIn</a>, <a href={SOCIAL.facebook}>Facebook</a>; our content page <a href={CONTENT_PAGES.notesByKrishna.href}>{CONTENT_PAGES.notesByKrishna.name}</a></span>],
   ];
   const logos = [
     { file: "/logo/divinesarathi-mark-goldink.svg", label: "Mark, gold ink (light backgrounds)" },
@@ -38,7 +38,7 @@ export function PressView() {
           <p className="eyebrow">Press</p>
           <h1 className="mt-4 text-[clamp(2.2rem,4.6vw,3.4rem)] text-indigo">DivineSarathi at a glance</h1>
           <p className="mt-5 text-[1.12rem] leading-relaxed text-ink-soft">
-            DivineSarathi is a free app for iPhone and Android where people talk with Krishna AI, an AI voice grounded in the Bhagavad Gita, in English or Hindi. These are the facts we stand behind, kept up to date.
+            DivineSarathi is {FREE.en.app} for iPhone and Android where people talk with Krishna AI, an AI voice grounded in the Bhagavad Gita, in English or Hindi. These are the facts we stand behind, kept up to date.
           </p>
           <p className="mt-4 text-[0.85rem] text-ink-muted">Updated: <time dateTime={ROUTES.press.updated}>{formatDate(ROUTES.press.updated, "en")}</time></p>
         </header>

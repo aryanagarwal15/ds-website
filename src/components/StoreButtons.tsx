@@ -4,7 +4,7 @@ import { RATINGS, storeLink } from "@/lib/site";
 
 type Props = {
   locale: Locale;
-  /** Page key and spot, recorded with the install as utm_medium and utm_content. */
+  /** Page key and spot, sent as page and spot, stored with the install as utm_medium and utm_content. */
   page: string;
   spot: string;
   height?: number;

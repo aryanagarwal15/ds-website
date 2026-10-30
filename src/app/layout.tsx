@@ -76,12 +76,24 @@ export default function RootLayout({
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
           strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="lazyOnload">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GOOGLE_ANALYTICS_ID}');
+            // store_tap: every store button, with the page and spot it sits on (see storeLink)
+            document.addEventListener('click', function (e) {
+              var a = e.target.closest && e.target.closest('a[href^="/download?"]');
+              if (!a) return;
+              var q = new URL(a.href).searchParams;
+              gtag('event', 'store_tap', {
+                tap_page: q.get('page') || 'unknown',
+                tap_spot: q.get('spot') || 'unknown',
+                store: q.get('store') || 'auto',
+                transport_type: 'beacon'
+              });
+            });
           `}
         </Script>
         <JsonLd data={[organizationLd, websiteLd]} />

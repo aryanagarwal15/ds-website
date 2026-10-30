@@ -12,7 +12,7 @@ import { ROUTES, pathFor, type Locale } from "@/lib/routes";
 import { breadcrumbLd, faqLd, mobileAppLd, webPageLd } from "@/lib/seo";
 
 const ICONS = { feather: FeatherIcon, book: BookIcon, diya: DiyaIcon, lotus: LotusIcon };
-const ORDER: FeatureKey[] = ["krishnaAi", "gita", "dailyPuja", "dhyana"];
+const ORDER: FeatureKey[] = ["krishnaAi", "gita", "sadhana", "meditation"];
 
 /** One page per feature that is in the app: what it is, the real screens, then the stores. */
 export default function FeatureView({ feature, locale }: { feature: FeatureKey; locale: Locale }) {

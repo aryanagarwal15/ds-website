@@ -11,7 +11,7 @@ export default function NotFound() {
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Link href="/krishna-ai" className="btn btn-secondary">Krishna AI</Link>
         <Link href="/bhagavad-gita" className="btn btn-secondary">Bhagavad Gita</Link>
-        <a href="/download?utm_source=website&utm_medium=404&utm_content=404" className="btn btn-primary">Get the app</a>
+        <a href="/download?from=website&page=404&spot=404" className="btn btn-primary">Get the app</a>
       </div>
       <Link href="/" className="mt-6 text-[0.95rem] font-semibold text-indigo underline underline-offset-4">Return home</Link>
     </main>

@@ -1,4 +1,5 @@
 import type { Locale, RouteKey } from "@/lib/routes";
+import { FREE } from "@/lib/site";
 
 export const ABOUT: Record<Locale, {
   eyebrow: string;
@@ -12,7 +13,7 @@ export const ABOUT: Record<Locale, {
   en: {
     eyebrow: "About us",
     title: "We built the companion we wished we had",
-    lede: "DivineSarathi is a free app where people talk with Krishna AI and live the Bhagavad Gita a few minutes a day. It is built in India by two friends who grew up with these teachings.",
+    lede: `DivineSarathi is ${FREE.en.app} where people talk with Krishna AI and live the Bhagavad Gita a few minutes a day. It is built in India by two friends who grew up with these teachings.`,
     story: {
       title: "Why DivineSarathi",
       body: [

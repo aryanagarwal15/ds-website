@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/routes";
+import { FREE, PLUS, PLUS_PUBLIC } from "@/lib/site";
 
 export type Faq = { id: string; q: string; a: string };
 export type FaqGroup = { title: string; items: Faq[] };
@@ -15,12 +16,14 @@ export const FAQS: Record<Locale, FaqGroup[]> = {
         {
           id: "what-is-divinesarathi",
           q: "What is DivineSarathi?",
-          a: "DivineSarathi is a free app for iPhone and Android where you talk with Krishna AI by voice or text, in English or Hindi. It also has a sacred story every morning, the Bhagavad Gita verse by verse, Daily Sadhana and guided breath meditation.",
+          a: `DivineSarathi is ${FREE.en.app} for iPhone and Android where you talk with Krishna AI by voice or text, in English or Hindi. It also has a sacred story every morning, the Bhagavad Gita verse by verse, Daily Sadhana and guided breath meditation.`,
         },
         {
           id: "is-it-free",
           q: "Is DivineSarathi free?",
-          a: "Yes. Downloading the app is free, and text chat with Krishna, the daily story, the Gita and meditation are free for everyone.",
+          a: PLUS_PUBLIC
+            ? `It is free to start. Downloading the app is free, and text chat with Krishna, the daily story, the Gita and meditation are free for everyone. Sarathi Plus, from ${PLUS.firstMonth} for the first month, adds more time talking with Krishna by voice.`
+            : "Yes. Downloading the app is free, and text chat with Krishna, the daily story, the Gita and meditation are free for everyone.",
         },
         {
           id: "languages",
@@ -50,7 +53,7 @@ export const FAQS: Record<Locale, FaqGroup[]> = {
         {
           id: "is-it-really-krishna",
           q: "Is it really Krishna?",
-          a: "No. Krishna AI is an AI that speaks in Krishna's voice, and the app tells you so when you begin. It is inspired by Krishna's teachings in the Gita and does not claim to replace scripture, tradition or your teachers.",
+          a: "No. Krishna AI is an AI that speaks in Krishna's voice, which is why it is called Krishna AI. Before your first conversation, the app explains that it gives no medical advice, predictions or astrological readings, and that your voice is never recorded. It is inspired by Krishna's teachings in the Gita and does not claim to replace scripture, tradition or your teachers.",
         },
         {
           id: "what-can-i-ask",
@@ -97,12 +100,14 @@ export const FAQS: Record<Locale, FaqGroup[]> = {
         {
           id: "what-is-divinesarathi",
           q: "DivineSarathi क्या है?",
-          a: "DivineSarathi iPhone और Android के लिए एक मुफ़्त ऐप है जहाँ आप कृष्ण AI से आवाज़ या टेक्स्ट में, हिंदी या अंग्रेज़ी में बात करते हैं। इसमें हर सुबह एक पावन कथा, श्लोक-दर-श्लोक भगवद गीता, दैनिक साधना और निर्देशित श्वास ध्यान भी है।",
+          a: `DivineSarathi iPhone और Android के लिए ${FREE.hi.app} है जहाँ आप कृष्ण AI से आवाज़ या टेक्स्ट में, हिंदी या अंग्रेज़ी में बात करते हैं। इसमें हर सुबह एक पावन कथा, श्लोक-दर-श्लोक भगवद गीता, दैनिक साधना और निर्देशित श्वास ध्यान भी है।`,
         },
         {
           id: "is-it-free",
           q: "क्या DivineSarathi मुफ़्त है?",
-          a: "हाँ। ऐप डाउनलोड करना मुफ़्त है, और कृष्ण से टेक्स्ट चैट, रोज़ की कथा, गीता और ध्यान सबके लिए मुफ़्त हैं।",
+          a: PLUS_PUBLIC
+            ? `शुरुआत मुफ़्त है। ऐप डाउनलोड करना मुफ़्त है, और कृष्ण से टेक्स्ट चैट, रोज़ की कथा, गीता और ध्यान सबके लिए मुफ़्त हैं। Sarathi Plus, पहला महीना ${PLUS.firstMonth}, में कृष्ण से आवाज़ में बात करने का और समय मिलता है।`
+            : "हाँ। ऐप डाउनलोड करना मुफ़्त है, और कृष्ण से टेक्स्ट चैट, रोज़ की कथा, गीता और ध्यान सबके लिए मुफ़्त हैं।",
         },
         {
           id: "languages",
@@ -132,7 +137,7 @@ export const FAQS: Record<Locale, FaqGroup[]> = {
         {
           id: "is-it-really-krishna",
           q: "क्या ये सच में कृष्ण हैं?",
-          a: "नहीं। कृष्ण AI एक AI है जो कृष्ण की आवाज़ में बात करता है, और ऐप शुरू में ही यह बता देता है। यह गीता में कृष्ण की सीख से प्रेरित है और शास्त्र, परंपरा या आपके गुरुओं की जगह लेने का दावा नहीं करता।",
+          a: "नहीं। कृष्ण AI एक AI है जो कृष्ण की आवाज़ में बात करता है, इसीलिए इसका नाम कृष्ण AI है। पहली बातचीत से पहले ऐप बताता है कि यह न मेडिकल सलाह देता है, न भविष्यवाणी या ज्योतिष उपाय, और आपकी आवाज़ कभी रिकॉर्ड नहीं होती। यह गीता में कृष्ण की सीख से प्रेरित है और शास्त्र, परंपरा या आपके गुरुओं की जगह लेने का दावा नहीं करता।",
         },
         {
           id: "what-can-i-ask",

@@ -1,3 +1,11 @@
+import { FREE, PLUS_PUBLIC, RATINGS } from "./site";
+
+/** Store proof for descriptions, short enough to survive the snippet cut. */
+const PROOF = {
+  en: `Rated ${RATINGS.appStore.value} on the App Store, ${RATINGS.downloads} downloads.`,
+  hi: `App Store पर ${RATINGS.appStore.value} रेटिंग, ${RATINGS.downloads} डाउनलोड।`,
+};
+
 /**
  * Every public page, registered once. Metadata, canonical and hreflang tags,
  * the sitemap, breadcrumbs, llms.txt and the footer are all built from this
@@ -10,8 +18,8 @@ export type RouteKey =
   | "home"
   | "krishnaAi"
   | "gita"
-  | "dailyPuja"
-  | "dhyana"
+  | "sadhana"
+  | "meditation"
   | "about"
   | "faqs"
   | "support"
@@ -52,12 +60,12 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     hi: "/hi",
     name: { en: "Home", hi: "होम" },
     title: {
-      en: "DivineSarathi: Talk to Krishna AI, Bhagavad Gita app",
-      hi: "DivineSarathi: कृष्ण AI से बात करें, भगवद गीता ऐप",
+      en: "Talk to Krishna AI & Learn the Bhagavad Gita | DivineSarathi",
+      hi: "कृष्ण AI से बात करें, भगवद गीता सीखें: Krishna se baat | DivineSarathi",
     },
     description: {
-      en: "DivineSarathi is a free app where you talk with Krishna AI by voice or text, in English or Hindi. Hear a sacred story each morning and learn the Bhagavad Gita verse by verse. On iPhone and Android.",
-      hi: "DivineSarathi एक मुफ़्त ऐप है जहाँ आप कृष्ण AI से आवाज़ या टेक्स्ट में, हिंदी या अंग्रेज़ी में बात करते हैं। हर सुबह एक पावन कथा सुनें और भगवद गीता श्लोक-दर-श्लोक सीखें। iPhone और Android पर।",
+      en: `${PLUS_PUBLIC ? "An app, free to start," : "A free app"} to talk with Krishna AI by voice or text in Hindi or English and learn the Bhagavad Gita verse by verse. Get Divine Sarathi on iPhone and Android.`,
+      hi: `DivineSarathi ${FREE.hi.app} है जहाँ आप कृष्ण AI से आवाज़ या टेक्स्ट में, हिंदी या अंग्रेज़ी में बात करते हैं और भगवद गीता श्लोक-दर-श्लोक सीखते हैं। iPhone और Android पर Divine Sarathi पाएँ।`,
     },
     updated: "2026-10-29",
     footer: null,
@@ -69,12 +77,12 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     hi: "/hi/krishna-ai",
     name: { en: "Krishna AI", hi: "कृष्ण AI" },
     title: {
-      en: "Krishna AI: Talk to Krishna by Voice or Text",
-      hi: "कृष्ण AI: आवाज़ या टेक्स्ट में कृष्ण से बात करें",
+      en: "Krishna AI App: Talk to Krishna in Hindi & English",
+      hi: "कृष्ण AI हिंदी में: Krishna AI Hindi, कृष्ण से बात करें",
     },
     description: {
-      en: "Talk to Krishna AI about anything on your mind, by voice or text, in English or Hindi. Answers drawn from the Bhagavad Gita, in a free app for iPhone and Android.",
-      hi: "मन में जो भी हो, कृष्ण AI से आवाज़ या टेक्स्ट में, हिंदी या अंग्रेज़ी में बात करें। जवाब भगवद गीता की सीख से। iPhone और Android के लिए मुफ़्त ऐप।",
+      en: `${PLUS_PUBLIC ? "Free-to-start" : "Free"} Krishna AI app: talk to Krishna by voice or text in Hindi or English, with answers from the Gita. ${PROOF.en}`,
+      hi: `मन में जो भी हो, कृष्ण AI से आवाज़ या टेक्स्ट में, हिंदी या अंग्रेज़ी में बात करें। जवाब भगवद गीता की सीख से। ${PROOF.hi}`,
     },
     updated: "2026-10-29",
     footer: "product",
@@ -87,45 +95,45 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     name: { en: "Bhagavad Gita", hi: "भगवद गीता" },
     title: {
       en: "Bhagavad Gita App: Verse by Verse, with Meaning",
-      hi: "भगवद गीता ऐप: श्लोक-दर-श्लोक, अर्थ के साथ",
+      hi: "भगवद गीता हिंदी में: Bhagwat Geeta in Hindi, श्लोक और अर्थ",
     },
     description: {
-      en: "Learn the Bhagavad Gita in the DivineSarathi app: all 18 chapters and 700 shlokas, each recited in Sanskrit and explained in plain words, plus Gita for Daily Life. Free on iPhone and Android.",
-      hi: "DivineSarathi ऐप में भगवद गीता सीखें: सभी 18 अध्याय और 700 श्लोक, संस्कृत में पाठ और सरल शब्दों में अर्थ, साथ में रोज़ की ज़िंदगी के लिए गीता। iPhone और Android पर मुफ़्त।",
+      en: `Learn the Bhagavad Gita in the DivineSarathi app: all 18 chapters and 700 shlokas, each recited in Sanskrit and explained in plain words, plus Gita for Daily Life. ${FREE.en.on}.`,
+      hi: `DivineSarathi ऐप में भगवद गीता सीखें: सभी 18 अध्याय और 700 श्लोक, संस्कृत में पाठ और सरल हिंदी में अर्थ, साथ में रोज़ की ज़िंदगी के लिए गीता। ${FREE.hi.on}।`,
     },
     updated: "2026-10-29",
     footer: "product",
     index: true,
     priority: 0.9,
   },
-  dailyPuja: {
-    en: "/daily-puja",
-    hi: "/hi/daily-puja",
-    name: { en: "Daily Puja", hi: "दैनिक पूजा" },
+  sadhana: {
+    en: "/daily-sadhana",
+    hi: "/hi/daily-sadhana",
+    name: { en: "Daily Sadhana", hi: "दैनिक साधना" },
     title: {
-      en: "Daily Puja: A Sacred Story Every Morning",
-      hi: "दैनिक पूजा: हर सुबह एक पावन कथा",
+      en: "Daily Sadhana: A Sacred Story and the Gita Each Day",
+      hi: "दैनिक साधना: हर दिन एक पावन कथा, गीता और कृष्ण",
     },
     description: {
-      en: "Start each day with a short story from the Itihasas and Puranas, then thread a bead on your mala with Daily Sadhana. In the free DivineSarathi app for iPhone and Android.",
-      hi: "हर दिन की शुरुआत इतिहास और पुराणों की एक छोटी कथा से करें, फिर दैनिक साधना से अपनी माला में एक मनका पिरोएँ। iPhone और Android के लिए मुफ़्त DivineSarathi ऐप में।",
+      en: `Daily Sadhana in the DivineSarathi app: today's story in Daily Puja, two Gita shlokas, a talk with Krishna and a few minutes of meditation. ${FREE.en.on}.`,
+      hi: `DivineSarathi ऐप में दैनिक साधना: दैनिक पूजा में आज की कथा, गीता के दो श्लोक, कृष्ण से बात और कुछ मिनट ध्यान। हर दिन माला का एक मनका। ${FREE.hi.on}।`,
     },
     updated: "2026-10-29",
     footer: "product",
     index: true,
     priority: 0.8,
   },
-  dhyana: {
-    en: "/dhyana",
-    hi: "/hi/dhyana",
-    name: { en: "Dhyana", hi: "ध्यान" },
+  meditation: {
+    en: "/meditation",
+    hi: "/hi/meditation",
+    name: { en: "Meditation", hi: "ध्यान" },
     title: {
-      en: "Dhyana: Guided Breath Meditation",
-      hi: "ध्यान: निर्देशित श्वास ध्यान",
+      en: "Meditation (Dhyana): Guided Breath Meditation",
+      hi: "ध्यान: निर्देशित श्वास ध्यान, Dhyan meditation Hindi",
     },
     description: {
-      en: "Guided breath meditation in the DivineSarathi app to calm, reset and focus the mind, a few minutes at a time. Free on iPhone and Android.",
-      hi: "DivineSarathi ऐप में निर्देशित श्वास ध्यान, मन को शांत करने, फिर से संभलने और एकाग्र होने के लिए, कुछ मिनट रोज़। iPhone और Android पर मुफ़्त।",
+      en: `Dhyana, the Meditation tab in the DivineSarathi app: guided breath meditation to calm, reset and focus the mind, a few minutes at a time. ${FREE.en.on}.`,
+      hi: `DivineSarathi ऐप में निर्देशित श्वास ध्यान, मन को शांत करने, फिर से संभलने और एकाग्र होने के लिए, कुछ मिनट रोज़। ${FREE.hi.on}।`,
     },
     updated: "2026-10-29",
     footer: "product",
@@ -155,8 +163,8 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     name: { en: "About", hi: "हमारे बारे में" },
     title: { en: "About DivineSarathi and Its Founders", hi: "DivineSarathi और इसके संस्थापकों के बारे में" },
     description: {
-      en: "Why two friends built DivineSarathi, a free app to talk with Krishna AI and live the Bhagavad Gita every day, and how to reach them.",
-      hi: "दो दोस्तों ने DivineSarathi क्यों बनाया, कृष्ण AI से बात करने और भगवद गीता को रोज़ जीने का एक मुफ़्त ऐप, और उनसे कैसे संपर्क करें।",
+      en: "Why two friends built DivineSarathi, an app to talk with Krishna AI and live the Bhagavad Gita every day, and how to reach them.",
+      hi: "दो दोस्तों ने DivineSarathi क्यों बनाया, कृष्ण AI से बात करने और भगवद गीता को रोज़ जीने का एक ऐप, और उनसे कैसे संपर्क करें।",
     },
     updated: "2026-10-29",
     footer: "company",
@@ -214,8 +222,8 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
       hi: "iPhone और Android के लिए कृष्ण AI गीता ऐप डाउनलोड करें",
     },
     description: {
-      en: "Get DivineSarathi free on the App Store and Google Play. Talk to Krishna AI by voice or text, learn the Bhagavad Gita verse by verse, daily stories and meditation.",
-      hi: "DivineSarathi को App Store और Google Play पर मुफ़्त पाएँ।",
+      en: `Get DivineSarathi ${PLUS_PUBLIC ? "on the App Store and Google Play, free to start" : "free on the App Store and Google Play"}. Talk to Krishna AI by voice or text, learn the Bhagavad Gita verse by verse, daily stories and meditation.`,
+      hi: `DivineSarathi को App Store और Google Play पर ${PLUS_PUBLIC ? "मुफ़्त में शुरू करें" : "मुफ़्त पाएँ"}।`,
     },
     updated: "2026-10-29",
     footer: null,
@@ -313,8 +321,8 @@ const HINDI_READY = new Set<RouteKey>([
   "home",
   "krishnaAi",
   "gita",
-  "dailyPuja",
-  "dhyana",
+  "sadhana",
+  "meditation",
   "about",
   "faqs",
   "support",

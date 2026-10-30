@@ -7,9 +7,10 @@ import QrCode from "@/components/QrCode";
 import StoreButtons, { RatingLine } from "@/components/StoreButtons";
 import { FEATURES, type FeatureKey } from "@/content/features";
 import { ROUTES, pathFor } from "@/lib/routes";
+import { FREE } from "@/lib/site";
 import { downloadFaqs } from "./faqs";
 
-const FEATURE_KEYS: FeatureKey[] = ["krishnaAi", "gita", "dailyPuja", "dhyana"];
+const FEATURE_KEYS: FeatureKey[] = ["krishnaAi", "gita", "sadhana", "meditation"];
 
 /** What desktop visitors and search crawlers see at /download. Phones are sent straight to their store. */
 export default function DownloadContent() {
@@ -20,7 +21,7 @@ export default function DownloadContent() {
         <section className="ds-container grid items-center gap-12 pb-16 pt-[clamp(2.5rem,6vh,4.5rem)] lg:grid-cols-[1.1fr_0.9fr]">
           <div className="text-center lg:text-left">
             <p className="eyebrow">Download</p>
-            <h1 className="mt-4 text-[clamp(2.3rem,5vw,3.6rem)] text-indigo">Get DivineSarathi free on iPhone and Android</h1>
+            <h1 className="mt-4 text-[clamp(2.3rem,5vw,3.6rem)] text-indigo">Get DivineSarathi {FREE.en.get}</h1>
             <p className="mx-auto mt-5 max-w-xl text-[1.1rem] leading-relaxed text-ink-soft lg:mx-0">
               Talk to Krishna AI by voice or text in English or Hindi, learn the Bhagavad Gita verse by verse, hear a story every morning and meditate. Scan the code with your phone, or pick your store.
             </p>

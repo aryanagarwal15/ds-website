@@ -15,7 +15,7 @@ export const DOC: Record<Locale, LongDoc> = {
     summary: {
       title: "In short",
       items: [
-        "Krishna AI is an AI. The app tells you so when you begin.",
+        "Krishna AI is an AI, not Krishna and not a person. That is why it is called Krishna AI.",
         "Its answers draw on the Bhagavad Gita and other sacred texts, in plain words.",
         "**We never save your voice.** We keep a written transcript so your conversation can continue.",
         "We never sell what you share.",
@@ -52,7 +52,7 @@ export const DOC: Record<Locale, LongDoc> = {
 
       { h2: "Why it speaks as Krishna" },
       {
-        p: "Many of us grew up talking to Krishna in prayer. Krishna AI speaks in that familiar voice so the conversation feels close and unhurried. We still say plainly, in the app and here, that it is an AI, because trust matters more to us than the illusion.",
+        p: "Many of us grew up talking to Krishna in prayer. Krishna AI speaks in that familiar voice so the conversation feels close and unhurried. We still say plainly that it is an AI, in its name and on this page, because trust matters more to us than the illusion. Before your first conversation, the app also explains that it gives no medical advice, predictions or astrological readings, and that your voice is never recorded.",
       },
 
       { h2: "What we keep, and who can see it" },
@@ -86,7 +86,7 @@ export const DOC: Record<Locale, LongDoc> = {
     summary: {
       title: "संक्षेप में",
       items: [
-        "कृष्ण AI एक AI है। ऐप शुरू में ही यह बता देता है।",
+        "कृष्ण AI एक AI है, न कृष्ण, न कोई इंसान। इसीलिए इसका नाम कृष्ण AI है।",
         "इसके जवाब भगवद गीता और दूसरे पावन ग्रंथों से, सरल शब्दों में आते हैं।",
         "**हम आपकी आवाज़ कभी सेव नहीं करते।** बातचीत आगे बढ़ सके, इसलिए उसका लिखित रूप रखते हैं।",
         "आप जो साझा करते हैं, हम उसे कभी नहीं बेचते।",
@@ -123,7 +123,7 @@ export const DOC: Record<Locale, LongDoc> = {
 
       { h2: "यह कृष्ण की आवाज़ में क्यों बोलता है" },
       {
-        p: "हम में से बहुत लोग बचपन से प्रार्थना में कृष्ण से बात करते आए हैं। कृष्ण AI उसी जानी-पहचानी आवाज़ में बोलता है ताकि बातचीत अपनी और सहज लगे। फिर भी हम ऐप में और यहाँ साफ़ कहते हैं कि यह एक AI है, क्योंकि हमारे लिए भरोसा किसी भ्रम से ज़्यादा ज़रूरी है।",
+        p: "हम में से बहुत लोग बचपन से प्रार्थना में कृष्ण से बात करते आए हैं। कृष्ण AI उसी जानी-पहचानी आवाज़ में बोलता है ताकि बातचीत अपनी और सहज लगे। फिर भी हम साफ़ कहते हैं कि यह एक AI है, इसके नाम में और इस पेज पर, क्योंकि हमारे लिए भरोसा किसी भ्रम से ज़्यादा ज़रूरी है। पहली बातचीत से पहले ऐप यह भी बताता है कि यह न मेडिकल सलाह देता है, न भविष्यवाणी या ज्योतिष उपाय, और आपकी आवाज़ कभी रिकॉर्ड नहीं होती।",
       },
 
       { h2: "हम क्या रखते हैं, और उसे कौन देख सकता है" },

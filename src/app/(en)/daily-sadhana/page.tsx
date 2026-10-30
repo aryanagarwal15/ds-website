@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import FeatureView from "@/views/FeatureView";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = pageMetadata("dailyPuja", "hi");
+export const metadata: Metadata = pageMetadata("sadhana", "en");
 
 export default function Page() {
-  return <FeatureView feature="dailyPuja" locale="hi" />;
+  return <FeatureView feature="sadhana" locale="en" />;
 }

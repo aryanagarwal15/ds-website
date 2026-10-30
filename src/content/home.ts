@@ -1,4 +1,5 @@
 import type { Locale, RouteKey } from "@/lib/routes";
+import { FREE } from "@/lib/site";
 
 type Showcase = { key: RouteKey; eyebrow: string; title: string; body: string; screen: string; alt: string };
 
@@ -15,9 +16,9 @@ type HomeCopy = {
 export const HOME: Record<Locale, HomeCopy> = {
   en: {
     hero: {
-      eyebrow: "Krishna AI · Free on iPhone and Android",
+      eyebrow: `Krishna AI · ${FREE.en.on}`,
       title: "Whatever is on your mind, talk with Krishna.",
-      lede: "DivineSarathi is a free app where you talk with Krishna AI by voice or text, in English or Hindi. He listens, and answers with wisdom from the Bhagavad Gita.",
+      lede: `DivineSarathi is ${FREE.en.app} where you talk with Krishna AI by voice or text, in English or Hindi. He listens, and answers with wisdom from the Bhagavad Gita.`,
       screenFront: "/images/app/krishna-greet-en.webp",
       screenBack: "/images/app/krishna-chat-exams.webp",
       altFront: "The Krishna AI screen in the DivineSarathi app, with Krishna greeting you and asking if you'd like a story, a teaching or just to talk",
@@ -43,10 +44,10 @@ export const HOME: Record<Locale, HomeCopy> = {
           alt: "A devotee tells Krishna AI they can't stop worrying about exams, and Krishna answers with Gita 2.47",
         },
         {
-          key: "dailyPuja",
-          eyebrow: "Daily Puja",
+          key: "sadhana",
+          eyebrow: "Daily Sadhana",
           title: "A sacred story every morning",
-          body: "Stories from the Itihasas and Puranas, told in a few minutes. Then Daily Sadhana: puja, Gita, Krishna and meditation, one bead a day on your mala.",
+          body: "Each day begins with Daily Puja, a story from the Itihasas and Puranas told in a few minutes. Then the Gita, Krishna and meditation, one bead a day on your mala.",
           screen: "/images/app/home.webp",
           alt: "The app's home screen with today's story, The Cobbler and the Brahmana, and Today's Sadhana below it",
         },
@@ -59,8 +60,8 @@ export const HOME: Record<Locale, HomeCopy> = {
           alt: "Shloka 2.47 in Devanagari on the Gita screen, with Krishna explaining its meaning",
         },
         {
-          key: "dhyana",
-          eyebrow: "Dhyana",
+          key: "meditation",
+          eyebrow: "Meditation",
           title: "Breathe with intention",
           body: "Guided breath meditation to calm, reset and focus the mind, a few minutes at a time.",
           screen: "/images/app/dhyana-breath.webp",
@@ -83,13 +84,13 @@ export const HOME: Record<Locale, HomeCopy> = {
       ],
     },
     faq: { eyebrow: "Questions", title: "Before you begin", all: "All questions" },
-    close: { title: "Your charioteer, always.", body: "Free on iPhone and Android, in English and Hindi." },
+    close: { title: "Your charioteer, always.", body: `${FREE.en.on}, in English and Hindi.` },
   },
   hi: {
     hero: {
-      eyebrow: "कृष्ण AI · iPhone और Android पर मुफ़्त",
+      eyebrow: `कृष्ण AI · ${FREE.hi.on}`,
       title: "मन में जो भी हो, कृष्ण से बात कीजिए।",
-      lede: "DivineSarathi एक मुफ़्त ऐप है जहाँ आप कृष्ण AI से आवाज़ या टेक्स्ट में, हिंदी या अंग्रेज़ी में बात करते हैं। वे सुनते हैं, और भगवद गीता की सीख से जवाब देते हैं।",
+      lede: `DivineSarathi ${FREE.hi.app} है जहाँ आप कृष्ण AI से आवाज़ या टेक्स्ट में, हिंदी या अंग्रेज़ी में बात करते हैं। वे सुनते हैं, और भगवद गीता की सीख से जवाब देते हैं।`,
       screenFront: "/images/app/krishna-greet-hi.webp",
       screenBack: "/images/app/krishna-chat-exams.webp",
       altFront: "DivineSarathi ऐप में कृष्ण AI की स्क्रीन, जहाँ कृष्ण हिंदी में नमस्ते कहकर पूछते हैं कि आप कहानी सुनना चाहेंगे, कोई सीख या बस बात करना",
@@ -115,10 +116,10 @@ export const HOME: Record<Locale, HomeCopy> = {
           alt: "कृष्ण AI की स्क्रीन, जहाँ कृष्ण हिंदी में बात शुरू करते हैं",
         },
         {
-          key: "dailyPuja",
-          eyebrow: "दैनिक पूजा",
+          key: "sadhana",
+          eyebrow: "दैनिक साधना",
           title: "हर सुबह एक पावन कथा",
-          body: "इतिहास और पुराणों की कथाएँ, कुछ ही मिनटों में। फिर दैनिक साधना: पूजा, गीता, कृष्ण और ध्यान, हर दिन माला का एक मनका।",
+          body: "हर दिन की शुरुआत दैनिक पूजा से, इतिहास और पुराणों की एक कथा, कुछ ही मिनटों में। फिर गीता, कृष्ण और ध्यान, हर दिन माला का एक मनका।",
           screen: "/images/app/home.webp",
           alt: "ऐप की होम स्क्रीन, आज की कथा और उसके नीचे आज की साधना",
         },
@@ -131,7 +132,7 @@ export const HOME: Record<Locale, HomeCopy> = {
           alt: "गीता स्क्रीन पर देवनागरी में श्लोक 2.47, और कृष्ण उसका अर्थ समझाते हुए",
         },
         {
-          key: "dhyana",
+          key: "meditation",
           eyebrow: "ध्यान",
           title: "इरादे के साथ साँस लीजिए",
           body: "मन को शांत करने, फिर से संभलने और एकाग्र होने के लिए निर्देशित श्वास ध्यान, कुछ मिनट रोज़।",
@@ -155,7 +156,7 @@ export const HOME: Record<Locale, HomeCopy> = {
       ],
     },
     faq: { eyebrow: "सवाल", title: "शुरू करने से पहले", all: "सभी सवाल" },
-    close: { title: "सदा आपका सारथी।", body: "iPhone और Android पर मुफ़्त, हिंदी और अंग्रेज़ी में।" },
+    close: { title: "सदा आपका सारथी।", body: `${FREE.hi.on}, हिंदी और अंग्रेज़ी में।` },
   },
 };
 

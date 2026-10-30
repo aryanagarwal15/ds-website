@@ -7,9 +7,11 @@ import {
   PLAY_STORE_URL,
   PLUS,
   PLUS_PUBLIC,
+  FREE,
+  SAME_AS,
+  SITE_ALT_NAME,
   SITE_NAME,
   SITE_URL,
-  SOCIAL,
 } from "./site";
 
 export const abs = (path: string) => `${SITE_URL}${path === "/" ? "" : path}`;
@@ -59,12 +61,13 @@ export const organizationLd = {
   "@type": "Organization",
   "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
+  alternateName: SITE_ALT_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/android-chrome-512x512.png`,
   email: CONTACT_EMAIL,
   description:
-    "DivineSarathi makes a free app for iPhone and Android where people talk with Krishna AI, an AI voice grounded in the Bhagavad Gita, in English or Hindi.",
-  sameAs: [...Object.values(SOCIAL), APP_STORE_URL, PLAY_STORE_URL],
+    `DivineSarathi makes ${FREE.en.app} for iPhone and Android where people talk with Krishna AI, an AI voice grounded in the Bhagavad Gita, in English or Hindi.`,
+  sameAs: SAME_AS,
   founder: FOUNDERS.map((f) => ({ "@type": "Person", name: f.name, jobTitle: f.role })),
 };
 
@@ -73,6 +76,7 @@ export const websiteLd = {
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
   name: SITE_NAME,
+  alternateName: SITE_ALT_NAME,
   url: SITE_URL,
   inLanguage: ["en-IN", "hi-IN"],
   publisher: { "@id": `${SITE_URL}/#organization` },
@@ -87,7 +91,7 @@ export const mobileAppLd = {
   "@type": "MobileApplication",
   "@id": `${SITE_URL}/#app`,
   name: SITE_NAME,
-  alternateName: ["DivineSarathi: Krishna AI Gita", "Krishna AI"],
+  alternateName: [SITE_ALT_NAME, "DivineSarathi: Krishna AI Gita", "Krishna AI"],
   operatingSystem: "iOS, Android",
   applicationCategory: "LifestyleApplication",
   inLanguage: ["en", "hi"],
@@ -97,7 +101,7 @@ export const mobileAppLd = {
   url: SITE_URL,
   publisher: { "@id": `${SITE_URL}/#organization` },
   offers: [
-    { "@type": "Offer", price: "0", priceCurrency: "INR", category: "free" },
+    { "@type": "Offer", name: PLUS_PUBLIC ? "Free to start" : "Free", price: "0", priceCurrency: "INR", category: "free" },
     ...(PLUS_PUBLIC
       ? [
           { "@type": "Offer", name: "Sarathi Plus monthly", price: PLUS.monthly.replace(/[^\d]/g, ""), priceCurrency: "INR" },

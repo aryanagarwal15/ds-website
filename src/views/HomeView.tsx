@@ -10,7 +10,7 @@ import { ShieldIcon } from "@/components/icons";
 import { HOME } from "@/content/home";
 import { homeFaqs } from "@/content/faqs";
 import { UI } from "@/content/ui";
-import { pathFor, type Locale } from "@/lib/routes";
+import { ROUTES, pathFor, type Locale } from "@/lib/routes";
 import { faqLd, mobileAppLd, webPageLd } from "@/lib/seo";
 
 export default function HomeView({ locale }: { locale: Locale }) {
@@ -18,6 +18,8 @@ export default function HomeView({ locale }: { locale: Locale }) {
   const t = UI[locale];
   const faqs = homeFaqs(locale);
 
+  const aiName = ROUTES.krishnaAi.name[locale];
+  const lede = c.hero.lede.split(aiName);
   return (
     <>
       <JsonLd data={[webPageLd("home", locale), mobileAppLd, faqLd(faqs)]} />
@@ -28,7 +30,14 @@ export default function HomeView({ locale }: { locale: Locale }) {
           <div className="text-center lg:text-left">
             <p className="eyebrow">{c.hero.eyebrow}</p>
             <h1 className="mt-5 text-[clamp(2.5rem,5.6vw,4.1rem)] tracking-[-0.01em] text-indigo">{c.hero.title}</h1>
-            <p className="mx-auto mt-6 max-w-xl text-[1.1rem] leading-relaxed text-ink-soft lg:mx-0">{c.hero.lede}</p>
+            <p className="mx-auto mt-6 max-w-xl text-[1.1rem] leading-relaxed text-ink-soft lg:mx-0">
+              {/* the first "Krishna AI" links to its page, with exactly that anchor text */}
+              {lede[0]}
+              <Link href={pathFor("krishnaAi", locale)} className="font-semibold text-indigo underline decoration-[var(--ds-line)] underline-offset-4 hover:text-saffron">
+                {aiName}
+              </Link>
+              {lede.slice(1).join(aiName)}
+            </p>
             <div className="mt-9 flex flex-col items-center gap-5 lg:items-start">
               <StoreButtons locale={locale} page="home" spot="hero" height={52} />
               <RatingLine locale={locale} className="justify-center lg:justify-start" />

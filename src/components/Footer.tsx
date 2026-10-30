@@ -5,7 +5,7 @@ import StoreButtons from "./StoreButtons";
 import { FacebookIcon, InstagramIcon, LinkedInIcon, XIcon, YouTubeIcon } from "./icons";
 import { UI } from "@/content/ui";
 import { FOOTER_GROUPS, ROUTES, pathFor, routesInGroup, type Locale } from "@/lib/routes";
-import { CONTACT_EMAIL, SITE_TAGLINE, SOCIAL } from "@/lib/site";
+import { CONTACT_EMAIL, CONTENT_PAGES, SITE_TAGLINE, SOCIAL } from "@/lib/site";
 
 const SOCIALS = [
   { href: SOCIAL.instagram, label: "Instagram", Icon: InstagramIcon },
@@ -14,6 +14,9 @@ const SOCIALS = [
   { href: SOCIAL.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
   { href: SOCIAL.facebook, label: "Facebook", Icon: FacebookIcon },
 ];
+
+/** Our content pages, linked by name; one shows up only once its address is set. */
+const MORE_FROM_US = Object.values(CONTENT_PAGES).filter((p): p is { name: string; href: string } => Boolean(p.href));
 
 /** Every public page is linked from here, so every page is one click from every other. */
 export default function Footer({ locale }: { locale: Locale }) {
@@ -37,6 +40,19 @@ export default function Footer({ locale }: { locale: Locale }) {
                   </li>
                 ))}
               </ul>
+              {MORE_FROM_US.length > 0 && (
+                <p className="mt-4 text-[0.88rem] text-ink-muted">
+                  {t.moreFromUs}{" "}
+                  {MORE_FROM_US.map((p, i) => (
+                    <span key={p.name}>
+                      {i > 0 && " · "}
+                      <a href={p.href} target="_blank" rel="noopener noreferrer" className="text-ink-soft underline decoration-[var(--ds-line)] underline-offset-4 hover:text-ink">
+                        {p.name}
+                      </a>
+                    </span>
+                  ))}
+                </p>
+              )}
             </div>
 
             <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">

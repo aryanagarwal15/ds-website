@@ -16,17 +16,19 @@ function first(value: string | string[] | undefined): string | null {
     return v || null;
 }
 
-/** Parse ?ref= and standard utm_* params from /download URLs. */
+/** Parse ?ref=, standard utm_* params and our own from/page/spot from /download URLs. */
 export function parseDownloadTracking(
     searchParams: Record<string, string | string[] | undefined> | undefined,
 ): DownloadTracking | null {
     if (!searchParams) return null;
 
+    // Our own store buttons send from/page/spot (see storeLink); stored as utm source/medium/content.
+    const own = first(searchParams.from) === "website";
     const utm = {
-        source: first(searchParams.utm_source),
-        medium: first(searchParams.utm_medium),
+        source: first(searchParams.utm_source) ?? (own ? "website" : null),
+        medium: first(searchParams.utm_medium) ?? (own ? first(searchParams.page) : null),
         campaign: first(searchParams.utm_campaign),
-        content: first(searchParams.utm_content),
+        content: first(searchParams.utm_content) ?? (own ? first(searchParams.spot) : null),
         term: first(searchParams.utm_term),
     };
 
