@@ -94,12 +94,12 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     hi: "/hi/bhagavad-gita",
     name: { en: "Bhagavad Gita", hi: "भगवद गीता" },
     title: {
-      en: "Bhagavad Gita App: Verse by Verse, with Meaning",
-      hi: "भगवद गीता हिंदी में: Bhagwat Geeta in Hindi, श्लोक और अर्थ",
+      en: "Bhagavad Gita App: Every Verse, with Meaning",
+      hi: "भगवद गीता हिंदी में: Bhagwat Geeta, श्लोक और अर्थ",
     },
     description: {
-      en: `Learn the Bhagavad Gita in the DivineSarathi app: all 18 chapters and 700 shlokas, each recited in Sanskrit and explained in plain words, plus Gita for Daily Life. ${FREE.en.on}.`,
-      hi: `DivineSarathi ऐप में भगवद गीता सीखें: सभी 18 अध्याय और 700 श्लोक, संस्कृत में पाठ और सरल हिंदी में अर्थ, साथ में रोज़ की ज़िंदगी के लिए गीता। ${FREE.hi.on}।`,
+      en: `All 18 chapters and 700 shlokas of the Bhagavad Gita, each recited in Sanskrit and explained in plain words. ${FREE.en.on}.`,
+      hi: `भगवद गीता के सभी 18 अध्याय और 700 श्लोक, संस्कृत में पाठ और सरल हिंदी में अर्थ। ${FREE.hi.on}।`,
     },
     updated: "2026-10-29",
     footer: "product",
@@ -111,12 +111,12 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     hi: "/hi/daily-sadhana",
     name: { en: "Daily Sadhana", hi: "दैनिक साधना" },
     title: {
-      en: "Daily Sadhana: A Sacred Story and the Gita Each Day",
-      hi: "दैनिक साधना: हर दिन एक पावन कथा, गीता और कृष्ण",
+      en: "Daily Sadhana: Daily Puja Story and the Gita",
+      hi: "दैनिक साधना: हर दिन पावन कथा और गीता",
     },
     description: {
-      en: `Daily Sadhana in the DivineSarathi app: today's story in Daily Puja, two Gita shlokas, a talk with Krishna and a few minutes of meditation. ${FREE.en.on}.`,
-      hi: `DivineSarathi ऐप में दैनिक साधना: दैनिक पूजा में आज की कथा, गीता के दो श्लोक, कृष्ण से बात और कुछ मिनट ध्यान। हर दिन माला का एक मनका। ${FREE.hi.on}।`,
+      en: `Each day in the DivineSarathi app: a Daily Puja story, two Gita shlokas, a talk with Krishna and a short meditation. ${FREE.en.on}.`,
+      hi: `DivineSarathi ऐप में दैनिक साधना: दैनिक पूजा की कथा, गीता के दो श्लोक, कृष्ण से बात और कुछ मिनट ध्यान। ${FREE.hi.on}।`,
     },
     updated: "2026-10-29",
     footer: "product",
@@ -128,11 +128,11 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     hi: "/hi/meditation",
     name: { en: "Meditation", hi: "ध्यान" },
     title: {
-      en: "Meditation (Dhyana): Guided Breath Meditation",
-      hi: "ध्यान: निर्देशित श्वास ध्यान, Dhyan meditation Hindi",
+      en: "Dhyana: Guided Breath Meditation App",
+      hi: "ध्यान: श्वास ध्यान, Dhyan meditation Hindi",
     },
     description: {
-      en: `Dhyana, the Meditation tab in the DivineSarathi app: guided breath meditation to calm, reset and focus the mind, a few minutes at a time. ${FREE.en.on}.`,
+      en: `Dhyana in the DivineSarathi app: guided breath meditation to calm, reset and focus the mind, a few minutes at a time. ${FREE.en.on}.`,
       hi: `DivineSarathi ऐप में निर्देशित श्वास ध्यान, मन को शांत करने, फिर से संभलने और एकाग्र होने के लिए, कुछ मिनट रोज़। ${FREE.hi.on}।`,
     },
     updated: "2026-10-29",
@@ -161,7 +161,7 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     en: "/about",
     hi: "/hi/about",
     name: { en: "About", hi: "हमारे बारे में" },
-    title: { en: "About DivineSarathi and Its Founders", hi: "DivineSarathi और इसके संस्थापकों के बारे में" },
+    title: { en: "About Us: Our Story and Founders", hi: "हमारे बारे में: हमारी कहानी और संस्थापक" },
     description: {
       en: "Why two friends built DivineSarathi, an app to talk with Krishna AI and live the Bhagavad Gita every day, and how to reach them.",
       hi: "दो दोस्तों ने DivineSarathi क्यों बनाया, कृष्ण AI से बात करने और भगवद गीता को रोज़ जीने का एक ऐप, और उनसे कैसे संपर्क करें।",
@@ -203,7 +203,7 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     en: "/press",
     hi: null,
     name: { en: "Press", hi: "प्रेस" },
-    title: { en: "DivineSarathi at a Glance: Facts and Press Kit", hi: "DivineSarathi एक नज़र में" },
+    title: { en: "Press Kit and Key Facts", hi: "प्रेस किट और मुख्य तथ्य" },
     description: {
       en: "Key facts about DivineSarathi in one place: what it is, who built it, platforms, languages, price, ratings, logo and contact.",
       hi: "DivineSarathi के मुख्य तथ्य एक जगह: यह क्या है, किसने बनाया, प्लैटफ़ॉर्म, भाषाएँ, कीमत, रेटिंग, लोगो और संपर्क।",
@@ -218,11 +218,11 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     hi: null,
     name: { en: "Download", hi: "डाउनलोड" },
     title: {
-      en: "Download the Krishna AI Gita App for iPhone and Android",
+      en: "Download the Krishna AI Gita App",
       hi: "iPhone और Android के लिए कृष्ण AI गीता ऐप डाउनलोड करें",
     },
     description: {
-      en: `Get DivineSarathi ${PLUS_PUBLIC ? "on the App Store and Google Play, free to start" : "free on the App Store and Google Play"}. Talk to Krishna AI by voice or text, learn the Bhagavad Gita verse by verse, daily stories and meditation.`,
+      en: `Get DivineSarathi ${PLUS_PUBLIC ? "on the App Store and Google Play, free to start" : "free on the App Store and Google Play"}. Talk to Krishna AI by voice or text and learn the Bhagavad Gita verse by verse.`,
       hi: `DivineSarathi को App Store और Google Play पर ${PLUS_PUBLIC ? "मुफ़्त में शुरू करें" : "मुफ़्त पाएँ"}।`,
     },
     updated: "2026-10-29",
@@ -304,7 +304,7 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     en: "/delete-account",
     hi: "/hi/delete-account",
     name: { en: "Delete account", hi: "अकाउंट डिलीट करें" },
-    title: { en: "Delete Your DivineSarathi Account", hi: "अपना DivineSarathi अकाउंट डिलीट करें" },
+    title: { en: "Delete Your Account and Data", hi: "अपना अकाउंट और डेटा डिलीट करें" },
     description: {
       en: "How to delete your DivineSarathi account and its data, in the app or by writing to us, and what we delete.",
       hi: "अपना DivineSarathi अकाउंट और उसका डेटा कैसे डिलीट करें, ऐप में या हमें लिखकर, और हम क्या मिटाते हैं।",

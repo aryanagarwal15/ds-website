@@ -17,6 +17,20 @@ export const metadata: Metadata = pageMetadata("download", "en");
 const CRAWLER_UA =
   /googlebot|google-inspectiontool|bingbot|applebot|duckduckbot|yandexbot|baiduspider|slurp/;
 
+// People who arrive from a search result see the same page the crawler indexed,
+// then tap a store button. Everyone else on a phone (Instagram bio, QR codes,
+// our own store buttons) still goes straight to their store.
+const SEARCH_REFERRER =
+  /(^|\.)(google|bing|duckduckgo|yahoo|yandex|ecosia|baidu|brave)\.(com|[a-z]{2}|co\.[a-z]{2}|com\.[a-z]{2})$/;
+
+function fromSearch(referrer: string): boolean {
+  try {
+    return SEARCH_REFERRER.test(new URL(referrer).hostname);
+  } catch {
+    return false;
+  }
+}
+
 type PageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
@@ -35,8 +49,9 @@ export default async function DownloadPage({ searchParams }: PageProps) {
   const isAndroid = userAgent.includes("android");
   const isIOS = /iphone|ipad|ipod/.test(userAgent);
   const isCrawler = CRAWLER_UA.test(userAgent);
+  const showPage = isCrawler || fromSearch(referrer);
 
-  const redirectUrl = isCrawler
+  const redirectUrl = showPage
     ? null
     : isIOS
       ? APP_STORE_URL
@@ -69,7 +84,7 @@ export default async function DownloadPage({ searchParams }: PageProps) {
     );
   }
 
-  // Desktop fallback (and search crawlers)
+  // Desktop, search crawlers, and phones arriving from a search result
   return (
     <>
       <JsonLd
@@ -81,7 +96,7 @@ export default async function DownloadPage({ searchParams }: PageProps) {
       />
       <DownloadVisitTracker
         tracking={tracking}
-        platform="desktop"
+        platform={isIOS ? "ios" : isAndroid ? "android" : "desktop"}
         serverIp={ipAddress}
         serverReferrer={referrer}
       />

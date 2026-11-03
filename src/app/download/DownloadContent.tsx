@@ -12,7 +12,11 @@ import { downloadFaqs } from "./faqs";
 
 const FEATURE_KEYS: FeatureKey[] = ["krishnaAi", "gita", "sadhana", "meditation"];
 
-/** What desktop visitors and search crawlers see at /download. Phones are sent straight to their store. */
+/**
+ * What desktop visitors, search crawlers and phones arriving from a search result
+ * see at /download. Other phones are sent straight to their store. The QR code
+ * only shows on screens wide enough to be something other than the phone.
+ */
 export default function DownloadContent() {
   return (
     <>
@@ -23,10 +27,12 @@ export default function DownloadContent() {
             <p className="eyebrow">Download</p>
             <h1 className="mt-4 text-[clamp(2.3rem,5vw,3.6rem)] text-indigo">Get DivineSarathi {FREE.en.get}</h1>
             <p className="mx-auto mt-5 max-w-xl text-[1.1rem] leading-relaxed text-ink-soft lg:mx-0">
-              Talk to Krishna AI by voice or text in English or Hindi, learn the Bhagavad Gita verse by verse, hear a story every morning and meditate. Scan the code with your phone, or pick your store.
+              Talk to Krishna AI by voice or text in English or Hindi, learn the Bhagavad Gita verse by verse, hear a story every morning and meditate.<span className="hidden md:inline"> Scan the code with your phone, or pick your store.</span>
             </p>
             <div className="mt-9 flex flex-col items-center gap-6 lg:flex-row lg:items-center">
-              <QrCode label="Scan with your phone camera" size={150} />
+              <div className="hidden md:block">
+                <QrCode label="Scan with your phone camera" size={150} />
+              </div>
               <div className="flex flex-col items-center gap-4 lg:items-start">
                 <StoreButtons locale="en" page="download" spot="hero" height={50} />
                 <RatingLine locale="en" />

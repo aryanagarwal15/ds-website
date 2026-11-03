@@ -22,7 +22,8 @@ export default function PhoneShot({ src, alt, priority = false, className = "", 
           alt={alt}
           width={660}
           height={1434}
-          priority={priority}
+          preload={priority}
+          fetchPriority={priority ? "high" : undefined}
           sizes={`(max-width: 640px) 72vw, ${width}px`}
           className="h-full w-full object-cover"
         />
