@@ -31,7 +31,10 @@ export type RouteKey =
   | "howItWorks"
   | "sources"
   | "press"
-  | "deleteAccount";
+  | "deleteAccount"
+  | "gitaAi"
+  | "chooseGitaApp"
+  | "seBaat";
 
 export type FooterGroup = "product" | "company" | "legal";
 
@@ -52,6 +55,10 @@ export type RouteDef = {
   footer: FooterGroup | null;
   index: boolean;
   priority: number;
+  /** A Hindi-only page: en holds its (Hindi) path and there is no English twin. */
+  hiOnly?: boolean;
+  /** Where the language switch goes when this page has no twin in the other language. */
+  switchTo?: RouteKey;
 };
 
 export const ROUTES: Record<RouteKey, RouteDef> = {
@@ -84,7 +91,7 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
       en: `${PLUS_PUBLIC ? "Free-to-start" : "Free"} Krishna AI app: talk to Krishna by voice or text in Hindi or English, with answers from the Gita. ${PROOF.en}`,
       hi: `मन में जो भी हो, कृष्ण AI से आवाज़ या टेक्स्ट में, हिंदी या अंग्रेज़ी में बात करें। जवाब भगवद गीता की सीख से। ${PROOF.hi}`,
     },
-    updated: "2026-10-29",
+    updated: "2026-11-04",
     footer: "product",
     index: true,
     priority: 0.9,
@@ -101,7 +108,7 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
       en: `All 18 chapters and 700 shlokas of the Bhagavad Gita, each recited in Sanskrit and explained in plain words. ${FREE.en.on}.`,
       hi: `भगवद गीता के सभी 18 अध्याय और 700 श्लोक, संस्कृत में पाठ और सरल हिंदी में अर्थ। ${FREE.hi.on}।`,
     },
-    updated: "2026-10-29",
+    updated: "2026-11-04",
     footer: "product",
     index: true,
     priority: 0.9,
@@ -118,7 +125,7 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
       en: `Each day in the DivineSarathi app: a Daily Puja story, two Gita shlokas, a talk with Krishna and a short meditation. ${FREE.en.on}.`,
       hi: `DivineSarathi ऐप में दैनिक साधना: दैनिक पूजा की कथा, गीता के दो श्लोक, कृष्ण से बात और कुछ मिनट ध्यान। ${FREE.hi.on}।`,
     },
-    updated: "2026-10-29",
+    updated: "2026-11-04",
     footer: "product",
     index: true,
     priority: 0.8,
@@ -135,7 +142,7 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
       en: `Dhyana in the DivineSarathi app: guided breath meditation to calm, reset and focus the mind, a few minutes at a time. ${FREE.en.on}.`,
       hi: `DivineSarathi ऐप में निर्देशित श्वास ध्यान, मन को शांत करने, फिर से संभलने और एकाग्र होने के लिए, कुछ मिनट रोज़। ${FREE.hi.on}।`,
     },
-    updated: "2026-10-29",
+    updated: "2026-11-04",
     footer: "product",
     index: true,
     priority: 0.7,
@@ -314,6 +321,60 @@ export const ROUTES: Record<RouteKey, RouteDef> = {
     index: true,
     priority: 0.3,
   },
+  gitaAi: {
+    en: "/gita-ai",
+    hi: "/hi/gita-ai",
+    name: { en: "Gita AI", hi: "गीता AI" },
+    title: {
+      en: "Gita AI: Ask the Bhagavad Gita by Voice",
+      hi: "गीता AI: भगवद गीता से पूछें, Gita AI Hindi",
+    },
+    description: {
+      en: `Ask the Bhagavad Gita anything by voice or text, in English or Hindi, and hear Krishna AI answer with the verse behind it. ${FREE.en.on}.`,
+      hi: `भगवद गीता से कुछ भी पूछिए, आवाज़ में या लिखकर, हिंदी या अंग्रेज़ी में। कृष्ण AI श्लोक के साथ जवाब देते हैं। ${FREE.hi.on}।`,
+    },
+    updated: "2026-11-04",
+    footer: "product",
+    index: true,
+    priority: 0.8,
+  },
+  chooseGitaApp: {
+    en: "/best-bhagavad-gita-app",
+    hi: null,
+    name: { en: "Choosing a Gita app", hi: "गीता ऐप कैसे चुनें" },
+    title: {
+      en: "Best Bhagavad Gita App? How to Choose One",
+      hi: "सबसे अच्छा भगवद गीता ऐप कैसे चुनें",
+    },
+    description: {
+      en: "What to look for in a Bhagavad Gita app: all 700 verses, Sanskrit with meaning, your language, clear sources, honest AI and privacy. A short, fair checklist.",
+      hi: "भगवद गीता ऐप में क्या देखें: सभी 700 श्लोक, अर्थ के साथ संस्कृत, आपकी भाषा, साफ़ स्रोत और गोपनीयता।",
+    },
+    updated: "2026-11-04",
+    footer: "product",
+    index: true,
+    priority: 0.6,
+    switchTo: "gita",
+  },
+  seBaat: {
+    en: "/hi/krishna-se-baat",
+    hi: null,
+    name: { en: "Krishna se baat", hi: "कृष्ण से बात" },
+    title: {
+      en: "Krishna se baat kaise karein",
+      hi: "कृष्ण से बात कैसे करें: Krishna se baat karne wala app",
+    },
+    description: {
+      en: "How to talk with Krishna AI in Hindi, by voice or text, in the DivineSarathi app.",
+      hi: `कृष्ण AI से हिंदी में बात कीजिए, बोलकर या लिखकर। मन में जो भी हो, कृष्ण सुनते हैं और गीता की सीख से जवाब देते हैं। ${FREE.hi.on}।`,
+    },
+    updated: "2026-11-04",
+    footer: null,
+    index: true,
+    priority: 0.7,
+    hiOnly: true,
+    switchTo: "krishnaAi",
+  },
 };
 
 /** Keys whose Hindi page is built. Others keep hi: null in effect. */
@@ -332,6 +393,7 @@ const HINDI_READY = new Set<RouteKey>([
   "terms",
   "refunds",
   "deleteAccount",
+  "gitaAi",
 ]);
 
 export function hindiPath(key: RouteKey): string | null {

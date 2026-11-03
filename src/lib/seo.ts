@@ -18,6 +18,7 @@ export const abs = (path: string) => `${SITE_URL}${path === "/" ? "" : path}`;
 
 export function hreflang(key: RouteKey): Record<string, string> {
   const r = ROUTES[key];
+  if (r.hiOnly) return { "hi-IN": abs(r.en) };
   const langs: Record<string, string> = { "en-IN": abs(r.en), "x-default": abs(r.en) };
   const hi = hindiPath(key);
   if (hi) langs["hi-IN"] = abs(hi);

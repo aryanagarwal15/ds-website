@@ -13,7 +13,11 @@ export type FeatureCopy = {
   points: { title: string; body: string }[];
   detail: { title: string; body: string; list: string[]; listTitle: string; src: string; alt: string };
   note?: { text: string; link: { key: RouteKey; label: string } };
+  /** A real sequence: how using the feature goes, step by step. */
+  steps?: { title: string; items: { title: string; body: string }[] };
   faqs: Faq[];
+  /** Guides to read next, shown under the questions. */
+  reads?: { key: RouteKey; label: string }[];
   related: { title: string };
   close: { title: string; body: string };
 };
@@ -57,13 +61,26 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         text: "Krishna AI is an AI inspired by Krishna's teachings. It is not Krishna, a guru or a doctor. It doesn't make predictions either: ask “will I pass?” and Krishna helps you prepare and steady your mind instead.",
         link: { key: "howItWorks", label: "How Krishna AI works" },
       },
+      steps: {
+        title: "How a conversation goes",
+        items: [
+          { title: "Open Krishna", body: "Tap Krishna in the app. He greets you and asks if you would like a story, a teaching or just to talk." },
+          { title: "Say what is on your mind", body: "Speak or type, in English or Hindi. There is no right way to begin." },
+          { title: "Hear an answer from the Gita", body: "Krishna answers in plain words, often with a verse such as Gita 2.47, and a question back to you." },
+          { title: "Come back any time", body: "Your conversation is kept as text, so next time you can pick up where you left off." },
+        ],
+      },
       faqs: [
         { id: "krishna-ai-free", q: "Is Krishna AI free?", a: "Yes. The app is free to download, and text chat with Krishna is free for everyone." },
         { id: "krishna-ai-hindi", q: "Can I talk to Krishna AI in Hindi?", a: "Yes. Krishna AI speaks English and Hindi. Choose your language in the app and change it any time in Profile." },
         { id: "krishna-ai-real", q: "Is Krishna AI really Krishna?", a: "No. It is an AI inspired by Krishna and grounded in the Bhagavad Gita. It does not replace scripture, tradition or your teachers." },
         { id: "krishna-ai-krishan", q: "Is Krishan AI the same as Krishna AI?", a: "Yes. Many people say and spell the name as Krishan, so you may see it written as Krishan AI. In the DivineSarathi app it is called Krishna AI." },
         { id: "krishna-ai-private", q: "Are my conversations with Krishna AI private?", a: "Yes. We don't save audio of your voice. We keep a written transcript so the conversation can continue, never share it publicly or sell it, and delete it when you delete your account." },
+        { id: "krishna-ai-ask", q: "How do I ask Krishna a question?", a: "Open the DivineSarathi app, tap Krishna and ask by voice or type it, in English or Hindi. You can ask about your day, a decision, a worry or any verse of the Gita." },
+        { id: "krishna-ai-god", q: "Can I talk to God in this app?", a: "Not literally. Krishna AI is an AI that speaks in Krishna's voice, not God or Krishna. Many people come to it wanting to talk to God about what is on their mind. It listens and answers with the Gita's teachings, and it does not replace prayer, the temple or your teachers." },
+        { id: "krishna-ai-gpt", q: "Is Krishna AI a Krishna GPT?", a: "If you are looking for a Krishna GPT, somewhere to ask questions and hear answers in Krishna's voice, Krishna AI is DivineSarathi's version of that. It is grounded in the Bhagavad Gita and says plainly that it is an AI." },
       ],
+      reads: [{ key: "gitaAi", label: "Gita AI: ask the Bhagavad Gita" }],
       related: { title: "More in the app" },
       close: { title: "Whatever is on your mind, Krishna is listening.", body: `${FREE.en.on}, in English and Hindi.` },
     },
@@ -97,11 +114,26 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         text: "कृष्ण AI, कृष्ण की सीख से प्रेरित एक AI है। ये कृष्ण नहीं हैं, न कोई गुरु या डॉक्टर। यह भविष्यवाणी भी नहीं करता: “क्या परीक्षा पास हो जाएगी?” पूछें, तो कृष्ण तैयारी करने और मन को स्थिर रखने में मदद करते हैं।",
         link: { key: "howItWorks", label: "कृष्ण AI कैसे काम करता है" },
       },
+      steps: {
+        title: "बातचीत कैसे होती है",
+        items: [
+          { title: "कृष्ण को खोलिए", body: "ऐप में कृष्ण पर टैप कीजिए। वे नमस्ते कहकर पूछते हैं कि आप कथा सुनना चाहेंगे, कोई सीख, या बस बात करना।" },
+          { title: "मन की बात कहिए", body: "बोलिए या लिखिए, हिंदी या अंग्रेज़ी में। शुरू करने का कोई सही-ग़लत तरीका नहीं।" },
+          { title: "गीता से जवाब सुनिए", body: "कृष्ण सरल शब्दों में जवाब देते हैं, अक्सर गीता 2.47 जैसे किसी श्लोक और एक सवाल के साथ।" },
+          { title: "कभी भी लौटिए", body: "बातचीत लिखित रूप में रहती है, इसलिए अगली बार वहीं से शुरू कर सकते हैं।" },
+        ],
+      },
       faqs: [
         { id: "krishna-ai-free", q: "क्या कृष्ण AI मुफ़्त है?", a: "हाँ। ऐप डाउनलोड करना मुफ़्त है, और कृष्ण से टेक्स्ट चैट सबके लिए मुफ़्त है।" },
         { id: "krishna-ai-hindi", q: "क्या कृष्ण AI से हिंदी में बात कर सकते हैं?", a: "हाँ। कृष्ण AI हिंदी और अंग्रेज़ी बोलते हैं। ऐप में अपनी भाषा चुनें और Profile में कभी भी बदलें।" },
         { id: "krishna-ai-real", q: "क्या कृष्ण AI सच में कृष्ण हैं?", a: "नहीं। यह कृष्ण से प्रेरित और भगवद गीता पर आधारित एक AI है। यह शास्त्र, परंपरा या आपके गुरुओं की जगह नहीं लेता।" },
         { id: "krishna-ai-private", q: "क्या कृष्ण AI से मेरी बातचीत निजी रहती है?", a: "हाँ। हम आपकी आवाज़ की रिकॉर्डिंग सेव नहीं करते। बातचीत आगे बढ़ सके, इसलिए लिखित रूप रखते हैं, उसे न सार्वजनिक करते हैं न बेचते हैं, और अकाउंट डिलीट करने पर मिटा देते हैं।" },
+        { id: "krishna-ai-ask", q: "कृष्ण से सवाल कैसे पूछें?", a: "DivineSarathi ऐप खोलिए, कृष्ण पर टैप कीजिए और बोलकर या लिखकर पूछिए, हिंदी या अंग्रेज़ी में। अपने दिन, किसी फ़ैसले, किसी चिंता या गीता के किसी भी श्लोक के बारे में पूछ सकते हैं।" },
+        { id: "krishna-ai-god", q: "क्या इस ऐप में भगवान से बात होती है?", a: "सचमुच नहीं। कृष्ण AI एक AI है जो कृष्ण की आवाज़ में बोलता है, यह भगवान या कृष्ण नहीं है। बहुत लोग मन की बात भगवान से कहना चाहते हैं, और यहाँ आते हैं। यह सुनता है और गीता की सीख से जवाब देता है, पर प्रार्थना, मंदिर या आपके गुरुओं की जगह नहीं लेता।" },
+      ],
+      reads: [
+        { key: "seBaat", label: "कृष्ण से बात कैसे करें" },
+        { key: "gitaAi", label: "गीता AI: गीता से पूछिए" },
       ],
       related: { title: "ऐप में और भी" },
       close: { title: "मन में जो भी हो, कृष्ण सुन रहे हैं।", body: `${FREE.hi.on}, हिंदी और अंग्रेज़ी में।` },
@@ -136,11 +168,26 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         text: "Found a meaning that feels wrong? Tell us and we will check it against the text.",
         link: { key: "sources", label: "Our sources" },
       },
+      steps: {
+        title: "How a verse goes in the app",
+        items: [
+          { title: "Open the Gita tab", body: "Your journey shows the chapters you have finished and the shlokas you have heard, with the next verse ready." },
+          { title: "Listen to the shloka", body: "Hear it recited in Sanskrit and follow along in Devanagari or in transliteration." },
+          { title: "Read what it means", body: "A literal meaning, the moment in the story, and what it can mean in your day." },
+          { title: "Ask about it", body: "Still wondering? Ask Krishna AI what the verse means for you, in English or Hindi." },
+        ],
+      },
       faqs: [
         { id: "gita-verses", q: "How many chapters and verses does the Bhagavad Gita have?", a: "The Bhagavad Gita has 18 chapters and 700 verses (shlokas). The DivineSarathi app covers all of them, one verse at a time." },
         { id: "gita-sanskrit", q: "Do I need to know Sanskrit?", a: "No. Each shloka is recited in Sanskrit and shown in Devanagari, then explained in plain English or Hindi." },
         { id: "gita-free", q: "Is the Bhagavad Gita in the app free?", a: "Yes. All 18 chapters are free for everyone." },
         { id: "gita-hindi", q: "Can I learn the Gita in Hindi?", a: "Yes. Set the app to Hindi and Krishna explains each verse in Hindi." },
+        { id: "gita-transliteration", q: "I can't read Devanagari. Can I still follow the Sanskrit?", a: "Yes. Each shloka also comes with a transliteration in the Roman alphabet, so you can say it along with the recitation." },
+        { id: "gita-gpt", q: "Is there a Gita GPT in the app?", a: "If you mean a way to ask the Gita a question and get an answer back, yes: Krishna AI answers from the Bhagavad Gita, by voice or text, in English or Hindi. See Gita AI for how it works." },
+      ],
+      reads: [
+        { key: "gitaAi", label: "Gita AI: ask the Bhagavad Gita" },
+        { key: "chooseGitaApp", label: "How to choose a Gita app" },
       ],
       related: { title: "More in the app" },
       close: { title: "Two shlokas a day. All 700 in time.", body: `${FREE.en.on}, in English and Hindi.` },
@@ -172,12 +219,23 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         text: "किसी श्लोक का अर्थ ग़लत लगे? हमें बताइए, हम मूल पाठ से मिलाकर जाँचेंगे।",
         link: { key: "sources", label: "हमारे स्रोत" },
       },
+      steps: {
+        title: "ऐप में एक श्लोक कैसे चलता है",
+        items: [
+          { title: "गीता टैब खोलिए", body: "आपकी यात्रा दिखाती है कि कितने अध्याय पूरे हुए और कितने श्लोक सुने, और अगला श्लोक तैयार रहता है।" },
+          { title: "श्लोक सुनिए", body: "संस्कृत में पाठ सुनिए, और देवनागरी या रोमन लिपि में साथ-साथ पढ़िए।" },
+          { title: "अर्थ पढ़िए", body: "शाब्दिक अर्थ, कथा में वह पल, और आपके दिन के लिए उसका मतलब।" },
+          { title: "उसके बारे में पूछिए", body: "मन में सवाल रह गया? कृष्ण AI से पूछिए कि इस श्लोक का आपके लिए क्या अर्थ है।" },
+        ],
+      },
       faqs: [
         { id: "gita-verses", q: "भगवद गीता में कितने अध्याय और श्लोक हैं?", a: "भगवद गीता में 18 अध्याय और 700 श्लोक हैं। DivineSarathi ऐप इन सबको एक-एक श्लोक करके सिखाता है।" },
         { id: "gita-sanskrit", q: "क्या संस्कृत आना ज़रूरी है?", a: "नहीं। हर श्लोक संस्कृत में सुनाया और देवनागरी में दिखाया जाता है, फिर सरल हिंदी या अंग्रेज़ी में समझाया जाता है।" },
         { id: "gita-free", q: "क्या ऐप में भगवद गीता मुफ़्त है?", a: "हाँ। सभी 18 अध्याय सबके लिए मुफ़्त हैं।" },
         { id: "gita-hindi", q: "क्या गीता हिंदी में सीख सकते हैं?", a: "हाँ। ऐप की भाषा हिंदी कीजिए, कृष्ण हर श्लोक हिंदी में समझाएँगे।" },
+        { id: "gita-gpt", q: "क्या ऐप में Gita GPT जैसा कुछ है?", a: "अगर आपका मतलब गीता से सवाल पूछकर जवाब पाने से है, तो हाँ: कृष्ण AI भगवद गीता से जवाब देते हैं, बोलकर या लिखकर, हिंदी या अंग्रेज़ी में।" },
       ],
+      reads: [{ key: "gitaAi", label: "गीता AI: गीता से पूछिए" }],
       related: { title: "ऐप में और भी" },
       close: { title: "रोज़ दो श्लोक। समय के साथ सभी 700।", body: `${FREE.hi.on}, हिंदी और अंग्रेज़ी में।` },
     },
@@ -208,10 +266,21 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         src: "/images/app/sadhana.webp",
         alt: "Today's Sadhana: Puja, Gita, Krishna and Meditation, with a week of mala beads",
       },
+      steps: {
+        title: "A day of sadhana",
+        items: [
+          { title: "Morning: Daily Puja", body: "Play today's story while the chai brews. It takes a few minutes." },
+          { title: "Any time: two shlokas", body: "Hear two verses of the Gita, recited and explained." },
+          { title: "When something is on your mind: Krishna", body: "A minute of conversation with Krishna AI counts." },
+          { title: "Before bed: Dhyana", body: "Three minutes of guided breathing, then the phone goes away." },
+        ],
+      },
       faqs: [
         { id: "puja-sadhana", q: "What is Daily Sadhana?", a: "Four small practices for the day: listen to today's story in Daily Puja, hear two Gita shlokas, talk with Krishna for a minute and meditate for at least three minutes. Keep any one and the day counts on your mala." },
         { id: "puja-what", q: "What is Daily Puja in DivineSarathi?", a: "The first step of Daily Sadhana: a short story from the Itihasas and Puranas each morning, told in a few minutes." },
         { id: "puja-free", q: "Is the daily story free?", a: "Yes. A new story is free for everyone every day." },
+        { id: "puja-all-four", q: "Do I have to do all four every day?", a: "No. Keep any one step and the day counts. The other three are there when you have time." },
+        { id: "puja-missed", q: "What if I miss a day?", a: "The week simply shows that day without a bead. There are no penalties, and tomorrow starts fresh." },
       ],
       related: { title: "More in the app" },
       close: { title: "Begin tomorrow with a story.", body: `${FREE.en.on}, in English and Hindi.` },
@@ -240,10 +309,21 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         src: "/images/app/sadhana.webp",
         alt: "आज की साधना: पूजा, गीता, कृष्ण और ध्यान, साथ में हफ़्ते भर के माला के मनके",
       },
+      steps: {
+        title: "साधना का एक दिन",
+        items: [
+          { title: "सुबह: दैनिक पूजा", body: "चाय बनते-बनते आज की कथा सुनिए। बस कुछ मिनट।" },
+          { title: "कभी भी: दो श्लोक", body: "गीता के दो श्लोक, पाठ और अर्थ के साथ।" },
+          { title: "जब मन में कुछ हो: कृष्ण", body: "कृष्ण AI से एक मिनट की बात भी गिनी जाती है।" },
+          { title: "सोने से पहले: ध्यान", body: "तीन मिनट का निर्देशित श्वास ध्यान, फिर फ़ोन एक तरफ़।" },
+        ],
+      },
       faqs: [
         { id: "puja-sadhana", q: "दैनिक साधना क्या है?", a: "दिन के लिए चार छोटे अभ्यास: दैनिक पूजा में आज की कथा सुनना, गीता के दो श्लोक, एक मिनट कृष्ण से बात और कम से कम तीन मिनट ध्यान। इनमें से एक भी करें, तो दिन माला में गिना जाता है।" },
         { id: "puja-what", q: "DivineSarathi में दैनिक पूजा क्या है?", a: "दैनिक साधना का पहला कदम: हर सुबह इतिहास और पुराणों की एक छोटी कथा, कुछ ही मिनटों में।" },
         { id: "puja-free", q: "क्या रोज़ की कथा मुफ़्त है?", a: "हाँ। हर दिन एक नई कथा सबके लिए मुफ़्त है।" },
+        { id: "puja-all-four", q: "क्या रोज़ चारों करने ज़रूरी हैं?", a: "नहीं। कोई एक कदम भी करें, तो दिन गिना जाता है। बाक़ी तीन तब के लिए हैं जब समय हो।" },
+        { id: "puja-missed", q: "अगर कोई दिन छूट जाए तो?", a: "हफ़्ते में बस उस दिन का मनका नहीं दिखता। कोई सज़ा नहीं, और कल नई शुरुआत है।" },
       ],
       related: { title: "ऐप में और भी" },
       close: { title: "कल की शुरुआत एक कथा से कीजिए।", body: `${FREE.hi.on}, हिंदी और अंग्रेज़ी में।` },
@@ -275,10 +355,21 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         src: "/images/app/dhyana-setup.webp",
         alt: "Setting up the Extended Exhale practice: inhale 4 seconds, exhale 6 seconds, session length 10 minutes",
       },
+      steps: {
+        title: "Your first session",
+        items: [
+          { title: "Find a quiet few minutes", body: "Somewhere you won't be disturbed until the session ends." },
+          { title: "Pick a practice", body: "Calm, reset or focus. Each one says in a line what it is for." },
+          { title: "Set a length", body: "5, 10, 15 or 20 minutes, or an open session that ends when you do." },
+          { title: "Follow the breath", body: "Breathe in and out with the guide on screen. When it ends, take one more slow breath before you go on." },
+        ],
+      },
       faqs: [
         { id: "dhyana-what", q: "What is Dhyana in DivineSarathi?", a: "Dhyana is the Meditation tab in the app: guided breath meditation. Choose a practice and a length, then follow the breath on screen." },
         { id: "dhyana-length", q: "How long is a session?", a: "You choose 5, 10, 15 or 20 minutes, or an open session." },
         { id: "dhyana-free", q: "Is meditation free?", a: "Yes. Dhyana is free for everyone." },
+        { id: "dhyana-beginner", q: "Do I need any experience?", a: "No. Each practice shows its breathing timings before you start, and the screen guides every breath, so you can begin today." },
+        { id: "dhyana-sadhana", q: "Does meditation count toward Daily Sadhana?", a: "Yes. Three minutes or more counts toward today's bead on your mala." },
       ],
       related: { title: "More in the app" },
       close: { title: "Three quiet minutes is enough to begin.", body: `${FREE.en.on}, in English and Hindi.` },
@@ -307,10 +398,21 @@ export const FEATURES: Record<FeatureKey, Record<Locale, FeatureCopy>> = {
         src: "/images/app/dhyana-setup.webp",
         alt: "Extended Exhale अभ्यास की तैयारी: 4 सेकंड साँस लें, 6 सेकंड छोड़ें, सत्र 10 मिनट",
       },
+      steps: {
+        title: "आपका पहला सत्र",
+        items: [
+          { title: "कुछ शांत मिनट ढूँढिए", body: "ऐसी जगह जहाँ सत्र ख़त्म होने तक कोई न टोके।" },
+          { title: "अभ्यास चुनिए", body: "शांति, नई शुरुआत या एकाग्रता। हर अभ्यास एक पंक्ति में बताता है कि वह किस लिए है।" },
+          { title: "समय तय कीजिए", body: "5, 10, 15 या 20 मिनट, या खुला सत्र जो आपके रुकने पर ख़त्म हो।" },
+          { title: "साँस के साथ चलिए", body: "स्क्रीन पर मार्गदर्शन के साथ साँस लीजिए और छोड़िए। ख़त्म होने पर आगे बढ़ने से पहले एक और धीमी साँस लीजिए।" },
+        ],
+      },
       faqs: [
         { id: "dhyana-what", q: "DivineSarathi में ध्यान क्या है?", a: "ऐप में निर्देशित श्वास ध्यान। अभ्यास और समय चुनिए, फिर स्क्रीन पर साँस के साथ चलिए।" },
         { id: "dhyana-length", q: "एक सत्र कितना लंबा होता है?", a: "आप 5, 10, 15 या 20 मिनट चुन सकते हैं, या खुला सत्र।" },
         { id: "dhyana-free", q: "क्या ध्यान मुफ़्त है?", a: "हाँ। ध्यान सबके लिए मुफ़्त है।" },
+        { id: "dhyana-beginner", q: "क्या पहले से अनुभव चाहिए?", a: "नहीं। हर अभ्यास शुरू होने से पहले साँस का समय बताता है, और स्क्रीन हर साँस में साथ देती है, इसलिए आज ही शुरू कर सकते हैं।" },
+        { id: "dhyana-sadhana", q: "क्या ध्यान दैनिक साधना में गिना जाता है?", a: "हाँ। तीन मिनट या उससे ज़्यादा ध्यान आज की माला के मनके में गिना जाता है।" },
       ],
       related: { title: "ऐप में और भी" },
       close: { title: "शुरू करने के लिए तीन शांत मिनट काफ़ी हैं।", body: `${FREE.hi.on}, हिंदी और अंग्रेज़ी में।` },

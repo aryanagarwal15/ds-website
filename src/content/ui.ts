@@ -26,6 +26,7 @@ export const UI = {
     updated: "Updated",
     breadcrumbHome: "Home",
     questions: "Questions",
+    readNext: "Read next",
   },
   hi: {
     skip: "सामग्री पर जाएँ",
@@ -50,6 +51,7 @@ export const UI = {
     updated: "अपडेट",
     breadcrumbHome: "होम",
     questions: "सवाल-जवाब",
+    readNext: "आगे पढ़ें",
   },
 } satisfies Record<Locale, unknown>;
 

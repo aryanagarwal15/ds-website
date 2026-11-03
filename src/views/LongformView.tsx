@@ -34,7 +34,7 @@ export function inline(text: string): ReactNode {
   return parts;
 }
 
-function renderBlock(b: Block, i: number) {
+export function renderBlock(b: Block, i: number) {
   if ("h2" in b) return <h2 key={i} id={b.id}>{b.h2}</h2>;
   if ("h3" in b) return <h3 key={i}>{b.h3}</h3>;
   if ("p" in b) return <p key={i}>{inline(b.p)}</p>;

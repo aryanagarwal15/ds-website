@@ -91,10 +91,38 @@ export default function FeatureView({ feature, locale }: { feature: FeatureKey; 
         </div>
       </section>
 
+      {c.steps && (
+        <section className="ds-section pt-0">
+          <div className="ds-container">
+            <h2 className="text-center text-[clamp(1.8rem,3.4vw,2.5rem)] text-indigo">{c.steps.title}</h2>
+            <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {c.steps.items.map((s, i) => (
+                <li key={s.title} className="dcard flex flex-col gap-3 p-6">
+                  <span aria-hidden="true" className="font-serif text-[1.6rem] font-semibold text-gold [font-variant-numeric:lining-nums]">{i + 1}</span>
+                  <p className="font-serif text-[1.3rem] font-semibold text-indigo">{s.title}</p>
+                  <p className="text-[0.98rem] leading-relaxed text-ink-soft">{s.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      )}
+
       <section className="ds-section pt-0">
         <div className="ds-container max-w-3xl">
           <h2 className="text-center text-[clamp(1.8rem,3.4vw,2.5rem)] text-indigo">{t.questions}</h2>
           <FaqAccordion faqs={c.faqs} className="mt-8" />
+          {c.reads && (
+            <p className="mt-8 text-center text-[1rem] text-ink-soft">
+              {t.readNext}:{" "}
+              {c.reads.map((r, i) => (
+                <span key={r.key}>
+                  {i > 0 && " · "}
+                  <Link href={pathFor(r.key, locale)} className="font-semibold text-indigo underline decoration-[var(--ds-line)] underline-offset-4 hover:text-saffron">{r.label}</Link>
+                </span>
+              ))}
+            </p>
+          )}
         </div>
       </section>
 

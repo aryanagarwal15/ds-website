@@ -15,7 +15,7 @@ const line = (k: RouteKey) => `- [${ROUTES[k].name.en}](${abs(ROUTES[k].en)}): $
 const FEATURE_KEYS: FeatureKey[] = ["krishnaAi", "gita", "sadhana", "meditation"];
 
 export function generateLlmsTxt(): string {
-  const hindi = (Object.keys(ROUTES) as RouteKey[]).filter((k) => hindiPath(k) && ROUTES[k].index);
+  const hindi = (Object.keys(ROUTES) as RouteKey[]).filter((k) => (hindiPath(k) || ROUTES[k].hiOnly) && ROUTES[k].index);
   return `# ${SITE_NAME}
 
 > ${SUMMARY}
@@ -26,6 +26,11 @@ Key facts: ${PLUS_PUBLIC ? "free to start, with optional Sarathi Plus for more v
 
 ${line("home")}
 ${FEATURE_KEYS.map(line).join("\n")}
+
+## Guides
+
+${line("gitaAi")}
+${line("chooseGitaApp")}
 
 ## Get the app
 
@@ -43,7 +48,7 @@ ${routesInGroup("legal").map(line).join("\n")}
 
 ## Hindi (हिंदी)
 
-${hindi.map((k) => `- [${ROUTES[k].name.hi}](${abs(hindiPath(k) as string)}): ${ROUTES[k].description.hi}`).join("\n")}
+${hindi.map((k) => `- [${ROUTES[k].name.hi}](${abs(hindiPath(k) ?? ROUTES[k].en)}): ${ROUTES[k].description.hi}`).join("\n")}
 
 ## More
 

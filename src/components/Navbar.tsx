@@ -13,7 +13,9 @@ function otherLanguagePath(pathname: string, locale: Locale): string {
   const key = (Object.keys(ROUTES) as RouteKey[]).find(
     (k) => ROUTES[k].en === pathname || hindiPath(k) === pathname,
   );
-  if (locale === "en") return key && hindiPath(key) ? (hindiPath(key) as string) : "/hi";
+  const fallback = key ? ROUTES[key].switchTo : undefined;
+  if (locale === "en") return key && hindiPath(key) ? (hindiPath(key) as string) : fallback ? pathFor(fallback, "hi") : "/hi";
+  if (key && ROUTES[key].hiOnly) return fallback ? ROUTES[fallback].en : "/";
   return key ? ROUTES[key].en : "/";
 }
 
